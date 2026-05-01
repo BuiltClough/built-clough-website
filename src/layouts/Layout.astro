@@ -89,7 +89,11 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://builtclou
 
     <!-- Scroll-triggered fade-in for .animate-section elements -->
     <script>
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sections = document.querySelectorAll('.animate-section');
+      if (prefersReduced) {
+        sections.forEach((el) => el.classList.add('is-visible'));
+      } else {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -99,9 +103,9 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://builtclou
               }
             });
           },
-          { threshold: 0.1 }
+          { threshold: 0, rootMargin: '0px 0px -60px 0px' }
         );
-        document.querySelectorAll('.animate-section').forEach((el) => observer.observe(el));
+        sections.forEach((el) => observer.observe(el));
       }
     </script>
   </body>

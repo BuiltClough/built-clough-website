@@ -42,9 +42,33 @@ const services = [
     ],
   },
   {
-    title: 'Handyman services',
+    title: 'Windows & Doors',
+    href: '/services/windows-doors',
+    icon: ``,
+    items: [
+      'Window installation & replacement',
+      'Door installation & hanging',
+      'Trim & casing work',
+      'Weatherproofing & sealing',
+      'Storm door installation',
+    ],
+  },
+  {
+    title: 'Trim & Moulding',
+    href: '/services/trim-moulding',
+    icon: ``,
+    items: [
+      'Crown moulding installation',
+      'Baseboards & door casing',
+      'Coffered & tray ceilings',
+      'Built-in shelving & millwork',
+      'Paint-grade & stain-grade finishes',
+    ],
+  },
+  {
+    title: 'Handyman Pro',
     href: '/services/handyman',
-    icon: `<path d="M14.5 2.5a4 4 0 00-4.8 5.3L3.4 14a1.5 1.5 0 002.1 2.1l6.3-6.3a4 4 0 005.3-4.8l-2.8 2.8-1.8-1.8 2-3.5z"/>`,
+    icon: ``,
     items: [
       'Drywall repair & patching',
       'Door & window installation',
@@ -60,16 +84,16 @@ const steps = [
   { number: '02', title: '1-hour site visit', description: "We come walk the space, take measurements, ask the questions that matter. We point out the things in your plan that won't work and suggest the things that will." },
   {
     number: '03', title: '2–3 days to design',
-    description: "We do all design work in-house. We're not interior designers — we're builders who design, which means we understand loads, mechanicals, and what your house can actually handle. We're good at finding creative solutions when budget or existing conditions get in the way.",
+    description: "We do all design work in-house. We're not interior designers, we're builders who design, which means we understand loads, mechanicals, and what your house can actually handle. We're good at finding creative solutions when budget or existing conditions get in the way.",
     wide: true,
     gif: true,
   },
   { number: '04', title: '5 days to a written proposal', description: "Line-by-line. Materials, labor, allowances, timeline. You'll know what's included and what isn't before you sign anything.", pills: [
-    { label: 'Scope of work', title: 'Scope of work', body: "A written scope of work documents exactly what we're building — materials, dimensions, finishes, and exclusions. It's the foundation of your contract. Nothing is assumed; if it's not in the scope, it's not in the price. You'll have a clear record of what was agreed to before a single board is cut." },
-    { label: 'Fixed price', title: 'Fixed price', body: "You get one number before we start. No hourly billing, no surprises at the end because we underestimated labor. If our estimate is off on something we should have caught, that's on us — not you. Change orders only happen when you change the scope." },
+    { label: 'Scope of work', title: 'Scope of work', body: "A written scope of work documents exactly what we're building, materials, dimensions, finishes, and exclusions. It's the foundation of your contract. Nothing is assumed; if it's not in the scope, it's not in the price. You'll have a clear record of what was agreed to before a single board is cut." },
+    { label: 'Fixed price', title: 'Fixed price', body: "You get one number before we start. No hourly billing, no surprises at the end because we underestimated labor. If our estimate is off on something we should have caught, that's on us, not you. Change orders only happen when you change the scope." },
   ] },
   { number: '05', title: "Same crew, every day, until it's done", description: "No rotating subs you've never met. The people who start your project finish it.", avatars: true },
-  { number: '06', title: 'Direct line to your project contact', description: "A real cell phone number, not a main office line. Text or call any time during the build — you'll hear back same day.", contact: true },
+  { number: '06', title: 'Direct line to your project contact', description: "A real cell phone number, not a main office line. Text or call any time during the build, you'll hear back same day.", contact: true },
   { number: '07', title: 'Final 15% held until walkthrough', description: "We don't ask for the last payment until you've walked the finished space with us and signed off. Punch list done before we ask, not after.", video: true },
 ];
 
@@ -90,29 +114,26 @@ const trustChecklist = [
   { title: 'General liability insurance', detail: "$2M coverage. We'll send you the certificate before we start work." },
   { title: "Workers' compensation", detail: "If someone gets hurt on your property, you're not the one paying for it." },
   { title: 'Permits pulled in our name', detail: "On every job that requires them. We don't ask homeowners to pull permits to save a few dollars." },
-  { title: 'A signed contract', detail: 'With detailed scope and payment terms — before any money changes hands.' },
+  { title: 'A signed contract', detail: 'With detailed scope and payment terms, before any money changes hands.' },
 ];
 
 const certGrid = [
-  'General liability',
-  "Workers' comp",
-  'Permits pulled',
-  'BBB Accredited',
-  'Workmanship guarantee',
+  { label: '100% insured', icon: `<path d="M10 2L3 5.5v4.5c0 4 3 7.5 7 9 4-1.5 7-5 7-9V5.5L10 2z"/>`, mobileHide: false },
+  { label: "Workers' comp", icon: `<circle cx="10" cy="6" r="3"/><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round"/>`, mobileHide: false },
+  { label: 'BBB Accredited', icon: `<circle cx="10" cy="10" r="8"/><path d="M7 10l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>`, mobileHide: false },
+  { label: '20+ years experience', icon: `<circle cx="10" cy="10" r="8"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round" stroke-linejoin="round"/>`, mobileHide: true },
+  { label: 'Workmanship guarantee', icon: `<circle cx="10" cy="7.5" r="4.5"/><path d="M6.5 12l-2 6 5.5-2 5.5 2-2-6" stroke-linecap="round" stroke-linejoin="round"/>`, mobileHide: true },
 ];
 
 const projectLog = [
-  { name: 'Marion Kitchen Remodel', location: 'Marion, IL', date: 'Oct 2024', type: 'Kitchen', img: '/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif', alt: 'Kitchen remodel in Marion, IL' },
-  { name: 'Carbondale Master Bathroom', location: 'Carbondale, IL', date: 'Aug 2024', type: 'Bathroom', img: '/images/og/master-bathroom-navy-vanity-freestanding-tub-remodel.avif', alt: 'Master bathroom remodel in Carbondale, IL' },
-  { name: 'Herrin Covered Deck', location: 'Herrin, IL', date: 'Jun 2024', type: 'Deck', img: '/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif', alt: 'Covered deck in Herrin, IL' },
-  { name: 'Murphysboro Log Cabin', location: 'Murphysboro, IL', date: 'Mar 2024', type: 'New build', img: '/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif', alt: 'Log cabin build in Murphysboro, IL' },
-  { name: 'Makanda Walk-In Shower', location: 'Makanda, IL', date: 'Jan 2024', type: 'Bathroom', img: '/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif', alt: 'Walk-in shower remodel in Makanda, IL' },
-  { name: 'Carterville Kitchen & Island', location: 'Carterville, IL', date: 'Nov 2023', type: 'Kitchen', img: '/images/og/kitchen-island-cherry-butcher-block-cooktop-remodel.avif', alt: 'Kitchen remodel in Carterville, IL' },
+  { name: 'Civil War Cabin Restoration', location: 'Murphysboro, IL', date: 'Mar 2024', type: 'New build', img: '/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif', alt: 'Civil War cabin restoration in Murphysboro, IL' },
+  { name: 'Carterville Bath Remodel', location: 'Carterville, IL', date: 'Feb 2024', type: 'Bathroom', img: '/images/og/carterville-bath-remodel-01.avif', alt: 'Bathroom remodel in Carterville, IL' },
+  { name: 'Makanda Kitchen Remodel', location: 'Makanda, IL', date: 'Jan 2024', type: 'Kitchen', img: '/images/og/makanda-kitchen-remodel-full.avif', alt: 'Kitchen remodel in Makanda, IL' },
 ];
 
 const testimonials = [
   {
-    quote: "Jeff and his crew redid our entire kitchen from top to bottom. They showed up every day on time, kept the site clean, and finished two days ahead of schedule. The quality is outstanding — we get compliments from everyone who visits.",
+    quote: "Jeff and his crew redid our entire kitchen from top to bottom. They showed up every day on time, kept the site clean, and finished two days ahead of schedule. The quality is outstanding, we get compliments from everyone who visits.",
     name: 'Sarah M.',
     detail: 'Marion, IL · Kitchen remodel · 2024',
     initials: 'SM',
@@ -121,7 +142,7 @@ const testimonials = [
     tag: 'Marion Kitchen',
   },
   {
-    quote: "We had a complicated deck project — uneven grade, tight budget, HOA restrictions — and Pat figured out a solution that worked perfectly. The deck has been standing strong for three years now.",
+    quote: "We had a complicated deck project, uneven grade, tight budget, HOA restrictions, and Pat figured out a solution that worked perfectly. The deck has been standing strong for three years now.",
     name: 'Linda R.',
     detail: 'Carbondale, IL · Deck addition · 2024',
     initials: 'LR',
@@ -130,7 +151,7 @@ const testimonials = [
     tag: 'Carbondale Deck',
   },
   {
-    quote: "Travis transformed our master bathroom — walk-in shower, new tile, new vanity. The craftsmanship is exactly what we were hoping for. We've already recommended Built Clough to three neighbors and they've all been equally happy.",
+    quote: "Travis transformed our master bathroom, walk-in shower, new tile, new vanity. The craftsmanship is exactly what we were hoping for. We've already recommended Built Clough to three neighbors and they've all been equally happy.",
     name: 'Rachel & Dave P.',
     detail: 'Murphysboro, IL · Bathroom remodel · 2024',
     initials: 'RP',
@@ -155,7 +176,7 @@ const team = [
   },
   {
     name: 'Pat Clough',
-    bio: "Pat handles the finish work — tile, trim, cabinets, the details that separate a remodel you tolerate from one you love. The parts you'll look at every day for the next twenty years.",
+    bio: "Pat handles the finish work, tile, trim, cabinets, the details that separate a remodel you tolerate from one you love. The parts you'll look at every day for the next twenty years.",
     alt: 'Pat Clough, finishing specialist at Built Clough Construction',
     img: '/images/team/pat-clough.avif',
   },
@@ -163,7 +184,7 @@ const team = [
 
 const faqs = [
   { q: 'How much does a kitchen remodel cost?', a: "We'd rather talk about your specific project than throw out ranges that don't mean much. A kitchen with us could be $40k or $150k depending on size, layout changes, and finish level. The first call is free and we'll give you an honest read on whether your budget matches what you're describing." },
-  { q: 'What happens if you find something behind a wall?', a: "We open the wall, take photos, and call you before we do anything else. We'll explain what we found, what it means for the project, and what the options are. You agree on a number before we do the work. Surprises behind walls are normal in remodeling — surprises on your invoice are not." },
+  { q: 'What happens if you find something behind a wall?', a: "We open the wall, take photos, and call you before we do anything else. We'll explain what we found, what it means for the project, and what the options are. You agree on a number before we do the work. Surprises behind walls are normal in remodeling, surprises on your invoice are not." },
   { q: 'How do change orders work?', a: "Same as the original estimate: line-by-line, in writing, signed before the work happens. We don't do verbal change orders. If you ask for something during the build, we'll write it up, price it, and wait for your sign-off before we start." },
   { q: 'How long does a typical project take?', a: "Kitchens usually run 6–10 weeks. Bathrooms 3–6 weeks. Decks 1–3 weeks. Additions and whole-home remodels are months, not weeks. We give you a target finish date in the proposal and update you weekly during the build." },
   { q: 'Do you handle permits and inspections?', a: "Yes. We pull permits in our name on every job that requires them. We coordinate inspections directly with the inspector. You shouldn't have to think about it." },
@@ -173,7 +194,7 @@ const faqs = [
 
 <Layout
   title="Built Clough | Residential Construction & Remodeling in Southern Illinois"
-  description="Built Clough is a family-owned residential construction and remodeling company serving Southern Illinois. Kitchens, bathrooms, decks, and more — built by three brothers for twenty years."
+  description="Built Clough is a family-owned residential construction and remodeling company serving Southern Illinois. Kitchens, bathrooms, decks, and more, built by three brothers for twenty years."
   canonical="https://builtclough.com"
 >
 
@@ -183,7 +204,7 @@ const faqs = [
     <!-- Background image -->
     <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
       <img
-        src="/images/og/kitchen-remodel-tray-ceiling-carbondale.avif"
+        src="/images/og/apple-creek-bath-remodel-06.avif"
         alt=""
         role="presentation"
         class="absolute inset-0 w-full h-full object-cover"
@@ -196,7 +217,7 @@ const faqs = [
     <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.65) 100%)" aria-hidden="true"></div>
     <!-- Content -->
     <div class="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24" style="max-width:800px;margin:0 auto;min-height:inherit">
-      <!-- Avatars + stars + label — stacked -->
+      <!-- Avatars + stars + label, stacked -->
       <div class="flex flex-col items-center gap-2 mb-6">
         <div class="flex -space-x-2.5">
           {[
@@ -204,41 +225,42 @@ const faqs = [
             { src: '/images/team/travis-clough.avif', alt: 'Travis Clough, Built Clough Construction' },
             { src: '/images/team/pat-clough.avif', alt: 'Pat Clough, Built Clough Construction' },
           ].map(({ src, alt }) => (
-            <div class="w-8 h-8 rounded-full border-2 overflow-hidden relative flex-shrink-0" style="border-color:rgba(255,255,255,0.4)">
+            <div class="w-8 h-8 rounded-full border-2 overflow-hidden relative flex-shrink-0" style="border-color:#ffffff">
               <img src={src} alt={alt} class="absolute inset-0 w-full h-full object-cover" loading="eager" width="32" height="32" />
             </div>
           ))}
         </div>
         <div class="flex items-center gap-0.5" aria-label="5 stars">
           {Array.from({ length: 5 }).map(() => (
-            <svg width="14" height="14" viewBox="0 0 12 12" fill="#c8b89a" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true">
               <path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z" />
             </svg>
           ))}
         </div>
-        <p class="text-[12px] font-normal text-white/50">300+ construction projects across Southern Illinois</p>
+        <p class="text-[12px] font-normal text-white/80 uppercase tracking-[0.08em]" style="text-shadow:0 1px 4px rgba(0,0,0,0.35)">300+ construction projects across Southern Illinois</p>
       </div>
 
       <h1
         class="text-[48px] md:text-[64px] leading-[1.06] font-medium text-white tracking-[-0.03em] text-balance mb-6"
+        style="text-shadow:0 1px 8px rgba(0,0,0,0.25)"
       >
         Built right, the first time.
       </h1>
-      <p class="text-[17px] font-normal text-white/70 leading-[1.6] mb-10" style="max-width:40ch">
+      <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-10" style="max-width:40ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">
         Three brothers. Twenty years. Kitchens, bathrooms, decks, and additions built to last in Marion, Herrin, Carbondale, and beyond.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a
           href="#"
-          class="text-[14px] font-medium px-[22px] rounded-[20px] bg-white text-[#111111] hover:bg-white/90 transition-colors"
+          class="text-[14px] font-medium px-[22px] rounded-[20px] bg-[#111111] text-white hover:bg-[#333333] transition-colors"
           style="height:44px;display:flex;align-items:center"
         >
           Share a project
         </a>
         <a
           href="/gallery"
-          class="text-[14px] font-medium px-[22px] rounded-[20px] border border-white/40 text-white hover:bg-white/10 transition-colors"
-          style="height:44px;display:flex;align-items:center"
+          class="text-[14px] font-medium px-[22px] rounded-[20px] border text-white hover:bg-white/20 transition-colors"
+          style="height:44px;display:flex;align-items:center;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.35);backdrop-filter:blur(8px)"
         >
           See our work
         </a>
@@ -248,15 +270,16 @@ const faqs = [
   </section>
 
   <!-- ── Cert strip ───────────────────────────────────────────────────── -->
-  <div class="max-w-4xl mx-auto px-6 pt-12 pb-6">
-    <div class="grid grid-cols-5 gap-2">
-      {certGrid.map((label) => (
-        <div class="border border-border rounded-[10px] bg-[#ede9e4] dark:bg-[#2a2a2a] flex items-center justify-center py-3 px-2">
-          <span class="text-[10px] font-normal text-[#999999] tracking-[0.04em] uppercase text-center leading-[1.4]">
-            {label}
-          </span>
-        </div>
-      ))}
+  <div class="relative z-10 -mt-16 max-w-4xl mx-auto px-6 pb-6">
+    <div class="mx-8 md:mx-0 bg-background border border-border rounded-[12px] overflow-hidden">
+      <div class="grid grid-cols-3 md:grid-cols-5 divide-x divide-border">
+        {certGrid.map(({ label, icon, mobileHide }) => (
+          <div class:list={['flex flex-col items-center gap-2 p-4', mobileHide && 'hidden md:flex']}>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#999999]" aria-hidden="true" set:html={icon}></svg>
+            <span class="text-[10px] font-normal text-[#999999] tracking-[0.04em] uppercase text-center leading-[1.4]">{label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -264,27 +287,48 @@ const faqs = [
   <section class="max-w-4xl mx-auto px-6 pt-10 pb-14 md:pt-16 md:pb-24">
     <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16">
 
-      <!-- Left — copy -->
+      <!-- Left, copy -->
       <div class="flex-1 flex flex-col items-start">
-        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-5">Our promise</p>
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-5">What to expect</p>
 
-        <h2
-          class="text-[42px] leading-[1.08] font-medium text-foreground tracking-[-0.03em] text-balance mb-5"
-          style="max-width:18ch"
-        >
-          Built right, the first time.
+        <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-5">
+          You'll know what you're getting before we start.
         </h2>
-        <p class="text-[17px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:46ch">
-          Three brothers. Twenty years. Kitchens, bathrooms, decks, and additions built to last in Marion, Herrin, Carbondale, and beyond.
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-2 lg:mb-6" style="max-width:52ch">
+          Every major remodel comes with a detailed design, written scope, and a fixed price, and the same crew that shows up every day until it's done. If something changes during the build, you see it in writing before we move forward. No surprises on your invoice. No strangers rotating through your home.
         </p>
+
+        <!-- Two photos side by side below text, mobile only -->
+        <div class="lg:hidden grid grid-cols-2 gap-2 w-full">
+          <div class="relative rounded-[10px] overflow-hidden" style="aspect-ratio:4/3">
+            <img
+              src="/images/og/apple-creek-bath-remodel-01.avif"
+              alt="Apple Creek bathroom remodel by Built Clough"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </div>
+          <div class="relative rounded-[10px] overflow-hidden" style="aspect-ratio:4/3">
+            <img
+              src="/images/og/apple-creek-bath-remodel-02.avif"
+              alt="Apple Creek bathroom remodel by Built Clough"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </div>
+        </div>
       </div>
 
-      <!-- Right — static photo -->
-      <div class="mt-8 lg:mt-0 lg:flex-shrink-0 lg:w-[50%]">
+      <!-- Right, static photo -->
+      <div class="mt-2 lg:mt-0 lg:flex-shrink-0 lg:w-[50%]">
         <div class="relative rounded-[12px] overflow-hidden w-full" style="aspect-ratio:1/1">
           <img
-            src="/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif"
-            alt="Kitchen remodel by Built Clough"
+            src="/images/og/apple-creek-bath-remodel-03.avif"
+            alt="Apple Creek bathroom remodel by Built Clough"
             class="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             width="800"
@@ -296,59 +340,104 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ── Services grid ─────────────────────────────────────────────────── -->
+  <!-- ── Visual services cards ────────────────────────────────────────── -->
   <div class="animate-section">
-    <section class="py-14 md:py-24">
-      <div class="max-w-4xl mx-auto px-6">
-        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we build</p>
-        <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-5">What we build</h2>
-        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">
-          We don't take on more work than we can do well. That's the only reason we've stayed busy for twenty years.
-        </p>
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we build</p>
+      <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-5">What we build</h2>
+      <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">We don't take on more work than we can do well. That's the only reason we've stayed busy for twenty years.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {services.map(({ title, href, icon, items }) => (
-            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
+        <!-- Kitchens -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/cherry-butcher-block-countertop-cooktop-detail.avif" alt="Kitchen remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Kitchens</span>
+        </div>
 
-              <!-- Icon + Title -->
-              <div class="px-5 pt-5 pb-3">
-                <div class="w-[60px] h-[60px] rounded-[13px] border border-border flex items-center justify-center bg-[#f7f4f0] dark:bg-[#2a2a2a] text-foreground mb-4">
-                  <svg width="30" height="30" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon}></svg>
-                </div>
-                <h3 class="text-[15px] font-medium text-foreground">{title}</h3>
-              </div>
+        <!-- Bathrooms -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/apple-creek-bath-remodel-01.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Bathrooms</span>
+        </div>
 
-              <!-- Content -->
-              <div class="px-5 pb-5 flex flex-col flex-1">
-                <ul class="flex-1">
-                  {items.map((item) => (
-                    <li class="flex items-center gap-2 py-1.5 border-b border-border last:border-b-0 text-[14px] font-normal text-[#6b6b6b]">
-                      <span class="w-3.5 h-3.5 border border-border rounded-[3px] flex items-center justify-center flex-shrink-0">
-                        <span class="text-[9px] text-[#999999]">✓</span>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={href}
-                  class="mt-5 text-[13px] font-normal text-[#999999] hover:text-foreground transition-colors self-start"
-                >
-                  Learn more →
-                </a>
-              </div>
+        <!-- Decks & Outdoor -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/makanda-deck-remodel.avif" alt="Deck and outdoor living by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Decks & Outdoor</span>
+        </div>
 
+        <!-- Windows & Doors -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/vertical-picture-window-pine-plank-wall-detail.avif" alt="Windows and doors by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Windows & Doors</span>
+        </div>
+
+        <!-- Trim & Moulding -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/kitchen-remodel-tray-ceiling-carbondale.avif" alt="Trim and moulding by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Trim &amp; Moulding</span>
+        </div>
+
+        <!-- Pro Handyman -->
+        <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+          <img src="/images/og/large-format-porcelain-tile-bathroom-floor.avif" alt="Pro handyman services by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.18) 50%,transparent 100%)" aria-hidden="true"></div>
+          <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Handyman Pro</span>
+        </div>
+
+      </div>
+
+      <!-- ── Services accordion ─────────────────────────────────────────── -->
+      <div class="mt-2 border border-border rounded-[12px] overflow-hidden">
+      <button
+        id="services-accordion-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="services-accordion-panel"
+        class="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#111111]/[0.02] dark:hover:bg-[#f0f0f0]/[0.03] transition-colors"
+      >
+        <span class="text-[14px] font-medium text-foreground">View all services</span>
+        <svg id="services-accordion-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[#999999] transition-transform duration-200">
+          <path d="M4 6l4 4 4-4"/>
+        </svg>
+      </button>
+      <div
+        id="services-accordion-panel"
+        class="hidden border-t border-border px-5 pb-6 pt-5"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {services.map(({ title, href, items }) => (
+            <div>
+              <h3 class="text-[14px] font-medium text-foreground mb-2">{title}</h3>
+              <ul>
+                {items.map((item) => (
+                  <li class="flex items-center gap-2 py-1.5 border-b border-border last:border-b-0 text-[13px] font-normal text-[#6b6b6b]">
+                    <span class="w-3.5 h-3.5 border border-border rounded-[3px] flex items-center justify-center flex-shrink-0">
+                      <span class="text-[9px] text-[#999999]">✓</span>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href={href} class="mt-3 inline-block text-[12px] font-normal text-[#999999] hover:text-foreground transition-colors">
+                Learn more →
+              </a>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   </div>
 
   <!-- ── Parallax banner ───────────────────────────────────────────────── -->
   <ParallaxBanner
-    src="/images/og/board-and-batten-home-exterior-covered-porch-deck-southern-illinois.avif"
-    alt="Board and batten home exterior built by Built Clough in Southern Illinois"
+    src="/images/og/makand-kitchen-remodel-tray-ceiling-02.avif"
+    alt="Kitchen remodel with tray ceiling by Built Clough"
     statement="If it's not right, we do it again."
   />
 
@@ -358,7 +447,7 @@ const faqs = [
       <div class="max-w-4xl mx-auto px-6">
         <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How we work</p>
         <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-3">How we work</h2>
-        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">Seven steps from the first call to the final walkthrough — no surprises in between.</p>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">Seven steps from the first call to the final walkthrough, no surprises in between.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
           {steps.map((step) => (
@@ -473,11 +562,55 @@ const faqs = [
         </div>
 
         <div class="grid grid-cols-3 gap-2">
-          {galleryImages.map(({ src, alt }) => (
-            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:1/1">
-              <img src={src} alt={alt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="400" />
-            </div>
-          ))}
+
+          <!-- Large left, rows 1-2 -->
+          <div class="col-span-2 row-span-2 relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/covered-porch-pine-tongue-and-groove-skylights.avif" alt="Covered porch with pine tongue and groove and skylights by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="800" height="600" />
+          </div>
+          <!-- Top right -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/coffered-beadboard-ceiling-schoolhouse-pendants.avif" alt="Coffered beadboard ceiling with schoolhouse pendants by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+          <!-- Bottom right -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/marble-walk-in-shower-brass-fixtures-patterned-tile.avif" alt="Marble walk-in shower with brass fixtures by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+
+          <!-- Middle row, 3 equal -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/kitchen-island-cherry-butcher-block-cooktop-remodel.avif" alt="Kitchen island with cherry butcher block by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/double-vanity-round-mirrors-farmhouse-bathroom-remodel.avif" alt="Double vanity with round mirrors by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif" alt="Covered deck with pine rafter ceiling by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+
+          <!-- Small top-left, rows 4-5 -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif" alt="Frameless glass walk-in shower by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+          <!-- Large right, rows 4-5 -->
+          <div class="col-span-2 row-span-2 relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/makanda-kitchen-remodel-full.avif" alt="Makanda kitchen remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="800" height="600" />
+          </div>
+          <!-- Small bottom-left -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+            <img src="/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif" alt="Freestanding tub bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="300" />
+          </div>
+
+          <!-- Portrait row, 3 tall images -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+            <img src="/images/og/apple-creek-bath-remodel-04.avif" alt="Apple Creek bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="533" />
+          </div>
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+            <img src="/images/og/apple-creek-bath-remodel-05.avif" alt="Apple Creek bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="533" />
+          </div>
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+            <img src="/images/og/carterville-bath-remodel-01.avif" alt="Carterville bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="533" />
+          </div>
+
         </div>
       </div>
     </section>
@@ -490,21 +623,19 @@ const faqs = [
 
         <div class="flex flex-col lg:flex-row lg:gap-16">
 
-          <!-- Left — copy -->
+          <!-- Left, copy -->
           <div class="flex-1">
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Trust &amp; accountability</p>
             <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-5">
               A note on what this means in Illinois.
             </h2>
             <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-5">
-              Illinois doesn't license residential general contractors at the state level. That means anyone can call themselves a contractor and start taking jobs. We think you should know that — and know what to ask for instead.
+              Illinois doesn't license residential general contractors at the state level. That means anyone can call themselves a contractor and start taking jobs. We think you should know that, and know what to ask for instead.
             </p>
-            <p class="text-[15px] font-normal text-[#6b6b6b] leading-[1.6]">
-              Here's what we carry, and what you should expect from anyone you hire:
-            </p>
+
           </div>
 
-          <!-- Right — simple list with dividers -->
+          <!-- Right, simple list with dividers -->
           <div class="lg:w-[45%] mt-10 lg:mt-0">
             <div>
               {trustChecklist.map(({ title, detail }) => (
@@ -537,19 +668,20 @@ const faqs = [
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our guarantee</p>
             <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-5">Our work is guaranteed.</h2>
             <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-4">
-              Every project we complete comes with a one-year workmanship guarantee. If something we built fails — a tile pops, a door sticks, a joint opens up — we come back and fix it. No charge, no runaround.
-            </p>
-            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">
-              We also honor warranty calls after the year is up, at cost, for clients who want to stay with us. A lot of them do.
+              Every project we complete comes with a one-year workmanship guarantee. If something we built fails, a tile pops, a door sticks, a joint opens up, we come back and fix it. No charge, no runaround.
             </p>
           </div>
 
           <div class="lg:w-[45%] mt-10 lg:mt-0">
-            <div
-              class="rounded-[12px] border border-border bg-[#ede9e4] dark:bg-[#2a2a2a] flex items-center justify-center"
-              style="aspect-ratio:4/3"
-            >
-              <span class="text-[12px] font-normal text-[#999999] tracking-[0.04em] uppercase">Photo coming soon</span>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <img
+                src="/images/og/built-clough-workmanship-guarantee.avif"
+                alt="Built Clough workmanship guarantee"
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                width="600"
+                height="450"
+              />
             </div>
           </div>
 
@@ -568,7 +700,7 @@ const faqs = [
           Every name below is a real person. If you'd like to call any of them and ask what working with us was actually like, we'll send you their number.
         </p>
 
-        <!-- Featured testimonial — full width, image left -->
+        <!-- Featured testimonial, full width, image left -->
         {(() => {
           const { quote, name, detail, initials, img, imgAlt, tag } = testimonials[0];
           return (
@@ -576,7 +708,8 @@ const faqs = [
               <div class="md:w-[45%] p-3 flex-shrink-0">
                 <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:4/3">
                   <img src={img} alt={imgAlt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="600" height="450" />
-                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">
+                  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">
                     {tag}
                   </span>
                 </div>
@@ -604,14 +737,15 @@ const faqs = [
           );
         })()}
 
-        <!-- Remaining testimonials — 2 column grid -->
+        <!-- Remaining testimonials, 2 column grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           {testimonials.slice(1).map(({ quote, name, detail, initials, img, imgAlt, tag }) => (
             <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
               <div class="p-3">
                 <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
                   <img src={img} alt={imgAlt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" width="400" height="225" />
-                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">
+                  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">
                     {tag}
                   </span>
                 </div>
@@ -651,8 +785,8 @@ const faqs = [
         <div class="flex items-start justify-between gap-4 mb-8">
           <div>
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Project log</p>
-            <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-3">Recent builds</h2>
-            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:40ch">A running record of completed projects across Southern Illinois.</p>
+            <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-3">The notebook</h2>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:40ch">A running record of completed projects across Southern Illinois. Every job we finish, written down.</p>
           </div>
           <a href="/projects" class="text-[14px] font-normal text-[#6b6b6b] hover:text-foreground transition-colors flex-shrink-0 mt-1">
             View all →
@@ -718,27 +852,26 @@ const faqs = [
       <div class="max-w-4xl mx-auto px-6">
         <div class="flex flex-col lg:flex-row lg:gap-16">
 
-          <!-- Left — copy -->
+          <!-- Left, copy -->
           <div class="flex-1">
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Location</p>
-            <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-6">We grew up here.</h2>
+            <h2 class="text-[32px] font-medium text-foreground tracking-[-0.02em] mb-6">Local and family owned.</h2>
             <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-4">
-              We went to school here. Our kids go to school here. We see our clients at the grocery store, at the football game, at church. That changes how we work.
+              We grew up here. We went to school here. Our kids go to school here. We see our clients at the grocery store, at the football game, at church. That changes how we work.
             </p>
-            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-4">
-              When we finish a project, we're not driving back to a different town. We're driving home. The next time we see you, you're going to tell us how the kitchen's holding up — and we're going to want a good answer.
-            </p>
-            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">
-              We work across Southern Illinois — Marion, Herrin, Carbondale, Makanda, Murphysboro, Carterville, and the towns in between. If you're nearby, we'll come take a look. If you're not sure, ask.
-            </p>
+            <div class="flex flex-wrap gap-2 mt-2">
+              {['Marion', 'Herrin', 'Carbondale', 'Makanda', 'Murphysboro', 'Carterville', 'Benton', 'Mount Vernon', 'Du Quoin', 'West Frankfort'].map((city) => (
+                <span class="px-3 py-1.5 rounded-full border border-border text-[13px] font-normal text-[#6b6b6b]">{city}</span>
+              ))}
+            </div>
           </div>
 
-          <!-- Right — map image -->
+          <!-- Right, map image -->
           <div class="lg:w-[45%] mt-10 lg:mt-0">
             <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
               <img
                 src="/images/og/clough-construction-service-area-southern-illinois-map.avif"
-                alt="Built Clough service area — Southern Illinois"
+                alt="Built Clough service area, Southern Illinois"
                 class="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
                 width="800"
@@ -761,77 +894,41 @@ const faqs = [
         <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10" style="max-width:52ch">Every project starts somewhere. Here's what built looks like.</p>
 
         <div class="grid grid-cols-2 gap-4">
-          <!-- Project 1 — Before -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/traditional-white-kitchen-wall-oven-tile-backsplash.avif"
-              alt="Kitchen before remodel by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">Before</span>
+          <!-- Project 1, Before -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-before-01.avif" alt="Project before remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Before</span>
           </div>
-          <!-- Project 1 — After -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif"
-              alt="Kitchen after remodel by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">After</span>
+          <!-- Project 1, After -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-after-01.avif" alt="Project after remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">After</span>
           </div>
-          <!-- Project 2 — Before -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/freestanding-tub-glass-block-window-wood-tile-shower.avif"
-              alt="Bathroom before remodel by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">Before</span>
+          <!-- Project 2, Before -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-before-02.avif" alt="Project before remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Before</span>
           </div>
-          <!-- Project 2 — After -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/master-bathroom-navy-vanity-freestanding-tub-remodel.avif"
-              alt="Bathroom after remodel by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">After</span>
+          <!-- Project 2, After -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-after-02.avif" alt="Project after remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">After</span>
           </div>
-          <!-- Project 3 — Before -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif"
-              alt="Log cabin exterior before by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">Before</span>
+          <!-- Project 3, Before -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-before-03.avif" alt="Project before remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Before</span>
           </div>
-          <!-- Project 3 — After -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <img
-              src="/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif"
-              alt="Covered deck after build by Built Clough"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width="600"
-              height="450"
-            />
-            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-[6px] bg-[#111111]/75 text-[#ffffff] text-[11px] font-normal tracking-[0.04em] backdrop-blur-sm">After</span>
+          <!-- Project 3, After -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border">
+            <img src="/images/og/remodel-after-03.avif" alt="Project after remodel by Built Clough" class="w-full h-auto block" loading="lazy" width="600" height="450" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+            <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">After</span>
           </div>
         </div>
       </div>
@@ -864,21 +961,16 @@ const faqs = [
           style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))"
           aria-hidden="true"
         ></div>
-        <!-- Content — bottom-left -->
+        <!-- Content, bottom-left -->
         <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
-          <p class="text-white/60 text-[11px] uppercase tracking-[0.08em] mb-4">Ready to build?</p>
+
           <h2
             class="text-white font-medium"
             style="font-size:32px;line-height:1.2;letter-spacing:-0.02em;margin-bottom:1rem"
           >
             Let's talk about your project.
           </h2>
-          <p class="text-white/70" style="font-size:15px;line-height:1.6;margin-bottom:0.375rem">
-            Tell us what you're thinking. We'll be in touch within one business day.
-          </p>
-          <p class="text-white/70" style="font-size:15px;line-height:1.6;margin-bottom:1.75rem">
-            We don't push. We don't follow up six times. If you're ready to start, we're ready to listen.
-          </p>
+
           <div class="flex flex-col sm:flex-row gap-3 items-start">
             <a
               href="#"
@@ -950,6 +1042,16 @@ const faqs = [
 </Layout>
 
 <script>
+  // Services accordion
+  const servicesBtn = document.getElementById('services-accordion-btn')!;
+  const servicesPanel = document.getElementById('services-accordion-panel')!;
+  const servicesChevron = document.getElementById('services-accordion-chevron')!;
+  servicesBtn.addEventListener('click', () => {
+    const open = servicesPanel.classList.toggle('hidden') === false;
+    servicesBtn.setAttribute('aria-expanded', String(open));
+    servicesChevron.style.transform = open ? 'rotate(180deg)' : '';
+  });
+
   const modal = document.getElementById('pill-modal')!;
   const modalTitle = document.getElementById('pill-modal-title')!;
   const modalBody = document.getElementById('pill-modal-body')!;
