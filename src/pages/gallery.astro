@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const galleryImages = [
+  { src: '/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif', alt: 'White shaker kitchen island with quartz countertop remodel by Built Clough' },
+  { src: '/images/og/master-bathroom-navy-vanity-freestanding-tub-remodel.avif', alt: 'Master bathroom navy vanity with freestanding tub remodel by Built Clough' },
+  { src: '/images/og/cathedral-pine-ceiling-three-skylights-custom-home.avif', alt: 'Cathedral pine ceiling with three skylights custom home by Built Clough' },
+  { src: '/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif', alt: 'Frameless glass walk-in shower with matte black fixtures by Built Clough' },
+  { src: '/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif', alt: 'Log cabin exterior with metal roof and covered porch in Southern Illinois by Built Clough' },
+  { src: '/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif', alt: 'Freestanding tub with board and batten bathroom remodel by Built Clough' },
+  { src: '/images/og/kitchen-island-cherry-butcher-block-cooktop-remodel.avif', alt: 'Kitchen island with cherry butcher block cooktop remodel by Built Clough' },
+  { src: '/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif', alt: 'Covered deck with pine rafter ceiling outdoor living by Built Clough' },
+  { src: '/images/og/coffered-beadboard-ceiling-schoolhouse-pendants.avif', alt: 'Coffered beadboard ceiling with schoolhouse pendants by Built Clough' },
+  { src: '/images/og/marble-walk-in-shower-brass-fixtures-patterned-tile.avif', alt: 'Marble walk-in shower with brass fixtures and patterned tile by Built Clough' },
+  { src: '/images/og/double-vanity-round-mirrors-farmhouse-bathroom-remodel.avif', alt: 'Double vanity with round mirrors farmhouse bathroom remodel by Built Clough' },
+  { src: '/images/og/log-cabin-interior-dining-room-loft-stairs.avif', alt: 'Log cabin interior dining room with loft stairs by Built Clough' },
+  { src: '/images/og/board-and-batten-home-exterior-covered-porch-deck-southern-illinois.avif', alt: 'Board and batten home exterior with covered porch and deck in Southern Illinois by Built Clough' },
+  { src: '/images/og/walk-in-shower-gray-tile-geometric-floor-remodel.avif', alt: 'Walk-in shower with gray tile and geometric floor remodel by Built Clough' },
+  { src: '/images/og/cherry-butcher-block-countertop-cooktop-detail.avif', alt: 'Cherry butcher block countertop cooktop detail by Built Clough' },
+  { src: '/images/og/freestanding-soaking-tub-wood-slat-accent-wall.avif', alt: 'Freestanding soaking tub with wood slat accent wall by Built Clough' },
+  { src: '/images/og/log-cabin-front-porch-hand-hewn-post-southern-illinois.avif', alt: 'Log cabin front porch with hand hewn post in Southern Illinois by Built Clough' },
+  { src: '/images/og/covered-porch-pine-tongue-and-groove-skylights.avif', alt: 'Covered porch with pine tongue and groove and skylights by Built Clough' },
+  { src: '/images/og/white-oak-double-vanity-matte-black-hardware.avif', alt: 'White oak double vanity with matte black hardware by Built Clough' },
+  { src: '/images/og/traditional-white-kitchen-wall-oven-tile-backsplash.avif', alt: 'Traditional white kitchen with wall oven and tile backsplash by Built Clough' },
+  { src: '/images/og/freestanding-tub-glass-block-window-wood-tile-shower.avif', alt: 'Freestanding tub with glass block window and wood tile shower by Built Clough' },
+  { src: '/images/og/log-cabin-chinked-walls-stone-foundation-gable.avif', alt: 'Log cabin with chinked walls and stone foundation gable by Built Clough' },
+  { src: '/images/og/hexagon-mosaic-shower-niche-wave-subway-tile.avif', alt: 'Hexagon mosaic shower niche with wave subway tile by Built Clough' },
+  { src: '/images/og/custom-crown-molding-trim-carpentry-corner-detail.avif', alt: 'Custom crown molding trim carpentry corner detail by Built Clough' },
+  { src: '/images/og/marble-hex-mosaic-shower-floor-linear-drain.avif', alt: 'Marble hex mosaic shower floor with linear drain by Built Clough' },
+  { src: '/images/og/log-cabin-porch-adirondack-rocker-bench.avif', alt: 'Log cabin porch with Adirondack rocker bench by Built Clough' },
+  { src: '/images/og/custom-skylight-pine-plank-cathedral-ceiling.avif', alt: 'Custom skylight with pine plank cathedral ceiling by Built Clough' },
+  { src: '/images/og/tray-ceiling-beadboard-brass-pendant-detail.avif', alt: 'Tray ceiling with beadboard and brass pendant detail by Built Clough' },
+  { src: '/images/og/large-format-porcelain-tile-bathroom-floor.avif', alt: 'Large format porcelain tile bathroom floor by Built Clough' },
+  { src: '/images/og/matte-black-rain-shower-head-close-up.avif', alt: 'Matte black rain shower head close-up by Built Clough' },
+  { src: '/images/og/log-cabin-hand-painted-lincoln-quote-beam.avif', alt: 'Log cabin hand painted Lincoln quote beam by Built Clough' },
+  { src: '/images/og/modern-wood-plank-shower-handheld-matte-black.avif', alt: 'Modern wood plank shower with handheld matte black fixture by Built Clough' },
+  { src: '/images/og/shaker-cabinet-toe-kick-stone-look-tile-detail.avif', alt: 'Shaker cabinet toe kick with stone look tile detail by Built Clough' },
+  { src: '/images/og/undermount-stainless-workstation-kitchen-sink.avif', alt: 'Undermount stainless workstation kitchen sink by Built Clough' },
+  { src: '/images/og/vertical-picture-window-pine-plank-wall-detail.avif', alt: 'Vertical picture window with pine plank wall detail by Built Clough' },
+  { src: '/images/og/wood-plank-tile-walk-in-shower-matte-black-rain-head.avif', alt: 'Wood plank tile walk-in shower with matte black rain head by Built Clough' },
+  { src: '/images/og/log-cabin-porch-rocking-chair-hand-hewn-bench.avif', alt: 'Log cabin porch with rocking chair and hand hewn bench by Built Clough' },
+  { src: '/images/og/walk-in-shower-gray-tile-geometric-floor-remodel.avif', alt: 'Walk-in shower remodel with gray tile and geometric floor by Built Clough' },
+];
+---
+
+<Layout
+  title="Project Gallery | Built Clough"
+  description="Browse completed projects by Built Clough — kitchens, bathrooms, decks, log cabins, and finish carpentry across Southern Illinois."
+  ogImage="/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif"
+  canonical="https://builtclough.com/gallery"
+>
+  <main id="main">
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our work</p>
+        <h1 class="text-[40px] font-medium text-foreground tracking-[-0.02em] mb-4" style="line-height:1.1">
+          Built across Southern Illinois.
+        </h1>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:52ch">
+          Kitchens, bathrooms, decks, cabins, and the details that make the difference. Every project below was built by the same crew that will build yours.
+        </p>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-24">
+      <div class="columns-2 md:columns-3 gap-2">
+        {galleryImages.map(({ src, alt }) => (
+          <div class="break-inside-avoid mb-2">
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <img
+                src={src}
+                alt={alt}
+                class="w-full h-auto block"
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </main>
+</Layout>

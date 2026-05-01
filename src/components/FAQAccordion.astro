@@ -1,0 +1,30 @@
+---
+// Native <details>/<summary> accordion — zero JavaScript.
+// Visual state handled by CSS group-open: variant (Tailwind v4 supported).
+
+interface Props {
+  items: { q: string; a: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="border-t border-border">
+  {items.map(({ q, a }) => (
+    <li class="border-b border-border">
+      <details class="group">
+        <summary
+          class="flex items-center justify-between gap-6 py-4 cursor-pointer text-left text-[15px] font-normal text-foreground hover:text-[#6b6b6b] transition-colors"
+          style="min-height:44px;list-style:none"
+        >
+          <span>{q}</span>
+          <span class="text-[#999999] flex-shrink-0 text-[18px] leading-none" aria-hidden="true">
+            <span class="group-open:hidden">+</span>
+            <span class="hidden group-open:inline">−</span>
+          </span>
+        </summary>
+        <p class="pb-4 text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{a}</p>
+      </details>
+    </li>
+  ))}
+</ul>

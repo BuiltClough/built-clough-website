@@ -1,0 +1,79 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  statement: string;
+  sub?: string;
+}
+
+const { src, alt, statement, sub } = Astro.props;
+---
+
+<div class="max-w-4xl mx-auto px-6">
+  <div
+    class="parallax-banner-container relative rounded-[16px] overflow-hidden min-h-[36vh] md:min-h-[60vh]"
+  >
+    <!-- Parallax image — slightly taller than container for travel room -->
+    <div
+      class="parallax-banner-img"
+      style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform"
+    >
+      <img
+        src={src}
+        alt={alt}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        width="1200"
+        height="800"
+      />
+    </div>
+
+    <!-- Gradient overlay -->
+    <div
+      style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.70))"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Text — bottom-left -->
+    <div style="position:absolute;bottom:0;left:0;padding:2.5rem">
+      <p
+        class="text-white font-medium tracking-tight"
+        style="font-size:32px;line-height:1.2;max-width:20ch"
+      >
+        {statement}
+      </p>
+      {sub && (
+        <p class="text-white/50" style="font-size:13px;margin-top:8px">{sub}</p>
+      )}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Deduped by Astro — runs once even when multiple banners are on the page.
+  // querySelectorAll handles all instances, each with its own scroll closure.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('.parallax-banner-container').forEach((container) => {
+      const imgEl = container.querySelector<HTMLElement>('.parallax-banner-img');
+      if (!imgEl) return;
+
+      let rafId = 0;
+
+      function tick() {
+        const rect = container.getBoundingClientRect();
+        const progress =
+          (window.innerHeight / 2 - rect.top - rect.height / 2) / window.innerHeight;
+        imgEl!.style.transform = `translate3d(0, ${progress * 50}px, 0)`;
+        rafId = 0;
+      }
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!rafId) rafId = requestAnimationFrame(tick);
+        },
+        { passive: true }
+      );
+    });
+  }
+</script>

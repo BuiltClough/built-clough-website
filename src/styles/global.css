@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import "@fontsource/public-sans/400.css";
+@import "@fontsource/public-sans/500.css";
+
+/* Class-based dark mode — .dark on <html> activates dark: utilities */
+@variant dark (&:where(.dark, .dark *));
+
+/* Color tokens — inline so generated classes reference CSS vars directly,
+   allowing dark mode to work via the .dark cascade */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+}
+
+/* Font */
+@theme {
+  --font-sans: 'Public Sans', sans-serif;
+}
+
+/* ─── CSS custom properties ─────────────────────────────────────────────── */
+
+:root {
+  --background: #f5f2ee;
+  --foreground: #111111;
+  --border: #e0dbd4;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #f0f0f0;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* ─── FAQ accordion — hide default browser disclosure triangle ──────────── */
+
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ─── Scroll fade-in-up animations ─────────────────────────────────────── */
+
+.animate-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── Gallery drag-scroll ───────────────────────────────────────────────── */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Theme toggle — visual state driven entirely by CSS, not JS ────────── */
+
+.theme-toggle-track {
+  background-color: #e5e5e5;
+  transition: background-color 150ms;
+}
+
+.theme-toggle-thumb {
+  transform: translateX(0);
+  transition: transform 150ms;
+}
+
+.dark .theme-toggle-track {
+  background-color: #555555;
+}
+
+.dark .theme-toggle-thumb {
+  transform: translateX(16px);
+}

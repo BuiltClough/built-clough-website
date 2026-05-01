@@ -1,0 +1,41 @@
+---
+// Parallax scroll effect driven by vanilla JS — no React needed.
+// Respects prefers-reduced-motion.
+---
+
+<div
+  id="parallax-hero"
+  class="mt-8 lg:mt-0 lg:flex-shrink-0 lg:w-[50%]"
+  style="will-change:transform"
+>
+  <div class="relative rounded-[12px] overflow-hidden w-full" style="aspect-ratio:1/1">
+    <img
+      src="/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif"
+      alt="Kitchen remodel by Built Clough"
+      width="800"
+      height="450"
+      class="absolute inset-0 w-full h-full object-cover"
+      fetchpriority="high"
+      loading="eager"
+    />
+  </div>
+</div>
+
+<script>
+  const el = document.getElementById('parallax-hero') as HTMLElement | null;
+  if (el && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let rafId = 0;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!rafId) {
+          rafId = requestAnimationFrame(() => {
+            el.style.transform = `translate3d(0, ${-window.scrollY * 0.08}px, 0)`;
+            rafId = 0;
+          });
+        }
+      },
+      { passive: true }
+    );
+  }
+</script>

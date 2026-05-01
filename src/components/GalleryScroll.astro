@@ -1,0 +1,90 @@
+---
+const galleryItems = [
+  { label: 'Kitchen remodel — Marion, IL', src: '/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif' },
+  { label: 'Bathroom remodel — Herrin, IL', src: '/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif' },
+  { label: 'Deck addition — Carbondale, IL', src: '/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif' },
+  { label: 'Master bath — Murphysboro, IL', src: '/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif' },
+  { label: 'Kitchen addition — Marion, IL', src: '/images/og/traditional-white-kitchen-wall-oven-tile-backsplash.avif' },
+  { label: 'Custom build — Makanda, IL', src: '/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif' },
+];
+---
+
+<div>
+  <div class="flex justify-end gap-2 mb-4">
+    <button
+      id="gallery-prev"
+      class="flex items-center justify-center border border-border rounded-full text-[#6b6b6b] hover:text-foreground transition-colors"
+      style="width:36px;height:36px"
+      aria-label="Scroll gallery left"
+    >
+      ←
+    </button>
+    <button
+      id="gallery-next"
+      class="flex items-center justify-center border border-border rounded-full text-[#6b6b6b] hover:text-foreground transition-colors"
+      style="width:36px;height:36px"
+      aria-label="Scroll gallery right"
+    >
+      →
+    </button>
+  </div>
+
+  <div
+    id="gallery-scroll"
+    class="flex gap-4 overflow-x-auto pb-2 hide-scrollbar select-none"
+    style="cursor:grab;scrollbar-width:none"
+  >
+    {galleryItems.map(({ label, src }) => (
+      <div class="flex-shrink-0 rounded-[12px] overflow-hidden flex flex-col" style="width:280px">
+        <div class="relative" style="aspect-ratio:16/9">
+          <img
+            src={src}
+            alt={label}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            width="280"
+            height="158"
+          />
+        </div>
+        <p class="text-[12px] font-normal text-[#999999] mt-2 px-0.5">{label}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const scrollEl = document.getElementById('gallery-scroll');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+
+  prevBtn?.addEventListener('click', () => scrollEl?.scrollBy({ left: -296, behavior: 'smooth' }));
+  nextBtn?.addEventListener('click', () => scrollEl?.scrollBy({ left: 296, behavior: 'smooth' }));
+
+  if (scrollEl) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    scrollEl.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - scrollEl.offsetLeft;
+      scrollStart = scrollEl.scrollLeft;
+      scrollEl.style.cursor = 'grabbing';
+    });
+
+    scrollEl.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - scrollEl.offsetLeft;
+      scrollEl.scrollLeft = scrollStart - (x - startX);
+    });
+
+    const stopDrag = () => {
+      isDragging = false;
+      scrollEl.style.cursor = 'grab';
+    };
+
+    scrollEl.addEventListener('mouseup', stopDrag);
+    scrollEl.addEventListener('mouseleave', stopDrag);
+  }
+</script>

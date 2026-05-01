@@ -1,0 +1,258 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+function isActive(href: string): boolean {
+  return currentPath === href || currentPath.startsWith(href + '/');
+}
+
+const base = 'flex items-center gap-2.5 text-[14px] font-normal px-3 py-2 rounded-[8px] transition-colors';
+const active = 'text-foreground bg-[#111111]/[0.06] dark:bg-[#f0f0f0]/[0.08]';
+const inactive = 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]';
+
+const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactive}`;
+---
+
+<!-- ── Desktop sidebar ─────────────────────────────────────────────────── -->
+<aside class="hidden md:flex flex-col fixed top-0 left-0 h-screen w-[220px] border-r border-border bg-background z-50 px-6 py-8">
+
+  <!-- Logo -->
+  <a href="/" class="flex items-center gap-2 mb-10 px-3">
+    <img
+      src="/images/og/built-clough-logo-woven-patch.svg"
+      alt="Built Clough logo"
+      width="28"
+      height="28"
+      class="rounded-full flex-shrink-0"
+    />
+    <span class="text-[16px] font-bold text-foreground tracking-tight">Built Clough</span>
+  </a>
+
+  <!-- Nav links -->
+  <nav aria-label="Main navigation" class="flex flex-col gap-1 flex-1">
+
+    <button
+      id="services-toggle"
+      aria-expanded="false"
+      class={`w-full flex items-center gap-2.5 text-[14px] font-normal px-3 py-2 rounded-[8px] transition-colors ${isActive('/services') ? active : inactive}`}
+    >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8.5 2.5l1.5 1.5-5.5 5.5-1.5-1.5z" />
+        <path d="M10 4l1.5-1.5a1 1 0 0 0-1.5-1.5L8.5 2.5" />
+        <path d="M2.5 9.5L2 12l2.5-.5" />
+      </svg>
+      <span class="flex-1 text-left">Services</span>
+      <svg id="services-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform 0.2s">
+        <path d="M2 3.5L5 6.5L8 3.5" />
+      </svg>
+    </button>
+
+    <div id="services-submenu" class="hidden flex-col gap-0.5 pl-[26px]">
+      <a href="/services/kitchen-remodels" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/kitchen-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Kitchen Remodels</a>
+      <a href="/services/bathroom-remodels" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/bathroom-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Bath Remodels</a>
+      <a href="/services/decks-outdoor-living" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/decks-outdoor-living') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Decks & Outdoor</a>
+      <a href="/services/handyman" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/handyman') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Handyman Services</a>
+      <a href="/services/painting" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/painting') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Painting</a>
+      <a href="/services/windows-doors" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/windows-doors') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Windows & Doors</a>
+      <a href="/services/home-maintenance" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/home-maintenance') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Home Maintenance</a>
+      <a href="/services/aging-in-place" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/aging-in-place') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Aging In Place</a>
+    </div>
+
+    <a href="/gallery" class={linkClass('/gallery')}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="11" height="11" rx="1.5" />
+        <path d="M1.5 9.5l3-3 2.5 2 2-1.5 3 3" />
+        <circle cx="4.5" cy="4.5" r="0.75" fill="currentColor" stroke="none" />
+      </svg>
+      Gallery
+    </a>
+
+    <a href="/design" class={linkClass('/design')}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 10.5L8.5 4l2 2L4 12.5H2v-2z" />
+        <path d="M7 5l2 2" />
+      </svg>
+      Design
+    </a>
+
+    <a href="/pricing" class={linkClass('/pricing')}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 2h4.5l5.5 5.5-4.5 4.5L2 6.5V2z" />
+        <circle cx="4.5" cy="4.5" r="0.75" fill="currentColor" stroke="none" />
+      </svg>
+      Pricing
+    </a>
+
+    <a href="/projects" class={linkClass('/projects')}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 1.5h5.5L11 4v8.5H3v-11z" />
+        <line x1="5" y1="5.5" x2="9" y2="5.5" />
+        <line x1="5" y1="7.5" x2="9" y2="7.5" />
+        <line x1="5" y1="9.5" x2="7.5" y2="9.5" />
+      </svg>
+      Project Log
+    </a>
+
+    <a href="/resources" class={linkClass('/resources')}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="1.5" y="4" width="11" height="8.5" rx="1" />
+        <path d="M1.5 4h11V2.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1V4z" />
+        <line x1="5" y1="7" x2="9" y2="7" />
+      </svg>
+      Resources
+    </a>
+
+  </nav>
+
+  <!-- Bottom — CTA + theme toggle -->
+  <div class="flex flex-col gap-3 pt-6">
+    <a
+      href="tel:+16189560808"
+      class="text-[13px] font-medium px-[22px] rounded-[20px] border border-[#c8c3bc] dark:border-[#555555] text-[#444444] dark:text-[#bbbbbb] hover:text-foreground hover:border-foreground transition-colors text-center"
+      style="height:36px;display:flex;align-items:center;justify-content:center"
+    >
+      (618) 956-0808
+    </a>
+    <a
+      href="#"
+      class="text-[13px] font-medium px-[22px] rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] transition-colors hover:bg-[#333333] dark:hover:bg-[#dddddd] text-center"
+      style="height:36px;display:flex;align-items:center;justify-content:center"
+    >
+      Share a project
+    </a>
+    <div class="pt-3 border-t border-border flex items-center gap-2.5">
+      <ThemeToggle />
+      <span id="theme-label" class="text-[11px] font-normal text-[#999999] tracking-[0.04em]">Lights on</span>
+    </div>
+  </div>
+
+</aside>
+
+<!-- ── Mobile top bar + hamburger ──────────────────────────────────────── -->
+<header class="md:hidden sticky top-0 z-50 bg-background border-b border-border">
+  <div class="px-6 h-14 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-2">
+      <img
+        src="/images/og/built-clough-logo-woven-patch.svg"
+        alt="Built Clough logo"
+        width="28"
+        height="28"
+        class="rounded-full flex-shrink-0"
+      />
+      <span class="text-[16px] font-bold text-foreground tracking-tight">Built Clough</span>
+    </a>
+
+    <a href="tel:+16189560808" class="text-[13px] font-medium px-4 py-2 rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] hover:bg-[#333333] dark:hover:bg-[#dddddd] transition-colors ml-auto mr-3" style="min-height:36px;display:flex;align-items:center">
+      Call (618) 956-0808
+    </a>
+
+    <button
+      id="mobile-menu-btn"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-drawer"
+      style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:inherit"
+    >
+      <!-- Hamburger (visible when closed) -->
+      <span id="icon-open" aria-hidden="true">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="0" y1="13" x2="18" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </span>
+      <!-- Close X (visible when open) -->
+      <span id="icon-close" class="hidden" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <line x1="1" y1="1" x2="17" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="17" y1="1" x2="1" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </span>
+    </button>
+
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-drawer" class="hidden border-t border-border bg-background">
+    <nav aria-label="Mobile navigation">
+
+      <a href="/services" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/services') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
+        Services
+      </a>
+      <a href="/gallery" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/gallery') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
+        Gallery
+      </a>
+      <a href="/pricing" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/pricing') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
+        Pricing
+      </a>
+      <a href="/projects" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/projects') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
+        Projects
+      </a>
+
+      <div class="px-6 py-5 flex flex-col gap-3">
+        <div class="flex items-center gap-4">
+          <ThemeToggle />
+          <a
+            href="#"
+            class="text-[14px] font-medium px-[22px] py-[11px] rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111]"
+          >
+            Share a project
+          </a>
+        </div>
+        <a href="tel:+16189560808" class="text-[13px] font-normal text-[#999999] hover:text-foreground transition-colors">
+          (618) 956-0808
+        </a>
+      </div>
+
+    </nav>
+  </div>
+</header>
+
+<script>
+  function syncThemeLabel() {
+    const label = document.getElementById('theme-label');
+    if (label) label.textContent = document.documentElement.classList.contains('dark') ? 'Lights off' : 'Lights on';
+  }
+  syncThemeLabel();
+  document.querySelectorAll('.theme-toggle-btn').forEach((btn) => {
+    btn.addEventListener('click', syncThemeLabel);
+  });
+
+  const servicesToggle = document.getElementById('services-toggle');
+  const servicesSubmenu = document.getElementById('services-submenu');
+  const servicesChevron = document.getElementById('services-chevron');
+
+  servicesToggle?.addEventListener('click', () => {
+    const isOpen = servicesSubmenu?.classList.toggle('hidden') === false;
+    servicesSubmenu?.classList.toggle('flex', isOpen);
+    servicesToggle.setAttribute('aria-expanded', String(isOpen));
+    if (servicesChevron) servicesChevron.style.transform = isOpen ? 'rotate(180deg)' : '';
+  });
+
+  // Auto-open if on a services sub-page
+  if (window.location.pathname.startsWith('/services')) {
+    servicesSubmenu?.classList.remove('hidden');
+    servicesSubmenu?.classList.add('flex');
+    servicesToggle?.setAttribute('aria-expanded', 'true');
+    if (servicesChevron) servicesChevron.style.transform = 'rotate(180deg)';
+  }
+
+  const btn = document.getElementById('mobile-menu-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = drawer?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+  });
+</script>

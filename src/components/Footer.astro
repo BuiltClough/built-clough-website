@@ -1,0 +1,82 @@
+---
+const footerLinks = [
+  { label: 'Services', href: '/services' },
+  { label: 'Process', href: '/process' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<footer class="border-t border-border">
+  <div class="max-w-4xl mx-auto px-6 py-12">
+
+    <!-- 3-column grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+
+      <!-- Column 1 — Brand -->
+      <div class="flex flex-col gap-3">
+        <p class="text-[15px] font-medium text-[#111111] dark:text-[#f0f0f0]">Built Clough</p>
+        <p class="text-[14px] font-normal text-[#6b6b6b] dark:text-[#888888] leading-relaxed">
+          Residential construction &amp; remodeling in Southern Illinois.
+        </p>
+      </div>
+
+      <!-- Column 2 — Contact -->
+      <div class="flex flex-col gap-3">
+        <p class="text-[11px] font-normal text-[#999999] dark:text-[#555555] uppercase tracking-[0.08em]">Contact</p>
+        <div class="flex flex-col gap-2 text-[14px] font-normal text-[#6b6b6b] dark:text-[#888888]">
+          <a href="tel:+16189560808" class="hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-colors">
+            (618) 956-0808
+          </a>
+          <a href="mailto:hello@builtclough.com" class="hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-colors">
+            hello@builtclough.com
+          </a>
+          <address class="not-italic">
+            520 S 14th St<br />
+            Herrin, IL 62948
+          </address>
+        </div>
+      </div>
+
+      <!-- Column 3 — Hours -->
+      <div class="flex flex-col gap-3">
+        <p class="text-[11px] font-normal text-[#999999] dark:text-[#555555] uppercase tracking-[0.08em]">Hours</p>
+        <div class="flex flex-col gap-2 text-[14px] font-normal text-[#6b6b6b] dark:text-[#888888]">
+          <div class="flex justify-between gap-4">
+            <span>Mon–Fri</span>
+            <span>8:00 am – 5:00 pm</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span>Saturday</span>
+            <span>8:00 am – 12:00 pm</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span>Sunday</span>
+            <span>Closed</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between gap-4">
+      <p class="text-[12px] font-normal text-[#999999] dark:text-[#555555]">
+        &copy; {new Date().getFullYear()} Built Clough. All rights reserved.
+      </p>
+      <nav aria-label="Footer navigation" class="flex flex-wrap gap-x-5 gap-y-2">
+        {footerLinks.map(({ label, href }) => (
+          <a
+            href={href}
+            class="text-[12px] font-normal text-[#999999] dark:text-[#555555] hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-colors"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+  </div>
+</footer>
