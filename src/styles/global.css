@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource/public-sans/400.css";
 @import "@fontsource/public-sans/500.css";
+@import "@fontsource/playfair-display/700.css";
 
 /* Class-based dark mode — .dark on <html> activates dark: utilities */
 @variant dark (&:where(.dark, .dark *));
@@ -16,6 +17,7 @@
 /* Font */
 @theme {
   --font-sans: 'Public Sans', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 }
 
 /* ─── CSS custom properties ─────────────────────────────────────────────── */
