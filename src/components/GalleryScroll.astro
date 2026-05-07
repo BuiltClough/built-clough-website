@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 const galleryItems = [
   { label: 'Kitchen remodel — Marion, IL', src: '/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif' },
   { label: 'Bathroom remodel — Herrin, IL', src: '/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif' },
@@ -37,11 +38,10 @@ const galleryItems = [
     {galleryItems.map(({ label, src }) => (
       <div class="flex-shrink-0 rounded-[12px] overflow-hidden flex flex-col" style="width:280px">
         <div class="relative" style="aspect-ratio:16/9">
-          <img
+          <Image
             src={src}
             alt={label}
             class="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
             width="280"
             height="158"
           />

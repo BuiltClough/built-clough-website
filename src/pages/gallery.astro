@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
 const galleryImages = [
   { src: '/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif', alt: 'White shaker kitchen island with quartz countertop remodel by Built Clough' },
@@ -68,11 +69,10 @@ const galleryImages = [
         {galleryImages.map(({ src, alt }) => (
           <div class="break-inside-avoid mb-2">
             <div class="rounded-[10px] overflow-hidden border border-border">
-              <img
+              <Image
                 src={src}
                 alt={alt}
                 class="w-full h-auto block"
-                loading="lazy"
                 width="600"
                 height="400"
               />

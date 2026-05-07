@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "@fontsource/public-sans/400.css";
 @import "@fontsource/public-sans/500.css";
-@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/600.css";
 
 /* Class-based dark mode — .dark on <html> activates dark: utilities */
 @variant dark (&:where(.dark, .dark *));
@@ -93,4 +93,21 @@ summary::-webkit-details-marker {
 
 .dark .theme-toggle-thumb {
   transform: translateX(16px);
+}
+
+/* ─── Hero zoom-in on load ──────────────────────────────────────────────── */
+
+@keyframes hero-zoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.0); }
+}
+
+.hero-zoom {
+  animation: hero-zoom 8s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom {
+    animation: none;
+  }
 }

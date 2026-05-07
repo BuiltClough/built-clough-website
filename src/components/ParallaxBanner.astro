@@ -6,6 +6,7 @@ interface Props {
   sub?: string;
 }
 
+import { Image } from 'astro:assets';
 const { src, alt, statement, sub } = Astro.props;
 ---
 
@@ -18,11 +19,10 @@ const { src, alt, statement, sub } = Astro.props;
       class="parallax-banner-img"
       style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform"
     >
-      <img
+      <Image
         src={src}
         alt={alt}
         class="absolute inset-0 w-full h-full object-cover"
-        loading="lazy"
         width="1200"
         height="800"
       />

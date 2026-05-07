@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   currentPath: string;
@@ -23,7 +24,7 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
 
   <!-- Logo -->
   <a href="/" class="flex items-center gap-2 mb-10 px-3">
-    <img
+    <Image
       src="/images/og/built-clough-logo-woven-patch.svg"
       alt="Built Clough logo"
       width="28"
@@ -52,7 +53,7 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
       </svg>
     </button>
 
-    <div id="services-submenu" class="hidden flex-col gap-0.5 pl-[26px]">
+    <div id="services-submenu" class="hidden flex-col gap-0.5 pl-2 py-1.5 rounded-[8px] bg-[#ebe7e2] dark:bg-[#232323]">
       <a href="/services/kitchen-remodels" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/kitchen-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Kitchen Remodels</a>
       <a href="/services/bathroom-remodels" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/bathroom-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Bath Remodels</a>
       <a href="/services/decks-outdoor-living" class={`text-[13px] font-normal px-3 py-1.5 rounded-[6px] transition-colors ${isActive('/services/decks-outdoor-living') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground hover:bg-[#111111]/[0.04] dark:hover:bg-[#f0f0f0]/[0.05]'}`}>Decks & Outdoor</a>
@@ -113,14 +114,14 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
   <div class="flex flex-col gap-3 pt-6">
     <a
       href="tel:+16189560808"
-      class="text-[13px] font-medium px-[22px] rounded-[20px] border border-[#c8c3bc] dark:border-[#555555] text-[#444444] dark:text-[#bbbbbb] hover:text-foreground hover:border-foreground transition-colors text-center"
+      class="text-[13px] font-medium px-[22px] rounded-[4px] border border-[#c8c3bc] dark:border-[#555555] text-[#444444] dark:text-[#bbbbbb] hover:text-foreground hover:border-foreground transition-colors text-center"
       style="height:36px;display:flex;align-items:center;justify-content:center"
     >
       (618) 956-0808
     </a>
     <a
       href="#"
-      class="text-[13px] font-medium px-[22px] rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] transition-colors hover:bg-[#333333] dark:hover:bg-[#dddddd] text-center"
+      class="text-[13px] font-medium px-[22px] rounded-[4px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] transition-colors hover:bg-[#333333] dark:hover:bg-[#dddddd] text-center"
       style="height:36px;display:flex;align-items:center;justify-content:center"
     >
       Share project
@@ -148,7 +149,7 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
       <span class="text-[16px] font-bold text-foreground tracking-tight">Built Clough</span>
     </a>
 
-    <a href="tel:+16189560808" class="text-[13px] font-medium px-4 py-2 rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] hover:bg-[#333333] dark:hover:bg-[#dddddd] transition-colors ml-auto mr-3" style="min-height:36px;display:flex;align-items:center">
+    <a href="tel:+16189560808" class="text-[13px] font-medium px-4 py-2 rounded-[4px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] hover:bg-[#333333] dark:hover:bg-[#dddddd] transition-colors ml-auto mr-3" style="min-height:36px;display:flex;align-items:center">
       Call (618) 956-0808
     </a>
 
@@ -182,29 +183,45 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
   <div id="mobile-drawer" class="hidden border-t border-border bg-background">
     <nav aria-label="Mobile navigation">
 
-      <a href="/services" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/services') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
+      <!-- Services — expandable -->
+      <button
+        id="mobile-services-toggle"
+        aria-expanded="false"
+        class={`w-full flex items-center justify-center gap-2 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/services') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}
+      >
         Services
-      </a>
-      <a href="/gallery" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/gallery') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
-        Gallery
-      </a>
-      <a href="/pricing" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/pricing') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
-        Pricing
-      </a>
-      <a href="/projects" class={`flex items-center gap-3 px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/projects') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>
-        Projects
-      </a>
+        <svg id="mobile-services-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform 0.2s">
+          <path d="M2 3.5L5 6.5L8 3.5" />
+        </svg>
+      </button>
+      <div id="mobile-services-submenu" class="hidden flex-col bg-[#ebe7e2] dark:bg-[#232323] border-b border-border">
+        <a href="/services/kitchen-remodels" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/kitchen-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Kitchen Remodels</a>
+        <a href="/services/bathroom-remodels" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/bathroom-remodels') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Bath Remodels</a>
+        <a href="/services/decks-outdoor-living" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/decks-outdoor-living') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Decks &amp; Outdoor</a>
+        <a href="/services/handyman" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/handyman') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Handyman Services</a>
+        <a href="/services/painting" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/painting') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Painting</a>
+        <a href="/services/windows-doors" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/windows-doors') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Windows &amp; Doors</a>
+        <a href="/services/home-maintenance" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/home-maintenance') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Home Maintenance</a>
+        <a href="/services/aging-in-place" class={`py-3 text-[14px] font-normal text-center transition-colors ${isActive('/services/aging-in-place') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888] hover:text-foreground'}`}>Aging In Place</a>
+      </div>
 
-      <div class="px-6 py-5 flex flex-col gap-3">
-        <div class="flex items-center gap-4">
+      <a href="/gallery" class={`flex justify-center px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/gallery') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>Gallery</a>
+      <a href="/design" class={`flex justify-center px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/design') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>Design</a>
+      <a href="/pricing" class={`flex justify-center px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/pricing') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>Pricing</a>
+      <a href="/projects" class={`flex justify-center px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/projects') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>Projects</a>
+      <a href="/resources" class={`flex justify-center px-6 py-4 text-[16px] font-normal border-b border-border transition-colors ${isActive('/resources') ? 'text-foreground' : 'text-[#6b6b6b] dark:text-[#888888]'}`}>Resources</a>
+
+      <div class="px-6 py-6 flex flex-col items-center gap-4">
+        <div class="flex items-center gap-2.5">
           <ThemeToggle />
-          <a
-            href="#"
-            class="text-[14px] font-medium px-[22px] py-[11px] rounded-[20px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111]"
-          >
-            Share project
-          </a>
+          <span id="mobile-theme-label" class="text-[11px] font-normal text-[#999999] tracking-[0.04em]">Lights on</span>
         </div>
+        <a
+          href="#"
+          class="text-[14px] font-medium px-[22px] py-[11px] rounded-[4px] bg-[#111111] text-[#ffffff] dark:bg-[#f0f0f0] dark:text-[#111111] w-full text-center"
+        >
+          Share project
+        </a>
         <a href="tel:+16189560808" class="text-[13px] font-normal text-[#999999] hover:text-foreground transition-colors">
           (618) 956-0808
         </a>
@@ -216,8 +233,11 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
 
 <script>
   function syncThemeLabel() {
+    const text = document.documentElement.classList.contains('dark') ? 'Lights off' : 'Lights on';
     const label = document.getElementById('theme-label');
-    if (label) label.textContent = document.documentElement.classList.contains('dark') ? 'Lights off' : 'Lights on';
+    if (label) label.textContent = text;
+    const mobileLabel = document.getElementById('mobile-theme-label');
+    if (mobileLabel) mobileLabel.textContent = text;
   }
   syncThemeLabel();
   document.querySelectorAll('.theme-toggle-btn').forEach((btn) => {
@@ -235,12 +255,32 @@ const linkClass = (href: string) => `${base} ${isActive(href) ? active : inactiv
     if (servicesChevron) servicesChevron.style.transform = isOpen ? 'rotate(180deg)' : '';
   });
 
-  // Auto-open if on a services sub-page
+  // Auto-open desktop submenu if on a services sub-page
   if (window.location.pathname.startsWith('/services')) {
     servicesSubmenu?.classList.remove('hidden');
     servicesSubmenu?.classList.add('flex');
     servicesToggle?.setAttribute('aria-expanded', 'true');
     if (servicesChevron) servicesChevron.style.transform = 'rotate(180deg)';
+  }
+
+  // Mobile services toggle
+  const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+  const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
+  const mobileServicesChevron = document.getElementById('mobile-services-chevron');
+
+  mobileServicesToggle?.addEventListener('click', () => {
+    const isOpen = mobileServicesSubmenu?.classList.toggle('hidden') === false;
+    mobileServicesSubmenu?.classList.toggle('flex', isOpen);
+    mobileServicesToggle.setAttribute('aria-expanded', String(isOpen));
+    if (mobileServicesChevron) mobileServicesChevron.style.transform = isOpen ? 'rotate(180deg)' : '';
+  });
+
+  // Auto-open mobile submenu if on a services sub-page
+  if (window.location.pathname.startsWith('/services')) {
+    mobileServicesSubmenu?.classList.remove('hidden');
+    mobileServicesSubmenu?.classList.add('flex');
+    mobileServicesToggle?.setAttribute('aria-expanded', 'true');
+    if (mobileServicesChevron) mobileServicesChevron.style.transform = 'rotate(180deg)';
   }
 
   const btn = document.getElementById('mobile-menu-btn');
