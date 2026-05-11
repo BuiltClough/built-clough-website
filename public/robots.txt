@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://builtclough.com/sitemap-index.xml

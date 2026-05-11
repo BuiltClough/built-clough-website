@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { site } from '../config/site.ts';
 
 interface Props {
   title: string;
@@ -9,14 +10,16 @@ interface Props {
   ogImage?: string;
   canonical?: string;
   noIndex?: boolean;
+  pageSchema?: Record<string, unknown>;
 }
 
 const {
   title,
   description,
-  ogImage = '/images/og/homepage.jpg',
+  ogImage = '/images/og/social-share-card-built-clough.jpg',
   canonical,
   noIndex = false,
+  pageSchema,
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://builtclough.com').href;
@@ -67,6 +70,46 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://builtclou
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/og/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/og/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/images/og/apple-touch.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ebe7e2" />
+
+    <!-- LocalBusiness schema — present on every page -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": site.schema.type,
+      "name": site.name,
+      "url": site.url,
+      "telephone": site.contact.phoneHref,
+      "email": site.contact.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": site.contact.address.street,
+        "addressLocality": site.contact.address.city,
+        "addressRegion": site.contact.address.state,
+        "postalCode": site.contact.address.zip,
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": site.schema.geo.latitude,
+        "longitude": site.schema.geo.longitude
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "12:00" }
+      ],
+      "areaServed": site.schema.areaServed,
+      "priceRange": site.schema.priceRange,
+      "image": `${site.url}/images/og/social-share-card-built-clough.jpg`
+    })} />
+
+    <!-- Page-specific schema (FAQPage, Article, etc.) -->
+    {pageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    )}
   </head>
 
   <body class="font-sans">
