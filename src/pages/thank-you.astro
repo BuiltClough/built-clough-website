@@ -1,0 +1,81 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+---
+
+<LandingLayout
+  title="Thank You | Built Clough"
+  description="We received your project details and will be in touch within one business day."
+  noIndex={true}
+>
+
+  <!-- ── Header — logo only ────────────────────────────────────────────── -->
+  <header class="absolute top-0 left-0 right-0 z-20 px-6 py-5">
+    <a href="/" aria-label="Built Clough home">
+      <span class="text-[#111111] dark:text-[#f0f0f0] font-semibold text-[17px] tracking-[-0.01em]">Built Clough</span>
+    </a>
+  </header>
+
+  <!-- ── Confirmation ──────────────────────────────────────────────────── -->
+  <section class="min-h-screen bg-[#ebe7e2] dark:bg-[#111111] flex items-center justify-center px-6 pt-20 pb-16">
+    <div class="max-w-lg w-full text-center">
+
+      <!-- Check mark -->
+      <div class="w-14 h-14 rounded-full border border-[#e0dbd4] dark:border-[#333] bg-white dark:bg-[#1a1a1a] flex items-center justify-center mx-auto mb-8">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M4 11.5l5 5 9-9" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="dark:stroke-[#f0f0f0]" />
+        </svg>
+      </div>
+
+      <p class="text-[11px] font-normal text-[#999] uppercase tracking-[0.08em] mb-4">Project details received</p>
+      <h1 class="text-[36px] md:text-[46px] font-semibold text-[#111111] dark:text-[#f0f0f0] leading-[1.08] tracking-[-0.02em] mb-5 font-serif" style="max-width:20ch;margin-left:auto;margin-right:auto">
+        We will be in touch within one business day
+      </h1>
+      <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10" style="max-width:38ch;margin-left:auto;margin-right:auto">
+        One of us will call to set up a free site visit. No pressure — just a conversation about what you are thinking.
+      </p>
+
+      <!-- What happens next -->
+      <div class="bg-white dark:bg-[#1a1a1a] border border-[#e0dbd4] dark:border-[#333] rounded-[14px] p-6 mb-8 text-left">
+        <p class="text-[12px] font-normal text-[#999] uppercase tracking-[0.08em] mb-5">What happens next</p>
+        <ol class="flex flex-col gap-4">
+          {[
+            { n: '1', title: 'We review your details', body: 'Usually within a few hours during business hours.' },
+            { n: '2', title: 'We call you', body: 'A quick 15-minute call to make sure we are a fit and answer any questions.' },
+            { n: '3', title: 'Free site visit', body: 'We come to you, walk the space, and put together a detailed proposal at no cost.' },
+          ].map(({ n, title, body }) => (
+            <li class="flex items-start gap-4">
+              <span class="w-6 h-6 rounded-full border border-[#e0dbd4] dark:border-[#333] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="text-[11px] font-medium text-[#6b6b6b]">{n}</span>
+              </span>
+              <div>
+                <p class="text-[14px] font-medium text-[#111111] dark:text-[#f0f0f0] mb-0.5">{title}</p>
+                <p class="text-[13px] font-normal text-[#6b6b6b] leading-[1.55]">{body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- Direct contact -->
+      <p class="text-[14px] font-normal text-[#6b6b6b]">
+        Need to reach us sooner?{' '}
+        <a href="tel:+16189560808" class="text-[#111111] dark:text-[#f0f0f0] hover:underline font-medium">(618) 956-0808</a>
+      </p>
+
+      <!-- Back home -->
+      <div class="mt-10">
+        <a
+          href="/"
+          class="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#6b6b6b] hover:text-[#111111] dark:hover:text-[#f0f0f0] transition-colors"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to builtclough.com
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</LandingLayout>
