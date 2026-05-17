@@ -19,7 +19,7 @@ A residential construction and remodeling landing site for **Built Clough** — 
 ## Hard Rules — Never Violate These
 
 - No component libraries (shadcn, MUI, Chakra) — build custom only
-- No `font-weight: 600` or `700` anywhere — only `400` and `500`
+- No `font-weight: 600` or `700` on sans-serif text — only `400` and `500`; `font-semibold` (600) is allowed exclusively on serif headings (`font-serif` class present)
 - No drop shadows — borders only
 - No colors beyond the grayscale palette
 - No bare `<img>` tags without `alt`, `width`, `height`, and `loading` attributes
@@ -212,33 +212,40 @@ Astro deduplicates component scripts — a `<script>` inside a component file ru
 
 ## Image Conventions
 
-All images live in `public/` and are already optimized. Use plain `<img>` tags — not Astro's `<Image>` component — since the pipeline doesn't need to process `/public/` assets.
+Use `<Image>` from `astro:assets` on all pages (not plain `<img>`). Images live in `public/images/og/`.
 
 Required attributes on every image:
 - `alt` — descriptive for content images, `alt=""` for decorative
 - `width` and `height` — prevents layout shift
-- `loading` — `"eager"` for above-fold, `"lazy"` for everything else
-- `fetchpriority="high"` — on the hero image only
+- `loading="eager"` on hero/above-fold images only; omit on all others (defaults to lazy)
 
 For fill-style images (absolute inside a relative container):
-```html
-<div class="relative" style="aspect-ratio:16/9">
-  <img src="..." alt="..." class="absolute inset-0 w-full h-full object-cover"
-       loading="lazy" width="800" height="450" />
+```astro
+import { Image } from 'astro:assets';
+
+<div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+  <Image src="/images/og/filename.avif" alt="..." class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
 </div>
 ```
+
+Aspect ratio conventions:
+- Grid images (2-up, 3-up): `aspect-ratio:1/1` (square)
+- Full-width feature image above a grid: `aspect-ratio:16/9`
+- Standalone portrait image in a two-column layout: `aspect-ratio:3/4`
+- Hero and CTA banners: `min-height` driven, no aspect-ratio
 
 ---
 
 ## SEO — Every Page
 
-Pass props to `<Layout>`:
+Pass props to `<Layout>`. **Never pass `ogImage`** — all pages use the default social share card (`/images/og/social-share-card-built-clough.jpg`) set in `Layout.astro`. Overriding it per page is not needed.
+
 ```astro
 <Layout
   title="Page Title | Built Clough"
   description="150–160 chars. Specific to this page."
-  ogImage="/images/og/page-slug.jpg"
   canonical="https://builtclough.com/page-slug"
+  pageSchema={faqSchema}
 >
 ```
 
@@ -249,6 +256,60 @@ Title formats:
 - Article: `[Article Title] | Built Clough`
 
 Never reuse the same description across pages.
+
+### FAQPage Schema — Required on Every Service Page
+
+Every service page has a FAQ section. Wire up the schema so Google can show rich result dropdowns:
+
+```astro
+---
+const faqs = [
+  { q: 'Question one?', a: 'Answer one.' },
+  // ...
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout ... pageSchema={faqSchema}>
+  ...
+  <FAQAccordion items={faqs} />
+```
+
+The `faqs` array drives both the visible accordion and the schema — define it once.
+
+---
+
+## Service Page Conventions
+
+All service pages follow `src/pages/services/kitchen-remodels.astro` as the template. Key rules:
+
+**Scroll animations:** Wrap every content section in `<div class="animate-section">`. The `IntersectionObserver` in `Layout.astro` adds `is-visible` on scroll, triggering the fade-in defined in `global.css`.
+
+**Hero pattern:** `<section class="p-3 md:p-4">` outer, inner `parallax-banner-container` div with `flex items-center` and `style="min-height:80vh"`. Content uses `max-w-4xl mx-auto px-6` to align with all sections below.
+
+**Section spacing:** `py-14 md:py-24` for first content section, `pb-14 md:pb-24` for all subsequent sections.
+
+**Content width:** Always `max-w-4xl mx-auto px-6` — never wider, never a different padding.
+
+**Card grids:** `grid gap-px bg-border border border-border rounded-[12px] overflow-hidden` with `bg-[#ebe7e2] dark:bg-[#232323] p-6` on each cell. Used for project types, considerations, how-we-work, and design principles sections.
+
+**CTA buttons:** Primary CTA text is **"Share a project"** (links to `/start`). Secondary is "View our work" (links to `/gallery`) or a phone number.
+
+**Final CTA:** Inline parallax banner (not the `ParallaxBanner` component — that has no button support). Use the `parallax-banner-container` pattern directly with buttons inside.
+
+**Content rules:**
+- No permit or inspection content on any service page
+- Include workmanship guarantee in the "how we work" section
+- FAQ section is required on every service page (drives the FAQPage schema)
 
 ---
 

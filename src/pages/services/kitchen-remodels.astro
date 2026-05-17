@@ -1,0 +1,365 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const projectTypes = [
+  {
+    title: 'A refresh',
+    body: 'The layout stays. Cabinets, countertops, backsplash, paint, hardware, lighting, and flooring get updated. Plumbing and electrical stay where they are. The room looks completely different — the bones do not change.',
+  },
+  {
+    title: 'A remodel',
+    body: 'The layout changes. Walls come down. The sink moves. The stove moves. Electrical gets rerouted. Plumbing gets rerouted. The room is rethought from the studs out. Takes longer, costs more — but solves problems a refresh cannot.',
+  },
+  {
+    title: 'A floor plan change',
+    body: 'The kitchen moves to a different room entirely. The dining room becomes the kitchen. The whole floor plan shifts. This sounds extreme but sometimes the kitchen was put in the wrong spot and no amount of new cabinets fixes that.',
+  },
+];
+
+const considerations = [
+  {
+    title: 'What drives you crazy about it right now',
+    body: 'Not what you want the new kitchen to look like — what specifically does not work today. Not enough counter space. The fridge blocks the flow. There is one outlet in the whole room. The lighting is terrible. These frustrations are more useful than a Pinterest board because they tell us what to solve, not just what to copy.',
+  },
+  {
+    title: 'How you actually use this room',
+    body: 'Do you cook every day or twice a week? Do two people cook at the same time? Do your kids sit at the island while you make dinner? Do you host Thanksgiving? The answers shape the layout, counter space, storage, and flow. A kitchen designed around how you live works better than one designed around how it looks.',
+  },
+  {
+    title: 'What your budget actually is',
+    body: 'Kitchen remodels here run from $15,000 for a focused refresh to $55,000 or more for a full remodel with custom cabinets. Knowing your range early means the design matches the investment from the start instead of cutting things later.',
+  },
+  {
+    title: 'When you need it done',
+    body: 'Most kitchen remodels take 4 to 8 weeks of construction. Custom cabinets add 6 to 10 weeks of lead time before construction even starts. If you want this done before the holidays, the conversation needs to happen months before, not weeks.',
+  },
+];
+
+const designPrinciples = [
+  {
+    title: 'The work triangle',
+    body: 'The relationship between sink, stove, and refrigerator determines how efficient the kitchen feels. Too far apart and you are walking all day. Too close and two people cannot work at the same time. We think about this before we think about cabinet styles.',
+  },
+  {
+    title: 'Counter space where you need it',
+    body: 'Landing space next to the stove, next to the sink, and next to the fridge. Prep space out of the traffic pattern. More counter space is not always the answer. The right counter space in the right location is.',
+  },
+  {
+    title: 'Storage that matches how you cook',
+    body: 'Deep drawers for pots and pans instead of base cabinets you dig through on your knees. Pull-out shelves so nothing gets lost in the back. Spice storage where you actually cook, not across the room.',
+  },
+  {
+    title: 'Lighting at every hour',
+    body: 'Overhead ambient light for general visibility. Under-cabinet task lighting for the countertop. Pendant lighting over the island for warmth. The combination matters more than any single fixture.',
+  },
+];
+
+const timelineSteps = [
+  { label: 'Weeks before construction', body: 'Material selections finalized. Cabinets ordered (custom takes 6–10 weeks). Countertop material selected. Temporary kitchen set up.' },
+  { label: 'Week 1', body: 'Demo and discovery. Cabinets, countertops, flooring, and fixtures come out. We see everything behind the walls. This is the loud, messy week.' },
+  { label: 'Week 2', body: 'Rough work. Plumbing and electrical installed or relocated. Framing modifications. The invisible week where the most important work happens.' },
+  { label: 'Weeks 3–5', body: 'Drywall, cabinets, tile, flooring. The kitchen starts taking shape. This is when the excitement comes back.' },
+  { label: 'Weeks 5–7', body: 'Countertops templated and installed, fixtures, hardware, appliances, paint, trim, final details.' },
+  { label: 'Final day', body: 'Walkthrough together. Every detail checked. Punch list if needed. Final payment after you are satisfied.' },
+];
+
+const faqs = [
+  {
+    q: 'Do I need to have everything picked out before we start?',
+    a: 'Yes. Cabinets, countertops, tile, flooring, hardware, fixtures, lighting, and paint should be finalized before demolition. Changes after construction starts cause delays and cost increases. We guide you through selections during the planning phase so you are not doing it alone.',
+  },
+  {
+    q: 'What if I do not know what I want yet?',
+    a: 'That is fine. Some homeowners come to us with a full Pinterest board. Others just know the kitchen is not working and want help figuring out why. Both are a good starting point. The first conversation is about understanding the problem, not picking tile.',
+  },
+  {
+    q: 'How much does a kitchen remodel cost in Southern Illinois?',
+    a: '$15,000 to $25,000 for a focused refresh. $25,000 to $55,000 for a mid-range remodel with layout changes and quality materials. Above $55,000 for a full custom build with premium everything. We talk about budget early so the design matches your investment.',
+  },
+  {
+    q: 'What is the difference between stock, semi-custom, and custom cabinets?',
+    a: 'Stock cabinets come in fixed sizes and limited finishes — most affordable, fastest to get. Semi-custom offer more sizes, finishes, and interior configurations. Custom cabinets are built to your exact specifications with no limitations on size, material, or design. The right choice depends on your budget, timeline, and how specific your needs are.',
+  },
+  {
+    q: 'Why does a kitchen remodel cost so much?',
+    a: 'Because it touches every trade. A kitchen remodel typically involves demolition, framing, electrical, plumbing, drywall, flooring, cabinetry, countertops, tile, painting, trim, and finish carpentry. Each one requires skill, materials, and time. The cost reflects the reality of coordinating all of that into a finished space that works and lasts.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Kitchen Remodels in Southern Illinois | Built Clough"
+  description="Kitchen remodels built around how you cook, gather, and live. From a surface refresh to a full floor plan change — done right by Built Clough in Marion, Herrin, Carbondale, and surrounding areas."
+  canonical="https://builtclough.com/services/kitchen-remodels"
+  pageSchema={faqSchema}
+>
+
+<main id="main">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="p-3 md:p-4">
+    <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+      <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+        <Image
+          src="/images/og/kitchen-remodel-southern-illinois-hero-2.avif"
+          alt="Kitchen remodel in Southern Illinois by Built Clough"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          width="1600"
+          height="900"
+        />
+      </div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+        <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Kitchen remodels · Southern Illinois</p>
+        <h1
+          class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5"
+          style="max-width:20ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)"
+        >
+          Kitchen Remodels in Southern Illinois
+        </h1>
+        <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">
+          Your kitchen is probably the most used room in the house. If it is not working for you, everything around it feels off.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+          <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Intro + What kind of project ────────────────────────────────── -->
+  <section class="py-14 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Understanding your project</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What Kind of Kitchen Project Is This?</h2>
+        <div class="flex flex-col gap-4 mb-8" style="max-width:60ch">
+          <p class="text-[18px] font-normal text-[#6b6b6b] leading-[1.65]">Maybe the layout has not made sense since the day you moved in. Maybe the cabinets are from 1994 and you have been staring at them long enough. Maybe you have been cooking around a problem for years and you are done working around it.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.65]">Whatever brought you here, you are thinking about changing the most important room in your house. That is a big decision. Here is what we think you should know before you talk to anyone, including us.</p>
+        </div>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">Not every kitchen remodel is the same scope. Knowing which one you are looking at helps you plan, budget, and have a better first conversation.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {projectTypes.map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6 flex flex-col">
+              <p class="text-[15px] font-medium text-foreground mb-3">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6] mt-5" style="max-width:58ch">Most homeowners start thinking they need one of these and end up in a different category once they start talking through what is actually bothering them. That is normal. The first conversation is about figuring out which one you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Image grid 1 ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="relative rounded-[10px] overflow-hidden border border-border mb-2" style="aspect-ratio:16/9">
+        <Image src="/images/og/kitchen-hero.avif" alt="Kitchen remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/white-shaker-kitchen-island-quartz-countertop-remodel.avif" alt="White shaker kitchen island remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/kitchen-island-cherry-butcher-block-cooktop-remodel.avif" alt="Kitchen island with cherry butcher block by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/kitchen-remodel-tray-ceiling-carbondale.avif" alt="Kitchen remodel with tray ceiling in Carbondale by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Questions worth answering ────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you reach out</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">The Questions Worth Answering</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">You do not need all of this figured out. But thinking through these will make the first conversation more productive.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {considerations.map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Behind the walls ──────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <div class="flex flex-col lg:flex-row lg:gap-16 lg:items-start">
+          <div class="flex-1">
+            <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What to expect</p>
+            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-5 font-serif">What Happens When We Open the Walls</h2>
+            <div class="flex flex-col gap-4">
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Your kitchen has been running on plumbing and electrical that may be 20, 30, or 50 years old. You cannot see any of it right now. Once the cabinets come out and the drywall comes down, we see everything. The condition of the wiring. The state of the supply lines and drain lines. Whether the subfloor is solid. Whether the framing is plumb.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Sometimes everything looks good and we move forward on schedule. Sometimes we find galvanized supply lines that are half clogged with mineral buildup, or wiring that is not up to code, or a slow leak under the old sink that has been softening the subfloor for years.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">When we find something, we stop. We show you. We explain what it is, what caused it, and what it means. We give you options and a written change order before any additional work happens. We do not cover up problems with new cabinets and pretend they are not there.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The first week of a kitchen remodel often looks like things are going backward. The room is gutted, it is loud, and there is nothing pretty to look at. That is the most important week. Everything built after it sits on top of what was done during it.</p>
+            </div>
+          </div>
+          <div class="mt-10 lg:mt-0 lg:flex-shrink-0 lg:w-[38%]">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+              <Image src="/images/og/cherry-butcher-block-countertop-cooktop-detail.avif" alt="Kitchen detail by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="500" height="667" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Image grid 2 ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/makanda-kitchen-remodel-full.avif" alt="Kitchen remodel in Makanda by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/traditional-white-kitchen-wall-oven-tile-backsplash.avif" alt="Traditional white kitchen remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/coffered-beadboard-ceiling-schoolhouse-pendants.avif" alt="Coffered ceiling with schoolhouse pendants by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Design thinking ──────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How we think</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What We Think About When We Design a Kitchen</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">We are builders who understand how kitchens work and how materials perform over time. Here is what drives the design decisions.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {designPrinciples.map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Timeline ──────────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Timeline</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What the Timeline Actually Looks Like</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">A general timeline for a mid-range remodel. A refresh moves faster. A full remodel with custom cabinets can take longer. We build your specific schedule during planning.</p>
+        <div class="border border-border rounded-[12px] overflow-hidden">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-border bg-[#ebe7e2] dark:bg-[#232323]">
+                <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left w-[200px]">Phase</th>
+                <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left">What happens</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timelineSteps.map(({ label, body }) => (
+                <tr class="border-b border-border last:border-b-0">
+                  <td class="px-5 py-4 text-[13px] font-medium text-foreground align-top w-[200px]">{label}</td>
+                  <td class="px-5 py-4 text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How we work ───────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How we work</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">How We Handle the Business Side</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">We are not a franchise and we are not a call center. When you work with us, you are working directly with the people building in your home.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {[
+            { title: 'Fixed-price estimates', body: 'The number on the estimate is the number you pay unless you request changes or we find concealed damage. Both are handled through a written change order you approve before any additional work is done.' },
+            { title: 'Final payment after walkthrough', body: 'We do not take the final payment until you walk through the completed kitchen and confirm you are satisfied. That is how it has always worked and how it always will.' },
+            { title: 'Workmanship guarantee', body: 'We stand behind every project. If something is not right after we leave, we come back and make it right. That is not a policy — it is how we have always worked.' },
+          ].map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <div class="flex items-start justify-between gap-4 mb-8">
+          <div>
+            <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">Frequently Asked Questions</h2>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:40ch">Straight answers to what most people ask before hiring us for a kitchen remodel.</p>
+          </div>
+        </div>
+        <FAQAccordion items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/makand-kitchen-remodel-tray-ceiling-02.avif"
+            alt="Kitchen remodel with tray ceiling by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">
+            If your kitchen is not working for you, let's talk about what it could be
+          </h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Carterville · Makanda · Murphysboro</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</Layout>

@@ -1,0 +1,433 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const bathroomItems = [
+  {
+    title: 'Grab bars',
+    body: 'Grab bars come in every finish and style now — brushed nickel, matte black, oil rubbed bronze. They can match your fixtures and look like a design choice rather than a medical device. What matters is that they are anchored into wall studs or blocking, not just drywall. A grab bar in drywall will pull out of the wall under load, which is more dangerous than having no grab bar at all.',
+  },
+  {
+    title: 'Walk-in or curbless shower',
+    body: 'Stepping over a tub wall or a high shower curb is one of the most dangerous daily movements for someone with reduced balance or mobility. A curbless shower eliminates the step entirely. A low threshold walk-in shower is the next best option. This involves modifying the shower floor and drain, but it is one of the most impactful changes you can make.',
+  },
+  {
+    title: 'Shower bench or built-in seat',
+    body: 'A sturdy bench inside the shower allows someone to sit while bathing. Built-in tile benches are the most stable. Removable teak benches are a good intermediate step.',
+  },
+  {
+    title: 'Handheld showerhead on a slide bar',
+    body: 'A fixed showerhead forces the user to stand and reach. A handheld on a slide bar can be used while sitting and adjusted to any height.',
+  },
+  {
+    title: 'Non-slip surfaces',
+    body: 'Smooth tile becomes extremely slippery when wet. Small format tile with more grout lines provides better traction than large format tile on shower floors. Non-slip coatings, textured vinyl, and matte finish tile are all options for the bathroom floor.',
+  },
+  {
+    title: 'Comfort height toilet',
+    body: 'Standard toilets sit at about 15 inches. Comfort height sits at 17 to 19 inches. That difference matters significantly for anyone with knee, hip, or back problems. A raised seat on an existing toilet is the simplest option. Replacing the toilet is the permanent one.',
+  },
+];
+
+const accessItems = [
+  {
+    title: 'Lever door handles',
+    body: 'Round doorknobs require grip strength and wrist rotation that becomes difficult with arthritis. Lever handles open with a push. This is one of the easiest and least expensive changes in the house.',
+  },
+  {
+    title: 'Wider doorways',
+    body: 'Standard interior doorways are 30 to 32 inches wide. A wheelchair or walker needs at least 36 inches. Widening a doorway is not as major as it sounds — it usually involves replacing the frame and the door. We prioritize the bathroom, bedroom, and main entrance.',
+  },
+  {
+    title: 'Threshold elimination',
+    body: 'Raised thresholds between rooms are trip hazards and barriers for mobility devices. Low profile or flush transitions between rooms improve safety throughout the house.',
+  },
+  {
+    title: 'Exterior entry',
+    body: 'If the home has steps at the main entrance, a ramp or modified entry provides step-free access. A permanent ramp should have a gentle slope, non-slip surface, and handrails on both sides. Even a single step can become an obstacle with a walker or after knee surgery.',
+  },
+  {
+    title: 'Main floor living',
+    body: 'If all bedrooms are on the second floor, stairs eventually become the primary barrier to independence. Converting a main floor room into a bedroom with access to a full bathroom on the same level is one of the most significant aging in place modifications. It is worth planning for even if it is not needed yet.',
+  },
+];
+
+const lightingItems = [
+  {
+    title: 'Increase overall lighting',
+    body: 'Replace bulbs with higher output. Add fixtures in dim areas. Every room should have adequate light without relying on a single source. A 60 year old needs roughly three times more light than a 20 year old to see the same level of detail.',
+  },
+  {
+    title: 'Motion sensor lights',
+    body: 'Hallways, stairs, bathrooms, and the path from the bedroom to the bathroom at night. Motion sensors eliminate the need to find a switch in the dark, which is when most nighttime falls happen.',
+  },
+  {
+    title: 'Stairway lighting',
+    body: 'Every step should be visible. Lighting at the top and bottom of each staircase is the minimum. LED strip lighting along the stair nosing adds visibility without being harsh.',
+  },
+  {
+    title: 'Rocker switches',
+    body: 'Small toggle switches are hard to find and operate with reduced dexterity. Large rocker switches and illuminated switch plates are easier to see and use.',
+  },
+  {
+    title: 'Contrast at transitions',
+    body: 'Where flooring changes height or material, the transition should be clearly visible. A step down that blends into the surrounding floor is a trip hazard. Contrasting colors or materials at transitions help the eye detect the change.',
+  },
+];
+
+const services = [
+  'Grab bar installation (shower, tub, toilet)',
+  'Walk-in and curbless shower conversions',
+  'Shower bench and built-in seat construction',
+  'Comfort height toilet installation',
+  'Handheld showerhead and slide bar installation',
+  'Non-slip flooring and surface treatments',
+  'Lever door handle conversion',
+  'Doorway widening',
+  'Threshold ramp installation',
+  'Exterior ramp construction',
+  'Handrail installation (interior and exterior stairs)',
+  'Motion sensor and automated lighting',
+  'Main floor bedroom and bathroom conversion',
+  'Smart lock and keypad entry installation',
+];
+
+const whoItIsFor = [
+  {
+    title: 'Homeowners planning ahead',
+    body: 'You are in your 50s or 60s and thinking about the next 20 years in this house. You want to make changes now while you have the time, the budget, and the ability to make decisions without pressure.',
+  },
+  {
+    title: 'Adult children planning for aging parents',
+    body: 'Mom or Dad is staying in their home and you want to make sure it is safe. You are looking for someone who will assess the home honestly and recommend what actually matters rather than selling you everything on a checklist.',
+  },
+  {
+    title: 'Homeowners recovering from a fall or surgery',
+    body: 'The need is immediate. You need grab bars, a walk-in shower, or other modifications quickly so you can return home safely. We prioritize these projects and can often complete them within a week.',
+  },
+];
+
+const priorities = [
+  {
+    title: 'Start here',
+    items: [
+      'Grab bars in the bathroom',
+      'Lever door handles',
+      'Better lighting throughout the house',
+      'Non-slip mats and treads',
+      'Handheld showerhead',
+      'Secure or remove area rugs',
+    ],
+  },
+  {
+    title: 'Next',
+    items: [
+      'Comfort height toilet',
+      'Handrails on both sides of stairs',
+      'Motion sensor lighting',
+      'Wider bathroom doorway',
+      'Smart lock or keypad entry',
+    ],
+  },
+  {
+    title: 'When you are ready',
+    items: [
+      'Curbless shower conversion',
+      'Main floor bedroom and bathroom',
+      'Exterior ramp or step-free entry',
+      'Full bathroom remodel designed for accessibility',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: 'How much do aging in place modifications cost?',
+    a: 'Individual items like grab bars ($110 to $225 per bar), lever handles ($75 to $135 per door), and handrails ($275 to $500) are affordable on their own. A curbless shower conversion runs $15,000 to $30,000 depending on the scope. A main floor bedroom and bathroom conversion depends heavily on the existing layout. We provide a detailed estimate for every project.',
+  },
+  {
+    q: 'Do I need to remodel the whole bathroom?',
+    a: 'No. Many of the most impactful changes — grab bars, handheld showerhead, comfort height toilet, better lighting — can be done without a full remodel. If you are already planning a bathroom remodel, incorporating accessibility features into the design from the start is the most cost effective approach.',
+  },
+  {
+    q: 'Will these modifications hurt my resale value?',
+    a: 'The opposite. As the population ages, demand for accessible homes is growing. Features like a walk-in shower, grab bars, a main floor bedroom, and wider doorways are increasingly seen as desirable by a wide range of buyers, not just older adults. A well designed accessible bathroom does not look like a medical accommodation. It looks like a thoughtful remodel.',
+  },
+  {
+    q: 'Can you add blocking for future grab bars during a remodel?',
+    a: 'Yes. If we have the walls open for any reason, we can add plywood blocking between the studs at locations where grab bars might be needed in the future. This costs almost nothing during construction and saves significant work later because the bars can be mounted anywhere along the blocking without worrying about stud location.',
+  },
+  {
+    q: 'My parent lives alone. Can you assess their home and tell us what needs to change?',
+    a: 'Yes. We do walk-throughs specifically for this purpose. We go through the home, identify risks, and prioritize recommendations based on the individual\'s mobility, daily routine, and the layout of the house. You get a clear list of what matters most and what it would cost.',
+  },
+  {
+    q: 'How quickly can you do this if there is an urgent need?',
+    a: 'For straightforward modifications like grab bars, handrails, and lever handles, we can often schedule within a week. Larger projects like shower conversions require planning and material lead times, but we prioritize aging in place work when there is a safety need.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Aging in Place Modifications in Southern Illinois | Built Clough"
+  description="Grab bars, curbless showers, wider doorways, ramps, and accessibility modifications across Southern Illinois. Designed to look intentional, not institutional."
+  canonical="https://builtclough.com/services/aging-in-place"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/master-bathroom-navy-vanity-freestanding-tub-remodel.avif"
+            alt="Master bathroom with navy vanity and freestanding tub remodel by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Aging in place · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:22ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">Your Home Should Work for You at Every Stage of Life</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">Most homes were not designed with aging in mind. A few thoughtful changes now can keep you safe, comfortable, and independent in the home you love for much longer than you might think.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Why it matters</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Why This Conversation Matters Now</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The most common mistake people make with aging in place is waiting too long. By the time the need is urgent, the homeowner is often dealing with reduced mobility, recovering from a fall or surgery, and making decisions under pressure. Planning ahead means you choose what you want on your own terms.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Falls are the leading cause of injury among older adults. One in four Americans over 65 falls each year, and the majority of those falls happen at home. Most of them are preventable with modifications that are straightforward, affordable, and improve the home for everyone — not just older adults.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">A grab bar in the shower is useful at any age. A lever door handle is easier for anyone carrying groceries. Better lighting on the stairs benefits the whole family. This is not about making your home feel like a facility. It is about making it work better.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Where to begin</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Where to Start</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">You do not have to do everything at once. We help you think through what matters most right now and what to plan for next.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">Start with the bathroom.</strong> More falls happen in the bathroom than any other room. Wet surfaces, tight spaces, and the physical demands of getting in and out of a tub or shower make this the highest risk area in the house. Grab bars, a walk-in shower, non-slip flooring, and a comfort height toilet address the biggest risks and make the most immediate difference.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">Then look at access.</strong> Can you get into and through the home safely? Are there steps at the entrance that will become a problem? Are the doorways wide enough for a walker or wheelchair if you ever need one? Is there a bedroom and full bathroom on the main floor?</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">Then lighting and surfaces.</strong> Vision changes with age. A 60 year old needs roughly three times more light than a 20 year old to see the same level of detail. Loose area rugs, dim hallways, and slippery floors become hazards that they were not before.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section grid grid-cols-2 gap-2">
+          {[
+            { src: '/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif', alt: 'Freestanding tub with board and batten bathroom remodel by Built Clough' },
+            { src: '/images/og/large-format-porcelain-tile-bathroom-floor.avif', alt: 'Large format porcelain tile bathroom floor by Built Clough' },
+          ].map(({ src, alt }) => (
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <Image
+                src={src}
+                alt={alt}
+                class="w-full block"
+                style="aspect-ratio:1/1;object-fit:cover"
+                width="600"
+                height="600"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Highest impact room</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-4 font-serif">The Bathroom</h2>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10 max-w-2xl">This is where most aging in place projects start and where the impact is greatest.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {bathroomItems.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Getting around</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Access and Mobility</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {accessItems.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === accessItems.length - 1 && accessItems.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Seeing clearly</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Lighting and Visibility</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {lightingItems.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === lightingItems.length - 1 && lightingItems.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we do</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">What We Do</h2>
+          <ul class="border border-border rounded-[12px] overflow-hidden grid grid-cols-1 md:grid-cols-2">
+            {services.map((item) => (
+              <li class="flex items-center gap-4 px-5 py-3.5 border-b border-border last:border-b-0">
+                <span class="w-7 h-7 border border-border rounded-[6px] flex items-center justify-center flex-shrink-0">
+                  <span class="text-[18px] text-[#999999]">✓</span>
+                </span>
+                <span class="text-[14px] font-normal text-[#6b6b6b]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our approach</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">How We Approach This Differently</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We build aging in place modifications with the same design attention as any other remodel. Functional does not have to mean institutional. A grab bar can match your fixtures. A curbless shower can be the best looking shower in the house. A wider doorway does not have to look like it was widened after the fact.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We also think ahead. If you are installing grab bars now, we can add blocking inside the walls in other locations where you might want bars in the future. If you are remodeling a bathroom for any reason, we can incorporate accessibility features into the design from the start so they are built in rather than bolted on later.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The best time to do this work is before you need it. Every modification you make now is one less emergency decision later.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Who this is for</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Who This Is For</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {whoItIsFor.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === whoItIsFor.length - 1 && whoItIsFor.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Where to begin</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Priority Order</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {priorities.map(({ title, items }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === priorities.length - 1 && priorities.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-3">{title}</p>
+                <ul class="flex flex-col gap-1.5">
+                  {items.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#bbbbbb] mt-[3px] flex-shrink-0" aria-hidden="true">–</span>
+                      <span class="text-[13px] font-normal text-[#6b6b6b] leading-[1.5]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-6">
+      <div class="animate-section">
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-3 max-w-2xl">We live in a community where people want to stay in their homes. The house where they raised their family, know every neighbor, and have decades of memories is not something they give up easily.</p>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] max-w-2xl">Making a home work for the next chapter is some of the most meaningful work we do. It is not the most glamorous. It does not always end up on the website. But when someone calls and says their mom came home from the hospital and the bathroom is safe now, that matters more than any kitchen reveal.</p>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/apple-creek-bath-remodel-hero.avif"
+            alt="Apple Creek bathroom remodel by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">Your home, adapted to your life</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

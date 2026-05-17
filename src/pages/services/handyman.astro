@@ -1,0 +1,336 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const categories = [
+  {
+    title: 'Fixtures and Installation',
+    subtitle: 'Lighting, plumbing fixtures, and devices that just need a skilled set of hands.',
+    items: [
+      'Light fixture and ceiling fan swaps',
+      'Faucet and toilet replacement',
+      'Towel bars, shelves, mirrors, and bathroom accessories',
+      'Curtain rods',
+      'Doorbell and smart home devices',
+      'Smoke and CO detectors',
+      'Appliance hookups',
+    ],
+  },
+  {
+    title: 'Repairs',
+    subtitle: 'The things that have been on your radar for months. We work through all of it.',
+    items: [
+      'Drywall patches and nail pops',
+      'Leaky faucets and running toilets',
+      'Sticking doors and misaligned locks',
+      'Loose railings and balusters',
+      'Squeaky floors',
+      'Weatherstripping and door sweeps',
+      'Caulk replacement in kitchens and bathrooms',
+    ],
+  },
+  {
+    title: 'Mounting and Hanging',
+    subtitle: 'Into studs, anchored properly. No wobbly TVs or shelves that shift.',
+    items: [
+      'TV mounting (flat and full motion with cable concealment)',
+      'Floating shelves and heavy shelf installation',
+      'Mirror and heavy art hanging',
+      'Garage wall storage systems',
+      'Closet organization systems',
+    ],
+  },
+  {
+    title: 'Doors and Windows',
+    subtitle: 'Adjustments, hardware, locks, screens, and smooth operation.',
+    items: [
+      'Door rehang and planing',
+      'Deadbolt and smart lock install',
+      'Storm door install',
+      'Window hardware and lock repair',
+      'Screen repair and replacement',
+      'Sliding door roller replacement',
+    ],
+  },
+  {
+    title: 'Painting',
+    subtitle: 'A room, a wall, the trim. Done with the same care as a full remodel.',
+    items: [
+      'Single room or accent wall',
+      'Trim, doors, and baseboards',
+      'Touch up and color matching',
+      'Interior and exterior',
+    ],
+  },
+  {
+    title: 'Exterior',
+    subtitle: 'Keeping the outside tight before small issues turn into expensive ones.',
+    items: [
+      'Fence repair and gate adjustment',
+      'Deck board replacement',
+      'Gutter cleaning and repair',
+      'Caulk and seal around windows and doors',
+      'Mailbox post replacement',
+      'Downspout reattach and reroute',
+      'Shutter repair and siding patch',
+    ],
+  },
+  {
+    title: 'Seasonal',
+    subtitle: 'One less thing to track when the seasons change.',
+    items: [
+      'Holiday light installation and removal',
+      'Storm window and screen swaps',
+      'Winterization (exterior faucets, AC covers, draft sealing)',
+      'Spring maintenance walk-through',
+    ],
+  },
+  {
+    title: 'Aging in Place',
+    subtitle: 'Safety and accessibility updates done to look intentional, not medical.',
+    items: [
+      'Grab bar installation',
+      'Handrail installation',
+      'Lever door handle conversion',
+      'Comfort height toilet install',
+      'Non-slip tread application',
+      'Motion sensor lighting',
+      'Threshold ramps',
+    ],
+  },
+];
+
+const considerations = [
+  {
+    title: 'Make the list',
+    body: 'Walk through your house with your phone and make a note of everything that needs attention. Open every cabinet with plumbing and look for drips. Test every door and window for smooth operation. Check your smoke detectors. Look at the caulk in your bathrooms. Note the things you have been stepping over or working around. The more complete your list, the more we can accomplish in a single visit.',
+  },
+  {
+    title: 'Prioritize',
+    body: 'If the list is long, think about what matters most. Safety items first — smoke detectors, loose railings, electrical concerns. Then functional items — leaky faucets, sticking doors. Then aesthetic items — paint touch-ups, hardware swaps. We work through the list in whatever order makes sense for the visit, but knowing your priorities helps us plan.',
+  },
+  {
+    title: 'Know what you want installed',
+    body: 'If you have already purchased a fixture, faucet, TV mount, or any other item you want installed, have it on site when we arrive. If you want us to source the item, let us know ahead of time and we will have it ready.',
+  },
+  {
+    title: 'Access',
+    body: 'Make sure we can get to everything on the list. Move furniture away from the wall if we are mounting a TV. Clear under the sink if we are fixing a leak. Have a ladder accessible if we are working on exterior items.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is there a minimum charge?',
+    a: 'Yes. We have a minimum trip charge that covers travel and setup. It is applied toward the cost of the work, so if your list exceeds the minimum, you are not paying extra for it. We are transparent about this before we schedule.',
+  },
+  {
+    q: 'Can I give you a list of multiple things?',
+    a: 'That is exactly how this works best. A visit with 5 to 10 items is more efficient for everyone than scheduling five separate trips. Walk your house, make the list, and we will give you a price for the whole thing.',
+  },
+  {
+    q: 'Do I need to provide the materials?',
+    a: 'Either way works. If you have already purchased what you need, have it on site. If you want us to handle materials, we will include that in the price. There is a standard markup on materials we supply, which covers our time sourcing, picking up, and transporting them.',
+  },
+  {
+    q: 'What if something on my list turns out to be a bigger issue?',
+    a: 'We let you know. We explain what we found and what it would take to fix it properly. You decide whether to address it now, schedule it for later, or get more information. There is no pressure.',
+  },
+  {
+    q: 'Do you do single item calls?',
+    a: 'Yes. If you need one thing done, we will do one thing. The minimum trip charge still applies.',
+  },
+  {
+    q: 'What areas do you serve for handyman work?',
+    a: 'Marion, Herrin, Carterville, Carbondale, Makanda, Murphysboro, and surrounding communities across Southern Illinois.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Handyman Services in Southern Illinois | Built Clough"
+  description="Built Clough handles your home repair and installation list across Southern Illinois. Same crew as our full remodels — no shortcuts, no pressure to turn it into a bigger project."
+  canonical="https://builtclough.com/services/handyman"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/custom-crown-molding-trim-carpentry-corner-detail.avif"
+            alt="Custom crown molding and trim carpentry detail by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Handyman services · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:18ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">The List You Have Been Putting Off</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">Every home has one. The running list of things that need to be fixed, installed, replaced, or finished. We show up, work through it, and leave it done.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Handyman services · Southern Illinois</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">How Our Handyman Service Works</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">You do not need a full remodel to call us. If you have a list of things around the house that need attention, that is exactly what this service is for.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We show up with the tools and the experience to handle most common repairs and installations in a single visit. You walk us through the list, we work through it in order of priority, and we leave your home in better shape than we found it. No minimum number of items. No pressure to turn it into a bigger project.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">This is the same crew that builds kitchens and bathrooms. The quality of the work does not change because the scope is smaller.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section grid grid-cols-2 gap-2">
+          {[
+            { src: '/images/og/undermount-stainless-workstation-kitchen-sink.avif', alt: 'Undermount stainless workstation kitchen sink by Built Clough' },
+            { src: '/images/og/shaker-cabinet-toe-kick-stone-look-tile-detail.avif', alt: 'Shaker cabinet toe kick with stone look tile detail by Built Clough' },
+          ].map(({ src, alt }) => (
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <Image
+                src={src}
+                alt={alt}
+                class="w-full block"
+                style="aspect-ratio:1/1;object-fit:cover"
+                width="600"
+                height="600"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we handle</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What We Handle</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {categories.map(({ title, subtitle, items }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-1">{title}</p>
+                <p class="text-[12px] font-normal text-[#999999] leading-[1.5] mb-3">{subtitle}</p>
+                <ul class="flex flex-col gap-1.5">
+                  {items.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="w-3.5 h-3.5 border border-border rounded-[3px] flex items-center justify-center flex-shrink-0 mt-[2px]">
+                        <span class="text-[9px] text-[#999999]">✓</span>
+                      </span>
+                      <span class="text-[13px] font-normal text-[#6b6b6b] leading-[1.5]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Pricing</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">How Pricing Works</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Our handyman work is priced per task, not by the hour. When you call with a list, we give you a clear price for each item before we start. You know the total before we pick up a tool.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">For a broader look at what projects cost, visit our <a href="/pricing" class="text-foreground underline underline-offset-2 hover:text-[#6b6b6b] transition-colors">pricing page</a>. It covers the ranges we see across the most common repair and installation work.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We have a minimum trip charge that applies to every visit regardless of scope. This accounts for travel, setup, and the time commitment of scheduling your project. The trip charge is applied toward the cost of the work, so if your list exceeds the minimum, you do not pay it separately.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you call</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What to Think About Before You Call</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {considerations.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">When scope changes</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">When Handyman Work Becomes Something Bigger</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Sometimes a handyman call reveals a larger issue. You ask us to re-caulk the tub and we notice the subfloor is soft. You ask us to swap a light fixture and we find aluminum wiring in the box. You ask us to fix a squeaky floor and discover the joist underneath is compromised.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">When that happens, we tell you. We explain what we found, what it means, and what the options are. We do not upsell you on the spot and we do not pressure you into a larger project. We give you the information and let you decide what to do with it.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Some of our largest remodels started as handyman calls. Not because we pushed the homeowner into a bigger scope, but because the handyman visit revealed something that needed real attention.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/built-clough-workmanship-guarantee.avif"
+            alt="Built Clough workmanship guarantee"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">Got a list? Let's work through it</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

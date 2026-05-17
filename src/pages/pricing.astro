@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const pricingDrivers = [
+  {
+    title: 'Scope',
+    body: 'A surface refresh where the layout stays the same costs less than a full remodel where plumbing, electrical, and walls are being moved. The more trades involved, the more the project costs.',
+  },
+  {
+    title: 'Materials',
+    body: 'A stock cabinet and laminate countertop is a different investment than a custom cabinet with a quartz top. Neither is wrong. They serve different goals and different budgets. We walk you through options at every level and help you understand what each choice means for performance and longevity.',
+  },
+  {
+    title: 'Site conditions',
+    body: 'Older homes sometimes have outdated wiring, corroded plumbing, or water damage that is not visible until surfaces are removed. Homes on a slab cost more for plumbing work because drain lines are buried in concrete. We assess all of this during the site visit and account for it in the estimate.',
+  },
+  {
+    title: 'Complexity',
+    body: 'A straightforward layout with standard dimensions is faster to build than a custom design with unusual angles, multiple niches, specialty tile patterns, or integrated lighting. The more detail and custom work involved, the more time it takes.',
+  },
+];
+
+const kitchenRanges = [
+  { type: 'Focused refresh (cabinets, countertops, backsplash, paint, hardware)', range: '$15,000 – $25,000' },
+  { type: 'Mid-range remodel with layout changes', range: '$25,000 – $55,000' },
+  { type: 'Full custom build with premium materials', range: '$55,000+' },
+];
+
+const bathroomRanges = [
+  { type: 'Surface refresh (new fixtures, vanity, paint, hardware)', range: '$8,000 – $15,000' },
+  { type: 'Mid-range remodel (tub to shower conversion, new tile, vanity, flooring)', range: '$15,000 – $35,000' },
+  { type: 'Full custom remodel (layout change, custom tile, frameless glass, premium fixtures)', range: '$35,000+' },
+];
+
+
+const estimateIncludes = [
+  'Written scope of work broken into phases',
+  'Material specs or allowances with defined budget levels',
+  'Projected timeline with start and completion targets',
+  'Payment schedule tied to project milestones',
+  'Clear list of what is and is not included',
+];
+
+const paymentSteps = [
+  {
+    n: '01',
+    title: 'Deposit at signing',
+    body: 'Reserves your spot on our schedule and covers initial material orders. Typically 10 to 25 percent of the project total depending on scope and material requirements.',
+  },
+  {
+    n: '02',
+    title: 'Progress payments',
+    body: 'Tied to completion of specific milestones defined in the estimate. You know exactly when each payment is due and what it corresponds to.',
+  },
+  {
+    n: '03',
+    title: 'Final 15 percent',
+    body: 'Not collected until you have walked through the completed project with us and confirmed you are satisfied with every detail.',
+  },
+];
+---
+
+<Layout
+  title="What Things Cost | Built Clough"
+  description="Honest pricing ranges for kitchen remodels, bathroom remodels, decks, windows, and handyman services in Southern Illinois. Fixed-price estimates, no surprises."
+  canonical="https://builtclough.com/pricing"
+>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="p-3 md:p-4">
+    <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+      <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+        <Image
+          src="/images/og/makanda-kitchen-remodel-full.avif"
+          alt="Kitchen remodel by Built Clough in Makanda, Illinois"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          width="1600"
+          height="900"
+        />
+      </div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+        <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Pricing · Built Clough</p>
+        <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:20ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">What Things Cost</h1>
+        <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">We get asked about pricing on every first call. Here is what we can share before we know the details of your project.</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+          <a href="/gallery" class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How Our Pricing Works ────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How it works</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">How Our Pricing Works</h2>
+        <div class="flex flex-col gap-5" style="max-width:62ch">
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Every estimate we provide is a fixed price for the defined scope of work. This pricing model is designed to allow us to execute at the level of craftsmanship required to produce great results while covering all business operations. It reflects the true cost of skilled labor, quality materials, insurance, planning, project management, daily cleanup, and standing behind our work long after the project is complete.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">This price does not change throughout the project unless modifications are requested by the homeowner or unforeseen damage or structural issues are encountered during demolition. In either case, we document the situation, discuss your options, and provide a written change order with the adjusted cost before any additional work is done. Nothing changes without your written approval.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Estimates are based on current material pricing and labor rates at the time of preparation. Because material costs and availability can fluctuate, each estimate is valid for 30 days from the date it is issued. If your project begins within that window, the pricing is locked. If more than 30 days have passed, we are happy to revisit the numbers and update anything that may have shifted.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── What Drives the Price ────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Factors</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What Drives the Price</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:56ch">No two projects cost the same. But the factors that move the number are consistent. Understanding them helps you have a more productive conversation with us or with any contractor you are considering.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {pricingDrivers.map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Pricing Ranges ────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">General ranges</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">General Pricing Ranges</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-12" style="max-width:58ch">These ranges reflect what most projects in our area cost for quality work from a licensed, insured contractor. They include labor, project management, daily cleanup, and our workmanship guarantee. Your project may fall above or below these ranges depending on scope, materials, and site conditions. Every project receives a detailed estimate before any commitment is made.</p>
+
+        <!-- Kitchen -->
+        <div class="mb-10">
+          <p class="text-[15px] font-medium text-foreground mb-4">Kitchen Remodels</p>
+          <div class="border border-border rounded-[12px] overflow-hidden mb-3">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-border bg-[#ebe7e2] dark:bg-[#232323]">
+                  <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left">Project type</th>
+                  <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left w-[180px]">Price range</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kitchenRanges.map(({ type, range }) => (
+                  <tr class="border-b border-border last:border-b-0">
+                    <td class="px-5 py-4 text-[14px] font-normal text-[#6b6b6b] leading-[1.5]">{type}</td>
+                    <td class="px-5 py-4 text-[14px] font-medium text-foreground whitespace-nowrap">{range}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[13px] font-normal text-[#999999] leading-[1.6]">Driven primarily by whether the layout changes, what cabinet tier you select (stock, semi-custom, or custom), and countertop material. Custom cabinets add 6 to 10 weeks of lead time before construction begins.</p>
+        </div>
+
+        <!-- Bathroom -->
+        <div class="mb-12">
+          <p class="text-[15px] font-medium text-foreground mb-4">Bathroom Remodels</p>
+          <div class="border border-border rounded-[12px] overflow-hidden mb-3">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-border bg-[#ebe7e2] dark:bg-[#232323]">
+                  <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left">Project type</th>
+                  <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left w-[180px]">Price range</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bathroomRanges.map(({ type, range }) => (
+                  <tr class="border-b border-border last:border-b-0">
+                    <td class="px-5 py-4 text-[14px] font-normal text-[#6b6b6b] leading-[1.5]">{type}</td>
+                    <td class="px-5 py-4 text-[14px] font-medium text-foreground whitespace-nowrap">{range}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── What an Estimate Looks Like ──────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="flex flex-col lg:flex-row lg:gap-16 lg:items-start">
+          <div class="flex-1 mb-10 lg:mb-0">
+            <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Estimates</p>
+            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What an Estimate From Us Looks Like</h2>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-4">When you receive an estimate from Built Clough, it includes a written scope of work broken into phases, material specifications or allowances with defined budget levels, a projected timeline with start and completion targets, a payment schedule tied to project milestones, and a clear list of what is included and what is not.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We want you to understand every line. We walk through the estimate with you before you commit to anything. If something is unclear, ask. We would rather spend the time explaining it now than have a misunderstanding during construction.</p>
+          </div>
+          <div class="lg:w-[38%] lg:flex-shrink-0">
+            <div class="border border-border rounded-[12px] overflow-hidden">
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] px-5 py-3 border-b border-border">
+                <p class="text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em]">Every estimate includes</p>
+              </div>
+              {estimateIncludes.map((item) => (
+                <div class="flex items-center gap-3 px-5 py-4 border-b border-border last:border-b-0">
+                  <span class="w-7 h-7 border border-border rounded-[6px] flex items-center justify-center flex-shrink-0">
+                    <span class="text-[18px] text-[#999999]">✓</span>
+                  </span>
+                  <span class="text-[14px] font-normal text-[#6b6b6b]">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Payment Structure ─────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Payment</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Payment Structure</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {paymentSteps.map(({ n, title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6 flex flex-col">
+              <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-4">{n}</p>
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/tray-ceiling-beadboard-brass-pendant-detail.avif"
+            alt="Built Clough craftsmanship detail"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">
+            Every project starts with a conversation
+          </h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Carterville · Makanda · Murphysboro</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Layout>

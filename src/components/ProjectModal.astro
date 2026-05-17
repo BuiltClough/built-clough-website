@@ -1,0 +1,423 @@
+<!-- Project inquiry modal — triggered by any element with data-project-modal attribute -->
+
+<!-- Overlay -->
+<div
+  id="project-modal"
+  class="hidden fixed inset-0 z-[300] flex items-end sm:items-center justify-center"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pm-title"
+>
+  <div id="project-modal-backdrop" class="absolute inset-0" style="background:rgba(0,0,0,0.55);backdrop-filter:blur(4px)"></div>
+
+  <!-- Sheet / panel -->
+  <div
+    id="project-modal-panel"
+    class="relative z-10 w-full sm:max-w-lg bg-white dark:bg-[#1a1a1a] rounded-t-[20px] sm:rounded-[20px] shadow-none border border-[#e0dbd4] dark:border-[#2a2a2a]"
+    style="max-height:92dvh;overflow-y:auto"
+  >
+    <!-- Drag handle (mobile) -->
+    <div class="sm:hidden flex justify-center pt-3 pb-1">
+      <div class="w-9 h-1 rounded-full bg-[#d4cfc9] dark:bg-[#444]"></div>
+    </div>
+
+    <!-- Close button -->
+    <button
+      id="pm-close"
+      type="button"
+      aria-label="Close"
+      class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full text-[#999] hover:text-[#111] hover:bg-[#111]/[0.06] dark:hover:text-[#f0f0f0] dark:hover:bg-[#f0f0f0]/[0.08] transition-colors"
+    >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Form card -->
+    <div class="px-7 pb-8 pt-5">
+
+      <!-- Step 1 -->
+      <div data-pm-step="1" class="pm-step-panel">
+        <p id="pm-title" class="text-[20px] font-medium text-[#111111] dark:text-[#f0f0f0] leading-[1.3] mb-1">What are you thinking about?</p>
+        <p class="pm-sub">This helps us understand the project before we meet.</p>
+        <div class="flex flex-wrap justify-center gap-2 mb-7">
+          {['Kitchen', 'Bathroom', 'Both', 'Other'].map((opt) => (
+            <label class="pm-pill">
+              <input type="radio" name="pm-project" value={opt} class="sr-only" />
+              <span>{opt}</span>
+            </label>
+          ))}
+        </div>
+        <div class="pm-footer">
+          <button class="pm-back" type="button" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <span class="pm-counter text-[11px] font-normal text-[#999]">1 of 5</span>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div data-pm-step="2" class="pm-step-panel" style="display:none">
+        <p class="text-[20px] font-medium text-[#111111] dark:text-[#f0f0f0] leading-[1.3] mb-1">How would you describe the project?</p>
+        <p class="pm-sub">Every project is different. This helps us come prepared.</p>
+        <div class="flex flex-wrap justify-center gap-2 mb-7">
+          {['Refresh the space with new surfaces and fixtures', 'Change the layout or reconfigure the room', 'Not sure yet — that is okay'].map((opt) => (
+            <label class="pm-pill">
+              <input type="radio" name="pm-scope" value={opt} class="sr-only" />
+              <span>{opt}</span>
+            </label>
+          ))}
+        </div>
+        <div class="pm-footer">
+          <button class="pm-back" type="button" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <span class="pm-counter text-[11px] font-normal text-[#999]">2 of 5</span>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div data-pm-step="3" class="pm-step-panel" style="display:none">
+        <p class="text-[20px] font-medium text-[#111111] dark:text-[#f0f0f0] leading-[1.3] mb-1">Do you have a budget range in mind?</p>
+        <p class="pm-sub">This helps us design around your investment.</p>
+        <div class="flex flex-wrap justify-center gap-2 mb-7">
+          {['Under $20k', '$20k to $40k', '$40k to $60k', '$60k+', 'Looking for guidance'].map((opt) => (
+            <label class="pm-pill">
+              <input type="radio" name="pm-budget" value={opt} class="sr-only" />
+              <span>{opt}</span>
+            </label>
+          ))}
+        </div>
+        <div class="pm-footer">
+          <button class="pm-back" type="button" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <span class="pm-counter text-[11px] font-normal text-[#999]">3 of 5</span>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div data-pm-step="4" class="pm-step-panel" style="display:none">
+        <p class="text-[20px] font-medium text-[#111111] dark:text-[#f0f0f0] leading-[1.3] mb-1">When are you hoping to get started?</p>
+        <p class="pm-sub">If our schedule does not line up, we will tell you upfront.</p>
+        <div class="flex flex-wrap justify-center gap-2 mb-7">
+          {['As soon as possible', 'In the next 3 to 6 months', 'Just starting to look into it'].map((opt) => (
+            <label class="pm-pill">
+              <input type="radio" name="pm-timeline" value={opt} class="sr-only" />
+              <span>{opt}</span>
+            </label>
+          ))}
+        </div>
+        <div class="pm-footer">
+          <button class="pm-back" type="button" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <span class="pm-counter text-[11px] font-normal text-[#999]">4 of 5</span>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Step 5 — contact -->
+      <div data-pm-step="5" class="pm-step-panel" style="display:none">
+        <p class="text-[20px] font-medium text-[#111111] dark:text-[#f0f0f0] leading-[1.3] mb-1">How do we reach you?</p>
+        <p class="pm-sub">One of us will call you directly. Jeff, Travis, or Pat. No call center, no sales pitch.</p>
+        <div class="flex flex-col gap-3 mb-3 mt-5">
+          <input
+            id="pm-name"
+            type="text"
+            placeholder="Your name"
+            autocomplete="name"
+            class="w-full px-4 h-[44px] rounded-[8px] border border-[#e0dbd4] dark:border-[#333] bg-[#f9f7f5] dark:bg-[#222] text-[14px] text-[#111111] dark:text-[#f0f0f0] placeholder:text-[#999] focus:outline-none focus:border-[#111] dark:focus:border-[#888] transition-colors"
+          />
+          <input
+            id="pm-phone"
+            type="tel"
+            placeholder="Phone number"
+            autocomplete="tel"
+            class="w-full px-4 h-[44px] rounded-[8px] border border-[#e0dbd4] dark:border-[#333] bg-[#f9f7f5] dark:bg-[#222] text-[14px] text-[#111111] dark:text-[#f0f0f0] placeholder:text-[#999] focus:outline-none focus:border-[#111] dark:focus:border-[#888] transition-colors"
+          />
+          <input
+            id="pm-city"
+            type="text"
+            placeholder="City or town"
+            autocomplete="address-level2"
+            class="w-full px-4 h-[44px] rounded-[8px] border border-[#e0dbd4] dark:border-[#333] bg-[#f9f7f5] dark:bg-[#222] text-[14px] text-[#111111] dark:text-[#f0f0f0] placeholder:text-[#999] focus:outline-none focus:border-[#111] dark:focus:border-[#888] transition-colors"
+          />
+          <textarea
+            id="pm-notes"
+            rows="3"
+            placeholder="Anything else? (optional)"
+            class="w-full px-4 py-3 rounded-[8px] border border-[#e0dbd4] dark:border-[#333] bg-[#f9f7f5] dark:bg-[#222] text-[14px] text-[#111111] dark:text-[#f0f0f0] placeholder:text-[#999] focus:outline-none focus:border-[#111] dark:focus:border-[#888] transition-colors resize-none"
+          ></textarea>
+        </div>
+        <p class="text-[11px] font-normal text-[#999] text-center leading-[1.5] mb-5">
+          Your information stays with us. One call, then we come to you.
+        </p>
+        <div class="pm-footer">
+          <button class="pm-back" type="button" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+          <span class="pm-counter text-[11px] font-normal text-[#999]">5 of 5</span>
+          <button id="pm-submit" type="button" class="pm-next-btn">Send my details</button>
+        </div>
+      </div>
+
+      <!-- Hidden Netlify form -->
+      <form
+        id="pm-netlify-form"
+        name="start-project"
+        method="POST"
+        action="/thank-you"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        style="display:none"
+      >
+        <input type="hidden" name="form-name" value="start-project" />
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="project" id="pm-h-project" />
+        <input type="hidden" name="scope" id="pm-h-scope" />
+        <input type="hidden" name="budget" id="pm-h-budget" />
+        <input type="hidden" name="timeline" id="pm-h-timeline" />
+        <input type="hidden" name="notes" id="pm-h-notes" />
+        <input type="hidden" name="name" id="pm-h-name" />
+        <input type="hidden" name="phone" id="pm-h-phone" />
+        <input type="hidden" name="location" id="pm-h-city" />
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* ── Modal step panels ─────────────────────────────── */
+  .pm-step-panel { transition: opacity 0.15s ease; }
+
+  .pm-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b6b6b;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .dark .pm-sub { color: #888; }
+
+  .pm-footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+  .pm-footer > :last-child { justify-self: end; }
+
+  .pm-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b6b6b;
+    cursor: pointer;
+    transition: color 0.15s;
+    visibility: hidden;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .pm-back:hover { color: #111111; }
+  .pm-back.visible { visibility: visible; }
+  .dark .pm-back:hover { color: #f0f0f0; }
+
+  .pm-next-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 8px;
+    background: #111111;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: none;
+  }
+  .pm-next-btn:hover { background: #222222; }
+  .dark .pm-next-btn { background: #f0f0f0; color: #111111; }
+  .dark .pm-next-btn:hover { background: #e0e0e0; }
+
+  /* ── Radio pills ──────────────────────────────────── */
+  .pm-pill span {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid #d4cfc9;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: #f9f7f5;
+    white-space: nowrap;
+  }
+  .pm-pill input:checked + span { background: #111111; border-color: #111111; color: #ffffff; }
+  .pm-pill:hover span { border-color: #111111; }
+  .dark .pm-pill span { background: #2a2a2a; border-color: #444; color: #ccc; }
+  .dark .pm-pill input:checked + span { background: #f0f0f0; border-color: #f0f0f0; color: #111; }
+</style>
+
+<script>
+  const modal = document.getElementById('project-modal')!;
+  const backdrop = document.getElementById('project-modal-backdrop')!;
+  const closeBtn = document.getElementById('pm-close')!;
+  const TOTAL = 5;
+  let step = 1;
+  const answers = { project: '', scope: '', budget: '', timeline: '' };
+
+  // ── Open / close ──────────────────────────────────────────────────────
+  function openModal() {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    // reset to step 1
+    goTo(1, true);
+    // focus first radio
+    const first = modal.querySelector<HTMLInputElement>('[data-pm-step="1"] input[type="radio"]');
+    if (first) first.focus();
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // ── Step navigation ───────────────────────────────────────────────────
+  function goTo(n: number, instant = false) {
+    const leaving = modal.querySelector<HTMLElement>(`[data-pm-step="${step}"]`);
+    const entering = modal.querySelector<HTMLElement>(`[data-pm-step="${n}"]`);
+    if (!entering) return;
+
+    if (!instant && leaving) {
+      leaving.style.opacity = '0';
+      setTimeout(() => {
+        leaving.style.display = 'none';
+        entering.style.display = 'block';
+        entering.style.opacity = '0';
+        requestAnimationFrame(() => { entering.style.opacity = '1'; });
+      }, 150);
+    } else {
+      if (leaving) leaving.style.display = 'none';
+      entering.style.display = 'block';
+      entering.style.opacity = '1';
+    }
+
+    step = n;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    modal.querySelectorAll('.pm-back').forEach((btn) => {
+      step === 1 ? btn.classList.remove('visible') : btn.classList.add('visible');
+    });
+    modal.querySelectorAll('.pm-counter').forEach((el) => {
+      el.textContent = `${step} of ${TOTAL}`;
+    });
+  }
+
+  // ── Submit ────────────────────────────────────────────────────────────
+  function submit() {
+    const nameEl = document.getElementById('pm-name') as HTMLInputElement;
+    const phoneEl = document.getElementById('pm-phone') as HTMLInputElement;
+    const cityEl = document.getElementById('pm-city') as HTMLInputElement;
+    const notesEl = document.getElementById('pm-notes') as HTMLTextAreaElement;
+
+    let valid = true;
+    if (!nameEl?.value.trim()) { if (nameEl) nameEl.style.borderColor = '#e53e3e'; valid = false; }
+    if (!phoneEl?.value.trim()) { if (phoneEl) phoneEl.style.borderColor = '#e53e3e'; valid = false; }
+    if (!valid) return;
+
+    const set = (id: string, val: string) => {
+      const el = document.getElementById(id) as HTMLInputElement | null;
+      if (el) el.value = val;
+    };
+    set('pm-h-project', answers.project);
+    set('pm-h-scope', answers.scope);
+    set('pm-h-budget', answers.budget);
+    set('pm-h-timeline', answers.timeline);
+    set('pm-h-notes', notesEl?.value.trim() ?? '');
+    set('pm-h-name', nameEl?.value.trim() ?? '');
+    set('pm-h-phone', phoneEl?.value.trim() ?? '');
+    set('pm-h-city', cityEl?.value.trim() ?? '');
+
+    const form = document.getElementById('pm-netlify-form') as HTMLFormElement | null;
+    if (form) form.submit();
+  }
+
+  // ── Radio auto-advance ────────────────────────────────────────────────
+  modal.querySelectorAll('[name="pm-project"]').forEach((input) => {
+    input.addEventListener('change', (e) => {
+      answers.project = (e.target as HTMLInputElement).value;
+      setTimeout(() => goTo(2), 220);
+    });
+  });
+  modal.querySelectorAll('[name="pm-scope"]').forEach((input) => {
+    input.addEventListener('change', (e) => {
+      answers.scope = (e.target as HTMLInputElement).value;
+      setTimeout(() => goTo(3), 220);
+    });
+  });
+  modal.querySelectorAll('[name="pm-budget"]').forEach((input) => {
+    input.addEventListener('change', (e) => {
+      answers.budget = (e.target as HTMLInputElement).value;
+      setTimeout(() => goTo(4), 220);
+    });
+  });
+  modal.querySelectorAll('[name="pm-timeline"]').forEach((input) => {
+    input.addEventListener('change', (e) => {
+      answers.timeline = (e.target as HTMLInputElement).value;
+      setTimeout(() => goTo(5), 220);
+    });
+  });
+
+  // Back buttons
+  modal.querySelectorAll('.pm-back').forEach((btn) => {
+    btn.addEventListener('click', () => { if (step > 1) goTo(step - 1); });
+  });
+
+  // Submit button
+  document.getElementById('pm-submit')?.addEventListener('click', submit);
+
+  // Clear red borders on focus
+  ['pm-name', 'pm-phone'].forEach((id) => {
+    document.getElementById(id)?.addEventListener('focus', (e) => {
+      (e.target as HTMLInputElement).style.borderColor = '';
+    });
+  });
+
+  // ── Triggers — any element with data-project-modal ─────────────────
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement).closest('[data-project-modal]');
+    if (trigger) {
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  // Close
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  });
+
+  // Init progress display
+  updateProgress();
+</script>

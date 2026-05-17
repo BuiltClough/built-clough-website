@@ -1,0 +1,395 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const projectTypes = [
+  {
+    title: 'A new build',
+    body: 'Starting from the ground up. Footings, framing, decking, railings, stairs, and potentially a roof, electrical, or plumbing for an outdoor kitchen. This requires a permit, a plan, and a foundation that is built to code so the structure is safe and lasts.',
+  },
+  {
+    title: 'A repair or rebuild',
+    body: 'The structure exists but parts of it are failing. Soft boards, rotting posts, wobbly railings, a ledger board pulling away from the house. Sometimes a few boards and a new set of railings bring it back. Sometimes the structure has deteriorated to the point where rebuilding sections or the whole thing is the smarter investment.',
+  },
+  {
+    title: 'A refinish',
+    body: 'The structure is solid but the finish is gone. The wood is gray, dry, cracking, and absorbing water instead of repelling it. A proper clean, prep, and stain brings it back and protects it for another 2 to 3 years.',
+  },
+];
+
+const considerations = [
+  {
+    title: 'How do you want to use this space',
+    body: 'Dining, cooking, lounging, entertaining, all of the above? The answer determines the size, the layout, whether you need a roof, and where electrical and plumbing go if you want an outdoor kitchen or lighting.',
+  },
+  {
+    title: 'Sun, shade, and wind',
+    body: 'Where does the sun hit at 5 PM in the summer? Where does the wind come from? Is there a view you want to capture or a neighbor\'s yard you want to screen? These are design questions that affect how much you actually enjoy the space once it is built.',
+  },
+  {
+    title: 'Materials',
+    body: 'Pressure treated lumber is the most affordable and most common. It requires staining every 2 to 3 years. Composite decking costs more upfront but requires almost no maintenance and will not rot, crack, or splinter. Cedar and redwood fall in between. We walk you through the trade-offs for your specific situation and budget.',
+  },
+  {
+    title: 'Budget',
+    body: 'A new deck in Southern Illinois typically runs $8,000 to $18,000 for pressure treated and $15,000 to $30,000 or more for composite, depending on size and complexity. Covered porches and outdoor kitchens start around $15,000 and go up from there. We talk about budget early so the design matches the investment.',
+  },
+  {
+    title: 'Permits and code',
+    body: 'New deck construction requires a permit in most jurisdictions. Footings, joist sizing, railing height, ledger board attachment, and stair dimensions are all governed by building code. This is structural work and it needs to be built correctly. We handle permits and inspections as part of every project.',
+  },
+];
+
+const designThinking = [
+  {
+    title: 'The ledger board connection',
+    body: 'This is the single most critical structural element on any deck attached to a house. If the ledger is not flashed correctly, water gets behind it and rots the band joist of the house. If it is not fastened correctly, the deck can separate from the house. When we build, the ledger connection is flashed, sealed, and lagged to the structure properly.',
+  },
+  {
+    title: 'Footings',
+    body: 'Every post sits on a footing that goes below the frost line. In Southern Illinois that is a minimum of 24 inches deep. A footing that is too shallow can heave in a freeze and shift the entire structure. We dig to the correct depth, pour concrete, and set posts plumb before building anything on top of them.',
+  },
+  {
+    title: 'Drainage and grading',
+    body: 'Water needs somewhere to go. If a deck traps water against the house or the grade underneath slopes toward the foundation, you are creating a moisture problem. We think about water management during the design phase, not after the deck is built.',
+  },
+  {
+    title: 'Railing safety',
+    body: 'Railings are not decorative. They are a safety element. Building code requires specific heights, baluster spacing, and post attachment methods. We build to code as a minimum and often exceed it because code is the lowest standard, not the goal.',
+  },
+  {
+    title: 'Finish and maintenance',
+    body: 'We are honest about what each material requires over time. Pressure treated wood needs re-staining every 2 to 3 years or the wood deteriorates. Composite holds up longer but fades and can scratch. Knowing what you are signing up for maintenance-wise matters as much as how it looks on day one.',
+  },
+];
+
+const services = [
+  'New deck construction (pressure treated, composite, cedar)',
+  'Covered porches and screened in porches',
+  'Outdoor kitchens',
+  'Pergolas',
+  'Deck repair (boards, railings, stairs, posts)',
+  'Ledger board repair and reflashing',
+  'Deck staining and sealing',
+  'Railing replacement (wood, vinyl, aluminum, cable)',
+  'Stair construction and rebuild',
+  'Lattice and skirting',
+  'Lighting (low voltage, hardwired)',
+  'Footings and structural repair',
+];
+
+const commonIssues = [
+  {
+    title: 'Ledger board failure',
+    body: 'The flashing is missing, damaged, or was never installed. Water has been running behind the ledger and rotting the band joist of the house. This is the most serious issue we see on existing decks because it affects the structure of both the deck and the house.',
+  },
+  {
+    title: 'Post rot at the ground line',
+    body: 'Wood posts rot from the bottom up where they meet soil or sit in standing water. By the time the deck starts leaning, the damage is significant. We check every post by pushing at the top and looking for movement at the base.',
+  },
+  {
+    title: 'Undersized footings',
+    body: 'Footings that are too small or too shallow cannot support the load above them and they heave in freeze and thaw cycles. This causes the deck to shift, creating uneven surfaces and pulling away from the house.',
+  },
+  {
+    title: 'Loose railings',
+    body: 'Railings that move when you push against them are a fall hazard. The fix depends on whether the posts are rotting, the fasteners have loosened, or the railing was not built to handle lateral force in the first place.',
+  },
+  {
+    title: 'Missing joist tape',
+    body: 'Joist tape is a waterproof membrane that goes on top of the joists before the decking is installed. It prevents water from sitting on the top edge of the joist where it causes rot. Most older decks do not have it. When we rebuild or replace decking, we add it.',
+  },
+];
+
+const timelineSteps = [
+  { phase: 'Before construction', description: 'Design finalized, materials selected and ordered, permit pulled.' },
+  { phase: 'Week 1', description: 'Footings dug and poured. Posts set. Ledger board attached and flashed. Framing begins.' },
+  { phase: 'Week 2', description: 'Framing completed. Decking installed. Stairs built.' },
+  { phase: 'Week 3', description: 'Railings, trim, skirting, and any finish details. Staining if applicable. Final inspection.' },
+];
+
+const faqs = [
+  {
+    q: 'How much does a new deck cost in Southern Illinois?',
+    a: '$8,000 to $18,000 for a pressure treated deck in the 200 to 400 square foot range. $15,000 to $30,000 or more for composite. Covered porches start around $15,000. Outdoor kitchens start around $20,000. The range depends on size, materials, structural requirements, and whether the project includes a roof, electrical, or plumbing.',
+  },
+  {
+    q: 'Pressure treated or composite?',
+    a: 'Pressure treated is less expensive upfront and looks great when stained. It requires re-staining every 2 to 3 years and will eventually show wear. Composite costs more upfront but requires almost no maintenance and will not rot, crack, or splinter. It does fade over time and can scratch. The right choice depends on your budget, how much maintenance you want to do, and how long you plan to keep the deck.',
+  },
+  {
+    q: 'Do I need a permit for a new deck?',
+    a: 'In most jurisdictions in Southern Illinois, yes. New deck construction requires a permit and inspections for footings, framing, and the final build. We handle the entire process.',
+  },
+  {
+    q: 'How long does a deck stain last?',
+    a: '2 to 3 years on horizontal surfaces with typical sun exposure. Vertical surfaces and shaded areas last longer. The water test tells you when it is time. If water soaks into the wood instead of beading up, the finish is no longer protecting it.',
+  },
+  {
+    q: 'Can you fix my existing deck or does it need to be replaced?',
+    a: 'It depends on what has failed. If the framing and footings are sound but the decking, railings, and stairs need work, repairing is usually the better investment. If the posts are rotting, the footings are heaving, or the ledger board is compromised, a rebuild is often the smarter path. We assess the structure during the site visit and give you an honest recommendation.',
+  },
+  {
+    q: 'What are my options for railings?',
+    a: 'Wood railings match a traditional look but require the same maintenance as the deck. Vinyl and composite railings are low maintenance and resist rot. Aluminum and cable railings give a cleaner, more modern look and are virtually maintenance free. We help you choose based on the aesthetic you want, the maintenance you are willing to do, and how the railing fits with the rest of the design.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Decks and Outdoor Living in Southern Illinois | Built Clough"
+  description="We build decks, covered porches, outdoor kitchens, and outdoor living spaces across Southern Illinois. New builds, repairs, rebuilds, and refinishing."
+  canonical="https://builtclough.com/services/decks-outdoor-living"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/board-and-batten-home-exterior-covered-porch-deck-southern-illinois.avif"
+            alt="Board and batten home exterior with covered porch and deck in Southern Illinois by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Decks & outdoor living · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:20ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">Your Outdoor Space Should Be Worth Spending Time In</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">A deck or porch that is designed around how you actually use it becomes one of the most used spaces in your home. One that is thrown together becomes the space you walk past on the way to somewhere else.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Outdoor living · Southern Illinois</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What We Build Outside</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We build decks, covered porches, screened in porches, outdoor kitchens, and everything that connects your home to the outdoors. We also maintain, repair, and refinish existing structures that have taken years of weather and need attention.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Every outdoor project starts the same way our interior projects do. We want to understand how you plan to use the space. Are you grilling for the family on weeknights? Hosting 30 people on a Saturday? Reading a book in the shade? Watching the kids play in the yard? The answer shapes everything from the size of the deck to whether it needs a roof.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Project type</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What Kind of Outdoor Project Is This</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {projectTypes.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === projectTypes.length - 1 && projectTypes.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section flex flex-col gap-2">
+          <div class="rounded-[10px] overflow-hidden border border-border">
+            <Image
+              src="/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif"
+              alt="Covered deck with pine rafter ceiling outdoor living by Built Clough"
+              class="w-full block"
+              style="aspect-ratio:16/9;object-fit:cover"
+              width="1200"
+              height="675"
+            />
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            {[
+              { src: '/images/og/covered-porch-pine-tongue-and-groove-skylights.avif', alt: 'Covered porch with pine tongue and groove and skylights by Built Clough' },
+              { src: '/images/og/log-cabin-front-porch-hand-hewn-post-southern-illinois.avif', alt: 'Log cabin front porch with hand hewn post in Southern Illinois by Built Clough' },
+              { src: '/images/og/log-cabin-porch-adirondack-rocker-bench.avif', alt: 'Log cabin porch with Adirondack rocker bench by Built Clough' },
+            ].map(({ src, alt }) => (
+              <div class="rounded-[10px] overflow-hidden border border-border">
+                <Image
+                  src={src}
+                  alt={alt}
+                  class="w-full block"
+                  style="aspect-ratio:1/1;object-fit:cover"
+                  width="400"
+                  height="400"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you start</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What to Think About Before You Start</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {considerations.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === considerations.length - 1 && considerations.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How we design</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What We Are Thinking About When We Design an Outdoor Space</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {designThinking.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === designThinking.length - 1 && designThinking.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we do</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">What We Do</h2>
+          <ul class="border border-border rounded-[12px] overflow-hidden grid grid-cols-1 md:grid-cols-2">
+            {services.map((item) => (
+              <li class="flex items-center gap-4 px-5 py-3.5 border-b border-border last:border-b-0">
+                <span class="w-7 h-7 border border-border rounded-[6px] flex items-center justify-center flex-shrink-0">
+                  <span class="text-[18px] text-[#999999]">✓</span>
+                </span>
+                <span class="text-[14px] font-normal text-[#6b6b6b]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Maintenance</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Deck Maintenance and When to Refinish</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">A deck finish does not last forever. Most stains and sealers protect the wood for 2 to 3 years depending on sun exposure, foot traffic, and weather. South facing decks and horizontal surfaces wear faster than shaded or vertical surfaces.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">The water test.</strong> Splash some water on the deck. If it beads up, the finish is still working. If it soaks in and darkens the wood, the protection is gone and moisture is getting into the wood fibers. That leads to cracking, warping, gray discoloration, and eventually rot.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">When to restain.</strong> Clean the deck first. Dirt, mildew, and gray oxidized wood need to come off or the new stain will not adhere. We use a deck cleaner followed by a light pressure wash at a setting that cleans without damaging the wood grain. Let it dry completely for at least 48 hours of dry weather before staining.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]"><strong class="font-medium text-foreground">What happens if you wait too long.</strong> Wood that goes unprotected for several years breaks down at the surface. The fibers lift, the boards crack, and the surface becomes rough and splintery. At that point, restoring the deck takes significantly more prep work. Staying on the 2 to 3 year cycle is always cheaper than restoration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we find</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Common Issues We Find on Existing Decks</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {commonIssues.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === commonIssues.length - 1 && commonIssues.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Timeline</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">The Timeline</h2>
+          <div class="overflow-hidden rounded-[12px] border border-border">
+            <table class="w-full text-[14px]">
+              <thead>
+                <tr class="bg-[#ebe7e2] dark:bg-[#232323] border-b border-border">
+                  <th class="text-left px-5 py-3 font-medium text-foreground w-[200px]">Phase</th>
+                  <th class="text-left px-5 py-3 font-medium text-foreground">What Happens</th>
+                </tr>
+              </thead>
+              <tbody>
+                {timelineSteps.map(({ phase, description }) => (
+                  <tr class="border-b border-border last:border-b-0">
+                    <td class="px-5 py-3.5 font-medium text-foreground align-top">{phase}</td>
+                    <td class="px-5 py-3.5 text-[#6b6b6b] leading-[1.6]">{description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6] mt-4">A straightforward deck build takes 2 to 3 weeks. Covered porches, screened in porches, and outdoor kitchens take longer depending on the complexity. Composite decking installs faster than wood because there is no staining phase. We build your specific schedule during planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/makanda-deck-remodel.avif"
+            alt="Deck remodel in Makanda by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">Tell us how you want to use the space</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>
