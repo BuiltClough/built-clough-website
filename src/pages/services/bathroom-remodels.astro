@@ -1,0 +1,414 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const projectTypes = [
+  {
+    title: 'A refresh',
+    body: 'The layout stays the same. New vanity, new fixtures, new tile, paint, hardware, and lighting. Plumbing stays where it is. The footprint does not change. This is the fastest and most affordable path and it can make a bathroom feel completely different without the complexity of moving anything.',
+  },
+  {
+    title: 'A remodel',
+    body: 'The layout changes. The shower moves. The vanity moves. A tub gets converted to a walk-in shower or the other way around. Plumbing and electrical get relocated. Walls may come down or go up. A bigger project that solves problems a refresh cannot.',
+  },
+  {
+    title: 'An accessibility update',
+    body: 'Making the bathroom safer and more functional for aging in place. Grab bars, a curbless shower, a comfort height toilet, better lighting, non-slip surfaces, and lever handles. We approach accessibility with the same design attention as any other remodel because functional does not have to mean institutional.',
+  },
+];
+
+const considerations = [
+  {
+    title: 'What bothers you about it right now',
+    body: 'Not what you want the new one to look like. What specifically does not work. Not enough storage. The shower is too small. The lighting is terrible. There is only one sink and two people getting ready at the same time. The floor is always cold. These frustrations are what we design around.',
+  },
+  {
+    title: 'Do you have more than one bathroom',
+    body: 'If this is your only bathroom, the remodel affects your daily life in a way that a kitchen remodel does not. We plan around this and discuss options before demo day. If you have a second bathroom, the impact is much easier to manage.',
+  },
+  {
+    title: 'Budget',
+    body: 'Bathroom remodels in Southern Illinois typically range from $8,000 for a focused refresh to $30,000 or more for a full remodel with custom tile, frameless glass, and premium fixtures. We talk about budget honestly and early. For detailed pricing, visit our <a href="/pricing" class="underline hover:text-foreground transition-colors">pricing page</a>.',
+  },
+  {
+    title: 'The things you cannot see',
+    body: 'Bathrooms have more hidden damage than any other room. Water finds every gap in caulk, grout, and waterproofing and works its way into walls and the subfloor where you cannot see it. We check for this during the site visit and address anything we find during construction.',
+  },
+  {
+    title: 'Timeline',
+    body: 'Most bathroom remodels take 3 to 5 weeks depending on scope. A refresh with no layout changes can be closer to 2 weeks. A full remodel with plumbing relocation, custom tile work, and frameless glass takes longer. We build a detailed schedule during planning.',
+  },
+];
+
+const designThinking = [
+  {
+    title: 'Layout and flow',
+    body: 'Where you step out of the shower matters. Where the toilet sits relative to the door matters. Whether you can open a drawer without hitting the toilet matters. Small rooms require more thought about layout than big ones, not less.',
+  },
+  {
+    title: 'Shower design',
+    body: 'Walk-in showers, curbless showers, benches, niches, linear drains, glass panels. Each one involves specific structural and waterproofing considerations. A niche on an exterior wall means building a secondary wall. A curbless shower means precise floor slope across the entire bathroom.',
+  },
+  {
+    title: 'Tile layout',
+    body: 'We dry lay every tile pattern before setting anything. We figure out where the cuts fall so there are no thin slivers in visible corners. We plan how the pattern wraps around corners, through niches, and across transitions. A good tile layout looks intentional.',
+  },
+  {
+    title: 'Ventilation',
+    body: 'A bathroom without adequate ventilation traps moisture that damages paint, grows mold, and deteriorates drywall over time. We make sure the exhaust fan is properly sized for the room and vented to the exterior. This is one of the most common issues we find in existing bathrooms.',
+  },
+  {
+    title: 'Lighting',
+    body: 'Bathrooms need more than a single overhead fixture. Vanity lighting on both sides of the mirror eliminates shadows. Recessed lighting in the shower provides visibility where you need it. A night light or motion sensor makes the bathroom usable at 3 AM without blinding anyone.',
+  },
+];
+
+const services = [
+  'Walk-in shower conversions',
+  'Tub to shower and shower to tub conversions',
+  'Custom tile showers with niches, benches, and frameless glass',
+  'Vanity and countertop replacement',
+  'Double vanity conversions',
+  'Freestanding and drop-in tub installation',
+  'Flooring (tile, LVP, heated floors)',
+  'Comfort height toilets',
+  'Lighting and exhaust fan upgrades',
+  'Grab bars and aging in place modifications',
+  'Plumbing fixture replacement',
+  'Drywall, painting, and trim',
+  'Structural repair and subfloor replacement',
+  'Full waterproofing systems',
+];
+
+const timelineSteps = [
+  { label: 'Before construction', body: 'Material selections finalized. Tile, vanity, fixtures, hardware, lighting, and paint chosen. Materials ordered and lead times confirmed.' },
+  { label: 'Week 1', body: 'Demo and discovery. Existing surfaces, fixtures, and vanity come out. We assess everything behind the walls and under the floor. The loud, dusty, looks-worse-than-before week.' },
+  { label: 'Week 2', body: 'Rough work. Plumbing and electrical installed or relocated. Framing modifications. Waterproofing applied and cured. The most important week of the project.' },
+  { label: 'Weeks 3–4', body: 'Tile, flooring, vanity, countertop. The bathroom starts coming together. Fixtures, hardware, mirrors, lighting, paint, and trim follow.' },
+  { label: 'Final day', body: 'Walkthrough together. Every detail checked. Punch list handled before we collect the final payment.' },
+];
+
+const faqs = [
+  {
+    q: 'How much does a bathroom remodel cost in Southern Illinois?',
+    a: '$8,000 to $15,000 for a surface refresh. $15,000 to $30,000 for a mid-range remodel with a tub to shower conversion, new tile, and a new vanity. $30,000 and up for a full custom remodel with layout changes, premium tile, frameless glass, and high-end fixtures. We provide a detailed fixed-price estimate before any work begins.',
+  },
+  {
+    q: 'How long does a bathroom remodel take?',
+    a: 'Most bathroom remodels take 3 to 5 weeks. A refresh with no layout changes can be closer to 2 weeks. Custom tile work, plumbing relocation, and frameless glass add time. We build a detailed timeline during planning so you know what to expect each week.',
+  },
+  {
+    q: 'Can I use my bathroom during the remodel?',
+    a: 'If this is your only bathroom, we plan around it. In some cases we can maintain access to the toilet for portions of the project. If we cannot, we discuss alternatives before demo day. If you have a second bathroom, the impact is much easier to manage.',
+  },
+  {
+    q: 'What if you find water damage behind the walls?',
+    a: 'We address it before building anything new on top of it. We document what we find, show you, explain the cause, and provide a written change order with the cost to repair it. Nothing happens without your approval.',
+  },
+  {
+    q: 'Should I convert my tub to a walk-in shower?',
+    a: 'It depends on how you use the bathroom and your plans for the home. Walk-in showers are easier to use, easier to clean, and safer for aging in place. If this is a home you plan to stay in long term, a walk-in shower is almost always a better fit. If resale is a factor, having at least one tub in the house is generally recommended. We help you think through this during the initial conversation.',
+  },
+  {
+    q: 'What is the difference between a prefab shower and a custom tile shower?',
+    a: 'A prefab shower is a manufactured unit that drops into the space. Faster to install and less expensive but limited in size, design, and appearance. A custom tile shower is built on site with cement board, waterproofing membrane, and individually set tile. It can be any size, any shape, and any design — and the waterproofing performs better long term.',
+  },
+  {
+    q: 'Why does waterproofing matter so much?',
+    a: 'Tile and grout are not waterproof. Every shower gets water behind the tile at some point through grout, caulk joints, or gaps. The waterproofing membrane behind the tile is the actual barrier protecting the wall structure. Without proper waterproofing, water enters the wall cavity, rots the framing, and grows mold. You will not see it for a year or two. By then the fix involves tearing everything out and starting over.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Bathroom Remodels in Southern Illinois | Built Clough"
+  description="Custom bathroom remodels in Marion, Herrin, Carbondale, and surrounding areas. Walk-in showers, tile work, vanities, and full waterproofing systems done right by Built Clough."
+  canonical="https://builtclough.com/services/bathroom-remodels"
+  pageSchema={faqSchema}
+>
+
+<main id="main">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="p-3 md:p-4">
+    <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+      <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+        <Image
+          src="/images/og/master-bathroom-navy-vanity-freestanding-tub-remodel.avif"
+          alt="Master bathroom remodel in Southern Illinois by Built Clough"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          width="1600"
+          height="900"
+        />
+      </div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+        <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Bathroom remodels · Southern Illinois</p>
+        <h1
+          class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5"
+          style="max-width:22ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)"
+        >
+          Your Bathroom Should Work as Well as It Looks
+        </h1>
+        <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">
+          Bathrooms take more abuse than any other room in the house. Water, humidity, daily use, and tight spaces mean everything has to be done right or it fails faster than anywhere else.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+          <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What a Bathroom Remodel Actually Involves ─────────────────────── -->
+  <section class="py-14 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What it involves</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">What a Bathroom Remodel Actually Involves</h2>
+        <div class="flex flex-col gap-5" style="max-width:62ch">
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">A bathroom remodel is not just picking new tile and swapping a vanity. It is one of the most trade-intensive projects in a home. Plumbing, electrical, waterproofing, tile, carpentry, and painting all converge in a space that is usually under 100 square feet. Every decision affects something else, and the margin for error is smaller than in any other room.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We start by understanding what is not working. Maybe the layout wastes space. Maybe the shower has been leaking behind the wall for years and you can smell it but cannot see it. Maybe you are tired of a builder-grade bathroom that never felt like yours. Maybe you need grab bars and a walk-in shower because the tub is not safe anymore.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Whatever is driving the project, the first conversation is about understanding the problem. The design comes after that.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What Kind of Bathroom Project ────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Understanding your project</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What Kind of Bathroom Project Is This?</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">Most homeowners start with one of these in mind and sometimes shift to another once we walk the space together. That is a normal part of the process.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {projectTypes.map(({ title, body }) => (
+            <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6 flex flex-col">
+              <p class="text-[15px] font-medium text-foreground mb-3">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Image grid 1 ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="relative rounded-[10px] overflow-hidden border border-border mb-2" style="aspect-ratio:16/9">
+        <Image src="/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif" alt="Frameless glass walk-in shower by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/double-vanity-round-mirrors-farmhouse-bathroom-remodel.avif" alt="Double vanity bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif" alt="Freestanding tub bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-bath-remodel-04.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── What to Think About Before You Start ─────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you start</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What to Think About Before You Start</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">You do not need all of this figured out. But thinking through these will make the first conversation more productive.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {considerations.map(({ title, body }, i) => (
+            <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === considerations.length - 1 ? ' md:col-span-2' : ''}`}>
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]" set:html={body} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What Happens Behind the Walls ────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <div class="flex flex-col lg:flex-row lg:gap-16 lg:items-start">
+          <div class="flex-1">
+            <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What to expect</p>
+            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-5 font-serif">What Happens Behind the Walls</h2>
+            <div class="flex flex-col gap-4">
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Behind the tile and the drywall is where water has been doing its work for years. Failed caulk around a tub surround lets moisture wick up the drywall. A toilet with a bad wax seal slowly leaks into the subfloor every time it flushes. A shower with inadequate waterproofing sends water into the wall cavity where it rots the framing from the inside out.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">None of this is visible until the surfaces come off. When we open walls, we are looking at the condition of the drywall, the framing, the subfloor, the plumbing, and the electrical. If we find damage, we document it, show you, explain what caused it, and give you options before we move forward.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We have pulled fiberglass tub surrounds and found 18 inches of mold-damaged drywall. We have removed toilets and found subfloor soft enough to push a screwdriver through. We have discovered exhaust fans venting into the attic instead of outside, creating mold on the roof deck that nobody knew was there.</p>
+              <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The right response to finding these things is to fix them properly before building anything new on top of them. That is what we do.</p>
+            </div>
+          </div>
+          <div class="mt-10 lg:mt-0 lg:flex-shrink-0 lg:w-[38%]">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+              <Image src="/images/og/walk-in-shower-gray-tile-geometric-floor-remodel.avif" alt="Walk-in shower tile remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="500" height="667" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Waterproofing Matters ─────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">The critical stage</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Why Waterproofing Is the Most Important Part</h2>
+        <div class="flex flex-col gap-5" style="max-width:62ch">
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Tile and grout are not waterproof. Water gets through grout. It gets through cracked caulk joints. It finds every gap. The waterproofing membrane behind the tile is the actual barrier keeping water out of the wall and floor structure.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We treat waterproofing as the most critical stage of every bathroom project. Depending on the application, we use systems like GoBoard, Schluter KERDI membrane, or liquid-applied membranes like RedGard. Every seam, corner, curb, and penetration gets sealed and inspected before a single tile goes up.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The waterproofing stage is the least photogenic part of any bathroom build. It is also the part that determines whether the shower is still solid in ten years or falling apart behind the tile where you cannot see it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Image grid 2 ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/white-oak-double-vanity-matte-black-hardware.avif" alt="White oak double vanity by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/hexagon-mosaic-shower-niche-wave-subway-tile.avif" alt="Hexagon mosaic shower niche by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/marble-hex-mosaic-shower-floor-linear-drain.avif" alt="Marble hex mosaic shower floor by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── What We Think About When We Design ───────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How we think</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What We Think About When We Design a Bathroom</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">You are thinking about how the room looks. We are thinking about that too — and about things that are harder to see on a screen.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {designThinking.map(({ title, body }, i) => (
+            <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === designThinking.length - 1 ? ' md:col-span-2' : ''}`}>
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What We Do ────────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we do</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">What Is Included</h2>
+        <ul class="border border-border rounded-[12px] overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          {services.map((item) => (
+            <li class="flex items-center gap-4 px-5 py-3.5 border-b border-border last:border-b-0">
+              <span class="w-7 h-7 border border-border rounded-[6px] flex items-center justify-center flex-shrink-0">
+                <span class="text-[18px] text-[#999999]">✓</span>
+              </span>
+              <span class="text-[14px] font-normal text-[#6b6b6b]">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Timeline ──────────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Timeline</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What the Timeline Actually Looks Like</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:52ch">A refresh moves faster. A full remodel with layout changes, custom tile, and frameless glass may extend to 5 weeks. We build your specific schedule during planning.</p>
+        <div class="border border-border rounded-[12px] overflow-hidden">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-border bg-[#ebe7e2] dark:bg-[#232323]">
+                <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left w-[200px]">Phase</th>
+                <th class="px-5 py-3 text-[11px] font-medium text-[#999999] uppercase tracking-[0.08em] text-left">What happens</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timelineSteps.map(({ label, body }) => (
+                <tr class="border-b border-border last:border-b-0">
+                  <td class="px-5 py-4 text-[13px] font-medium text-foreground align-top w-[200px]">{label}</td>
+                  <td class="px-5 py-4 text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="pb-14 md:pb-24">
+    <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+      <div class="animate-section">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Questions About Bathroom Remodels</h2>
+        <FAQAccordion items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/freestanding-soaking-tub-wood-slat-accent-wall.avif"
+            alt="Freestanding tub with wood slat accent wall by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">
+            A bathroom that works well makes the whole house feel better
+          </h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Carterville · Makanda · Murphysboro</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</Layout>

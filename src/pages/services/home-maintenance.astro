@@ -1,0 +1,366 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const categories = [
+  {
+    title: 'Gutters',
+    items: [
+      'Cleaning and flushing downspouts',
+      'Reattaching loose sections',
+      'Resealing seams',
+      'Installing gutter guards',
+      'Adding downspout extensions',
+      'Verifying water moves away from the foundation',
+    ],
+  },
+  {
+    title: 'Exterior',
+    items: [
+      'Caulk replacement around windows and doors',
+      'Trim and fascia inspection and repair',
+      'Siding patches',
+      'Shutter repair',
+      'Downspout rerouting',
+      'Pest entry point sealing',
+      'Foundation and grading check',
+    ],
+  },
+  {
+    title: 'Deck and Porch',
+    items: [
+      'Stain and sealer evaluation',
+      'Cleaning and staining',
+      'Board replacement',
+      'Railing tightening',
+      'Post inspection',
+      'Fastener check',
+    ],
+  },
+  {
+    title: 'Bathrooms',
+    items: [
+      'Caulk replacement around tubs, showers, and sinks',
+      'Grout inspection',
+      'Exhaust fan airflow check',
+      'Toilet stability check',
+      'Under sink inspection for leaks or moisture',
+    ],
+  },
+  {
+    title: 'Kitchen',
+    items: [
+      'Caulk around countertops and backsplash',
+      'Under sink inspection',
+      'Range hood filter cleaning',
+      'General condition check',
+    ],
+  },
+  {
+    title: 'Doors and Windows',
+    items: [
+      'Weatherstripping replacement',
+      'Door sweep replacement',
+      'Lock and latch adjustment',
+      'Window operation check',
+      'Screen repair',
+      'Threshold adjustment',
+    ],
+  },
+  {
+    title: 'Interior',
+    items: [
+      'Drywall touch-ups and nail pop repair',
+      'Paint touch-ups',
+      'Baseboard and trim reattachment',
+      'Smoke and CO detector testing and battery replacement',
+      'GFCI outlet testing',
+      'Squeaky floor diagnosis',
+    ],
+  },
+  {
+    title: 'Seasonal',
+    items: [
+      'Exterior faucet shut off and drain for winter',
+      'Spring turn on and leak check',
+      'Storm window and screen swaps',
+      'Draft sealing',
+      'Holiday light installation and removal',
+    ],
+  },
+];
+
+const whoItIsFor = [
+  {
+    title: 'Homeowners who want help staying on top of things',
+    body: 'You know the maintenance needs to happen. You just do not have the time, the tools, or the interest in spending your weekend on a ladder cleaning gutters.',
+  },
+  {
+    title: 'Homeowners who just finished a remodel',
+    body: 'You invested in your home and you want to protect that investment. Regular maintenance keeps new surfaces, finishes, and materials performing the way they should.',
+  },
+  {
+    title: 'Older homeowners',
+    body: 'Climbing a ladder to clean gutters or crawling under the house to check for moisture is not something you want to do anymore. We handle the physical work so you do not have to.',
+  },
+  {
+    title: 'Landlords and property managers',
+    body: 'Consistent upkeep across rental units prevents small problems from becoming expensive ones between tenants. We work with property managers on scheduled visits and tenant turnover punch lists.',
+  },
+];
+
+const resources = [
+  {
+    title: 'Spring Home Checklist',
+    body: 'A comprehensive walk-through of what to check every spring after winter — gutters, exterior, decks, windows, and more.',
+  },
+  {
+    title: 'Winter Prep Checklist',
+    body: 'Everything you need to do before cold weather arrives, from exterior faucets to weatherstripping to draft sealing.',
+  },
+  {
+    title: '12-Month Maintenance Calendar',
+    body: 'What to do each month of the year, with a recurring task reference you can keep in your home file.',
+  },
+  {
+    title: "Your Home's First 5 Years",
+    body: 'What to expect, what wears out, and how to budget for it. For new homeowners and recent buyers.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How much does a maintenance visit cost?',
+    a: 'It depends on what you want covered. A gutter cleaning might be $135 to $225. A half day visit working through a list of items runs $200 to $400. We give you a clear price based on what you are asking us to do before we schedule.',
+  },
+  {
+    q: 'How often should I have someone look at my home?',
+    a: 'For most homeowners, twice a year is a good rhythm — once in spring after winter and once in fall before winter sets in. Some homeowners with older homes or specific concerns prefer quarterly. We fit whatever schedule makes sense for you.',
+  },
+  {
+    q: 'Do I need to have a list ready?',
+    a: 'It helps but it is not required. If you have specific things you want addressed, a list makes the visit more efficient. If you just want us to walk through and check things, we can do that too and we will tell you what we find.',
+  },
+  {
+    q: 'What if you find something bigger than a maintenance item?',
+    a: 'We tell you. We explain what we found, why it matters, and whether it is something we can handle or something that needs a specialist. There is no upselling and no pressure. You get the information and decide what to do with it.',
+  },
+  {
+    q: 'Do you only maintain homes you have remodeled?',
+    a: 'No. We maintain any home in our service area.',
+  },
+  {
+    q: 'Can you just clean my gutters twice a year and that is it?',
+    a: 'Yes. If that is all you need, that is all we do. No requirement to sign up for anything beyond what you are asking for.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Home Maintenance in Southern Illinois | Built Clough"
+  description="Gutters, caulk, decks, weatherstripping, and the physical upkeep your home needs. Scheduled visits or one-time lists — across Southern Illinois."
+  canonical="https://builtclough.com/services/home-maintenance"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/log-cabin-exterior-metal-roof-covered-porch-southern-illinois.avif"
+            alt="Log cabin exterior with metal roof and covered porch in Southern Illinois by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Home maintenance · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:20ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">The Small Things That Keep Your Home Healthy</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">Most home problems start small. A clogged gutter, a failed caulk joint, a filter that has not been changed in a year. Staying on top of maintenance is the cheapest way to avoid expensive repairs.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Home maintenance · Southern Illinois</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Why Home Maintenance Matters</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Your home does not stop needing attention when the remodel is done. Every surface, every joint, and every material has a lifespan. When maintenance happens on time, things last. When it gets put off, small problems compound quietly until they become big ones.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">A gutter that is not cleaned sends water behind the fascia and into the wall. Caulk that fails around a tub lets moisture into the subfloor for months before you notice. A deck that misses one stain cycle starts absorbing water and cracking. None of this is dramatic on any given day. That is what makes it easy to ignore.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We are not HVAC technicians, plumbers, or electricians. What we do is the physical maintenance and upkeep of your home — the things you can see, touch, and walk past every day that slowly deteriorate if nobody is paying attention.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we handle</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What We Actually Do</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {categories.map(({ title, items }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-3">{title}</p>
+                <ul class="flex flex-col gap-1.5">
+                  {items.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#bbbbbb] mt-[3px] flex-shrink-0" aria-hidden="true">–</span>
+                      <span class="text-[13px] font-normal text-[#6b6b6b] leading-[1.5]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section grid grid-cols-2 gap-2">
+          {[
+            { src: '/images/og/log-cabin-front-porch-hand-hewn-post-southern-illinois.avif', alt: 'Log cabin front porch with hand hewn post in Southern Illinois by Built Clough' },
+            { src: '/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif', alt: 'Covered deck with pine rafter ceiling outdoor living by Built Clough' },
+          ].map(({ src, alt }) => (
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <Image
+                src={src}
+                alt={alt}
+                class="w-full block"
+                style="aspect-ratio:1/1;object-fit:cover"
+                width="600"
+                height="600"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">How it works</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">How It Works</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Every home is different and every homeowner has different priorities. We do not sell packages. We do not show up with a one-size-fits-all checklist and charge you for items that do not apply to your house.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We start with a conversation about what matters to you. Maybe you want a full walk-through twice a year where we look at everything and handle what we find. Maybe you just want the gutters cleaned and the caulk checked every spring. Maybe you have a specific list of things that have been building up and you want someone to work through them in one visit.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">You tell us what you want covered and we build the visit around that. If we find something during the visit that falls outside what we handle — an HVAC issue or a plumbing problem that needs a licensed plumber — we let you know and point you in the right direction.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">After each visit, you get a summary of what we checked, what we did, what we found, and what to keep an eye on. Over time this becomes a running record of your home's condition, which is valuable for your own planning and useful if you ever sell.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Scope</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What We Cannot Do</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We are not licensed plumbers, electricians, or HVAC technicians. We do not service furnaces, repair electrical panels, replace water heaters, or work on gas lines. If we find something during a visit that needs a licensed trade, we tell you what we found, explain why it matters, and recommend you call the right professional.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">What we do is everything else. The caulk, the trim, the gutters, the grout, the weatherstripping, the deck stain, the drywall patch, the door that sticks, the smoke detector that has been chirping for a month. The physical upkeep of the house that keeps it in good shape between the bigger projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Who this is for</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Who This Is For</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {whoItIsFor.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Free resources</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-4 font-serif">What We Have Built for You</h2>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10 max-w-2xl">A library of free maintenance resources for homeowners. Not marketing materials — practical guides based on what we see on every job.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {resources.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-6">
+      <div class="animate-section">
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] max-w-2xl">Every home is different. Tell us what you are thinking about and we will figure out the right fit.</p>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/board-and-batten-home-exterior-covered-porch-deck-southern-illinois.avif"
+            alt="Board and batten home exterior with covered porch and deck in Southern Illinois by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">What does your home need right now</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ProjectModal from '../components/ProjectModal.astro';
 import '../styles/global.css';
 import { site } from '../config/site.ts';
 
@@ -120,15 +121,15 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://builtclou
       Skip to content
     </a>
 
-    <div class="md:flex md:min-h-screen">
-      <Nav currentPath={Astro.url.pathname} />
-      <div class="md:flex-1 md:ml-[220px] min-w-0">
-        <main id="main">
-          <slot />
-        </main>
-        <Footer />
-      </div>
+    <Nav currentPath={Astro.url.pathname} />
+    <div>
+      <main id="main">
+        <slot />
+      </main>
+      <Footer />
     </div>
+
+    <ProjectModal />
 
     <!-- Scroll-triggered fade-in for .animate-section elements -->
     <script>

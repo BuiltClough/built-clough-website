@@ -1,0 +1,316 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const whatWeDo = [
+  {
+    title: 'Window replacement',
+    body: 'We remove the old window and install the new one with proper shimming, insulation, flashing, and interior and exterior trim. A window that is not installed correctly leaks water into the wall cavity, creates air gaps, and defeats the purpose of upgrading in the first place. The window itself is important. The installation is what makes it perform.',
+  },
+  {
+    title: 'Exterior door replacement',
+    body: 'Entry doors, back doors, side doors, and sliding glass doors. Exterior doors are heavier, require proper weatherproofing, and need precise threshold alignment to seal correctly. We install with insulation, flashing, and weatherstripping so the door keeps air, water, and noise where they belong.',
+  },
+  {
+    title: 'Interior door installation',
+    body: 'Pre-hung doors, slab doors, barn doors, and pocket doors. We shim every frame plumb and level so the door swings properly, latches without forcing, and has even gaps around the frame. A door that is not plumb swings open on its own, the latch does not catch, and it looks crooked even if the door itself is straight.',
+  },
+  {
+    title: 'Storm doors',
+    body: 'A storm door adds a layer of protection to your entry door, reduces energy loss, and lets you get fresh air without the bugs. We mount the frame, hang the door, and adjust the closer so it operates smoothly without slamming.',
+  },
+  {
+    title: 'Hardware',
+    body: 'Deadbolts, smart locks, lever handles, knob replacements, and multipoint locking systems. We bore holes where needed, align the strike plate, and test every lock for smooth operation before we leave.',
+  },
+  {
+    title: 'Repair and adjustment',
+    body: 'Sticking doors planed to fit. Windows that will not stay open rebalanced with new springs or balances. Sliding doors with worn rollers replaced and tracks cleaned. Weatherstripping and door sweeps replaced. Locks and cranks that have failed swapped out. Not everything needs to be replaced. Sometimes the right repair gives you years more life from what you already have.',
+  },
+];
+
+const considerations = [
+  {
+    title: 'Why are you replacing',
+    body: 'Energy efficiency, comfort, appearance, security, noise, or damage. The reason shapes the recommendation. If the windows are single pane and you are replacing for efficiency, the product selection matters most. If the window frame is rotted and letting water in, the installation and flashing are the priority. If the front door is just ugly, the options are wide open.',
+  },
+  {
+    title: 'Window materials',
+    body: 'Vinyl is the most popular and affordable. It insulates well, requires no painting, and holds up to weather. Wood windows look beautiful from the inside and can be painted or stained but require more maintenance on the exterior. Fiberglass is the most dimensionally stable and performs well in extreme temperatures but costs more. Aluminum is durable and slim but conducts heat and cold more than other options.',
+  },
+  {
+    title: 'Glass options',
+    body: 'Double pane is the standard minimum. Triple pane adds more insulation and noise reduction at a higher cost. Low-E coating reflects heat and UV rays to improve efficiency. Argon gas between the panes improves insulation. Your climate, your budget, and which direction the windows face all factor into what makes sense.',
+  },
+  {
+    title: 'Door materials',
+    body: 'Fiberglass entry doors are durable, energy efficient, and can mimic the look of wood without the maintenance. Steel doors are the most secure and affordable but can dent and conduct temperature. Wood doors are the most customizable and have a presence that other materials cannot match but they require regular maintenance to prevent warping and rot.',
+  },
+  {
+    title: 'Budget',
+    body: 'Window replacement in Southern Illinois runs $400 to $900 per window installed depending on material, size, and glass options. Exterior door replacement runs $450 to $700 installed for a standard pre-hung. Custom sizes, sidelights, and transoms add cost. We walk you through the options at every budget level.',
+  },
+];
+
+const installationDetails = [
+  {
+    title: 'Shimming',
+    body: 'Every window and door frame needs to be shimmed plumb, level, and square within the rough opening. If the frame is racked, the window will not operate smoothly, the sash will not seal properly, and the hardware will wear out prematurely. Doors that are not plumb swing on their own and the latch does not line up with the strike plate.',
+  },
+  {
+    title: 'Insulation',
+    body: 'The gap between the frame and the rough opening needs to be filled with low expansion spray foam or backer rod and caulk. If it is left empty, air moves freely through the wall around the window even though the window itself is sealed. We see this on existing installations regularly — the homeowner replaced the windows but the installer left gaps in the rough opening that were never sealed.',
+  },
+  {
+    title: 'Flashing',
+    body: 'Exterior flashing is what keeps water from getting behind the window or door and into the wall. It has to be lapped correctly so water sheds outward at every layer. If the flashing is installed backward or missing entirely, water enters the wall cavity and causes rot and mold that you will not see until the damage is significant.',
+  },
+  {
+    title: 'Trim',
+    body: 'Interior and exterior trim covers the gap between the frame and the wall, provides a clean finished look, and when caulked properly adds another layer of air sealing. We match existing trim profiles when possible so the new window or door looks like it belongs rather than looking like an afterthought.',
+  },
+];
+
+const warningsigns = [
+  {
+    title: 'Drafts around closed windows or doors',
+    body: 'Hold your hand near the edges on a windy day. If you feel air movement, the seal has failed.',
+  },
+  {
+    title: 'Condensation between the panes',
+    body: 'Moisture or fogging between double pane glass means the seal has broken and the insulating gas has escaped. The window is no longer performing as designed.',
+  },
+  {
+    title: 'Difficulty opening, closing, or locking',
+    body: 'Windows and doors that stick, jam, or will not lock properly are not just inconvenient. They are a security and safety issue.',
+  },
+  {
+    title: 'Visible rot on the frame or sill',
+    body: 'Wood frames that are soft, crumbling, or discolored have moisture damage that is only going to spread.',
+  },
+  {
+    title: 'High energy bills with no other explanation',
+    body: 'If your HVAC system is maintained and your insulation is adequate but your bills keep climbing, windows and doors are often the cause. Older single pane windows and poorly sealed doors are some of the largest sources of energy loss in a home.',
+  },
+  {
+    title: 'Noise',
+    body: 'If you can hear everything happening outside with the windows closed, the glass and seals are not doing their job.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How much does it cost to replace a window?',
+    a: '$400 to $900 per window installed in Southern Illinois. The range depends on frame material (vinyl, wood, fiberglass), glass options (double vs. triple pane, Low-E, argon), window size, and whether the rough opening needs to be modified.',
+  },
+  {
+    q: 'How much does it cost to replace an exterior door?',
+    a: '$450 to $700 for a standard pre-hung exterior door installed. Custom sizes, sidelights, transoms, and premium materials push the cost higher. Interior doors run $275 to $425 installed.',
+  },
+  {
+    q: 'How do I know if I need new windows or just new weatherstripping?',
+    a: 'If the frames are solid, the glass is not fogged, and the windows operate smoothly but you feel drafts, new weatherstripping and caulk may be all you need. If the frames are rotted, the glass is fogged, the windows will not stay open, or they are single pane, replacement is the better investment.',
+  },
+  {
+    q: 'Will new windows lower my energy bills?',
+    a: 'In most cases, yes. Replacing single pane windows with double pane Low-E windows significantly reduces heat loss in winter and heat gain in summer. The amount you save depends on how many windows you replace, the efficiency of your HVAC system, and how well insulated the rest of the house is. Most homeowners notice the comfort difference immediately and the bill difference within the first season.',
+  },
+  {
+    q: 'Do you install windows and doors I purchase myself?',
+    a: 'Yes. If you have already selected and purchased your windows or doors, we are happy to install them. We inspect everything on delivery to make sure it arrived in good condition and matches the rough opening dimensions before we start.',
+  },
+  {
+    q: 'Can you match my existing trim?',
+    a: 'In most cases, yes. We carry common trim profiles and can source specialty profiles when needed. If the existing trim is a custom or discontinued profile, we can mill a match or suggest the closest available option.',
+  },
+  {
+    q: 'How long does window replacement take?',
+    a: 'Most individual windows take 2 to 4 hours to replace including removal, installation, insulation, and interior trim. A full house of windows can usually be completed in 2 to 4 days depending on the number of windows and the complexity of the trim.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Window and Door Replacement in Southern Illinois | Built Clough"
+  description="Window replacement, door installation, and hardware across Southern Illinois. Proper shimming, insulation, and flashing — not just a swap."
+  canonical="https://builtclough.com/services/windows-doors"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/vertical-picture-window-pine-plank-wall-detail.avif"
+            alt="Vertical picture window with pine plank wall detail by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Windows & doors · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:20ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">Windows and Doors Do More Than You Think</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">They control how your home feels, how it sounds, how it holds temperature, and how secure it is. When they are working right, you never think about them. When they are not, you notice every day.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Windows & doors · Southern Illinois</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Why Windows and Doors Matter More Than Most People Realize</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">A window that does not seal properly lets conditioned air out and outside air in every minute of every day. That is money leaving through the frame. A door that does not latch tight lets in drafts, moisture, and insects. A single pane window in a Southern Illinois winter makes the room next to it uncomfortable no matter what the thermostat says.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Most homeowners do not think about windows and doors until something is obviously wrong. The window will not open. The door sticks every summer. The energy bill keeps climbing. Condensation forms between the glass. The lock does not engage anymore.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">By the time you notice, the problem has usually been costing you for a while. The good news is that replacing or repairing windows and doors is one of the most impactful improvements you can make for comfort, efficiency, and the feel of the home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section grid grid-cols-2 gap-2">
+          {[
+            { src: '/images/og/cathedral-pine-ceiling-three-skylights-custom-home.avif', alt: 'Cathedral pine ceiling with three skylights custom home by Built Clough' },
+            { src: '/images/og/custom-skylight-pine-plank-cathedral-ceiling.avif', alt: 'Custom skylight with pine plank cathedral ceiling by Built Clough' },
+          ].map(({ src, alt }) => (
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <Image
+                src={src}
+                alt={alt}
+                class="w-full block"
+                style="aspect-ratio:1/1;object-fit:cover"
+                width="600"
+                height="600"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">What we do</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What We Do</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {whatWeDo.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you start</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What to Think About Before You Start</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {considerations.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === considerations.length - 1 && considerations.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Installation quality</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-4 font-serif">What Makes Installation Matter as Much as the Product</h2>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10 max-w-2xl">You can buy the best window on the market and it will underperform if it is installed wrong. The same goes for doors.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {installationDetails.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Warning signs</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Signs Your Windows or Doors Need Attention</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {warningsigns.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/covered-porch-pine-tongue-and-groove-skylights.avif"
+            alt="Covered porch with pine tongue and groove and skylights by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">When they are working right, you never think about them</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../components/FAQAccordion.astro';
+
+const designThinking = [
+  {
+    title: 'How the room works, not just how it looks',
+    body: 'A beautiful kitchen with the sink in the wrong spot is a kitchen you will be frustrated with every day. We think about flow, function, and how your household actually moves through the space before we think about finishes.',
+  },
+  {
+    title: 'What your house can handle',
+    body: 'Not every wall can come down. Some walls carry loads. Some have plumbing or electrical running through them. Some are on a slab where moving a drain means cutting concrete. We know how to figure this out before the design gets too far down a path that does not work structurally.',
+  },
+  {
+    title: 'How materials perform over time',
+    body: 'We have seen what holds up and what does not. We will tell you if a material that looks great in the showroom is going to disappoint you in three years. We will also tell you when a less expensive option performs just as well as the premium one.',
+  },
+  {
+    title: 'Where the money goes',
+    body: 'We design to your budget, not around it. That means we are not showing you a $60,000 kitchen when your budget is $30,000. If the budget needs to shift somewhere, we talk through the trade-offs together so you are making informed decisions about where to invest and where to pull back.',
+  },
+  {
+    title: 'The details that add up',
+    body: 'Where the shampoo niche goes in a shower. Whether the cabinet hardware is at the right height. How the tile pattern wraps around a corner. Whether the lighting works at 6 AM and at 10 PM. These are the things that separate a remodel that looks finished from one that feels finished.',
+  },
+];
+
+const designApproach = [
+  {
+    title: 'All design work is done in house',
+    body: 'We are not interior designers. We are builders who design, which means we understand the gap between a concept and what it takes to actually construct it. That gap is where most design problems live.',
+  },
+  {
+    title: 'We use SketchUp for 3D renderings',
+    body: 'You see the layout, the proportions, and the materials in context before anything is built. This is not a rough sketch on graph paper. It is a realistic view of what your finished space will look like so there is nothing left to imagine.',
+  },
+  {
+    title: 'We work with your actual materials',
+    body: 'When we put together a rendering, we use the tile you selected, the cabinet style you chose, the countertop material you are considering. You see your design with your materials, not generic placeholders.',
+  },
+  {
+    title: 'We revise until it is right',
+    body: 'The first rendering is a starting point. Most projects go through two to three revisions. Some go through more. We are not on a clock during this phase because rushing the design to get to construction faster is how projects end up with regrets.',
+  },
+  {
+    title: 'We present options, not ultimatums',
+    body: 'If there are multiple ways to approach the layout or the materials, we show you the trade-offs. Here is option A, here is what it costs, here is what it does well. Here is option B, here is what changes. You make the call with full information.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do I need to have my design figured out before I contact you?',
+    a: 'No. Some homeowners come to us with a complete vision. Others just know something is not working and want help figuring out the right direction. We meet you wherever you are in the process.',
+  },
+  {
+    q: 'Can I bring my own inspiration photos?',
+    a: 'Absolutely. Pinterest boards, magazine clippings, photos from a friend\'s house, screenshots from Instagram. Anything that helps us understand what you are drawn to is useful. We take those references and translate them into something that works for your specific home and budget.',
+  },
+  {
+    q: 'Do you charge for design?',
+    a: 'Our design work is included in the project cost. We do not charge a separate design fee. The design phase is part of how we build and we do not separate it from the rest of the process.',
+  },
+  {
+    q: 'What if I change my mind after the design is approved?',
+    a: 'It happens. If you want to make a change after construction has started, we discuss how it affects the scope, the cost, and the timeline. Every change is documented in a written change order that you approve before any additional work is done.',
+  },
+  {
+    q: 'How long does the design phase take?',
+    a: 'Most designs are ready for review within 2 to 3 days after the site visit. Revisions depend on how many rounds it takes to get to something you love. We do not put a deadline on this phase. It takes as long as it takes to get it right.',
+  },
+  {
+    q: 'What software do you use?',
+    a: 'We design in SketchUp, which allows us to create 3D renderings that show your space from multiple angles with your actual materials applied. You can see proportions, layouts, and finishes in a realistic context before anything is built.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="We Design With You | Built Clough"
+  description="Built Clough handles all design in house — 3D renderings with your actual materials, revised until it is right. No separate design fee. Southern Illinois remodeling."
+  canonical="https://builtclough.com/design"
+  pageSchema={faqSchema}
+>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="p-3 md:p-4">
+    <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+      <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+        <Image
+          src="/images/og/apple-creek-bath-remodel-hero.avif"
+          alt="Bathroom remodel by Built Clough"
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          width="1600"
+          height="900"
+        />
+      </div>
+      <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+        <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Design · Built Clough</p>
+        <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:22ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">We Design With You</h1>
+        <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">The design phase is where your project either comes together or starts to go sideways. We take our time here because everything that happens after it depends on getting it right.</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+          <a href="/gallery" class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How the Design Process Works ─────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">The process</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">How the Design Process Works</h2>
+        <div class="flex flex-col gap-5" style="max-width:62ch">
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">It starts with a conversation. Not a sales pitch. Not a template. We want to understand what is not working about the space you are in right now. What frustrates you. What you have been looking at online. What you picture when you imagine the room being done.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Some homeowners show up with a Pinterest board, a magazine clipping, and strong opinions about tile. Others walk us into the room and say they just know it is not right but cannot explain why. Both are a perfectly good place to start.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We take what you tell us and combine it with what we know about your home. The structure. The plumbing. The electrical. The things that determine what is possible and what is not. Then we put together a design that reflects what you want and what your house can actually handle.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">From there we go back and forth. We sketch. We adjust. We show you options you may not have considered. We tell you when something will not work and explain why. We keep going until you look at it and feel like that is it.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Image grid 1 ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-bath-remodel-01.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-bath-remodel-03.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-bath-remodel-05.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── What We Are Thinking About ───────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our thinking</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">What We Are Thinking About While We Design</h2>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-8" style="max-width:56ch">You are thinking about how the room looks. We are thinking about that too. But we are also thinking about things that are harder to see on a screen.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {designThinking.map(({ title, body }, i) => (
+            <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === designThinking.length - 1 ? ' md:col-span-2' : ''}`}>
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── What Design Looks Like at Built Clough ───────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our approach</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">What Design Looks Like at Built Clough</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+          {designApproach.map(({ title, body }, i) => (
+            <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === designApproach.length - 1 ? ' md:col-span-2' : ''}`}>
+              <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+              <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Rendering gallery ─────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-design-rendering-01.avif" alt="3D design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-design-rendering-02.avif" alt="3D design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+          <Image src="/images/og/apple-creek-design-rendering-03.avif" alt="3D design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="600" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Why We Do Not Rush This ──────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Why it matters</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Why We Do Not Rush This</h2>
+        <div class="flex flex-col gap-5" style="max-width:62ch">
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">The design phase is where most of the expensive mistakes in a remodel get prevented. A wall that gets framed in the wrong place. A drain that ends up two inches off. A niche that is too high to reach comfortably. A tile pattern that does not line up through a corner. All of these are design problems, not construction problems. They happen when the planning was not thorough enough.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We would rather spend an extra week in the design phase than discover a problem in week three of construction when the fix involves tearing something out and starting over. That costs you money, costs us time, and creates frustration on both sides.</p>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">By the time we hand you a proposal, the design is done. Not almost done. Done. You have seen it, revised it, and approved it. The scope, the materials, the layout, and the budget are all locked in. There is nothing left to figure out once construction starts.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Testimonials ──────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-8">What homeowners have said</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+
+          <!-- Terri D. -->
+          <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
+            <div class="p-3">
+              <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
+                <Image src="/images/og/built-clough-testimonial-02.avif" alt="Bathroom tile work by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
+                <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Bathroom Remodel</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5 flex flex-col flex-1">
+              <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+              <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">What I love about Built Clough is that my imagination can go wild. I appreciate their ability to put life to my ideas with quality and care. Thank you Built Clough!</p>
+              <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                <div class="w-9 h-9 rounded-full overflow-hidden border border-border flex-shrink-0"><Image src="/images/og/terri.png" alt="Terri Douglas" class="w-full h-full object-cover" width="36" height="36" /></div>
+                <div><p class="text-[13px] font-medium text-foreground">Terri D.</p><p class="text-[12px] font-normal text-[#999]">Bathroom remodel · 2025</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mellissa C. -->
+          <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
+            <div class="p-3">
+              <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
+                <Image src="/images/og/built-clough-testimonial-01.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
+                <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Bathroom Remodel</span>
+              </div>
+            </div>
+            <div class="px-5 pb-5 flex flex-col flex-1">
+              <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+              <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">Built Clough far exceeded our expectations for a bathroom remodel. They worked with us in every aspect of the process and their communication was top notch. They made the whole remodel enjoyable and the finished product was exactly what I dreamed of.</p>
+              <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                <div class="w-9 h-9 rounded-full overflow-hidden border border-border flex-shrink-0"><Image src="/images/og/mellissa.png" alt="Melissa Crickman" class="w-full h-full object-cover" width="36" height="36" /></div>
+                <div><p class="text-[13px] font-medium text-foreground">Mellissa C.</p><p class="text-[12px] font-normal text-[#999]">Bathroom remodel · 2025</p></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+        <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Questions About Our Design Process</h2>
+        <FAQAccordion items={faqs} />
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Final CTA ─────────────────────────────────────────────────────── -->
+  <div class="animate-section">
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/marble-walk-in-shower-brass-fixtures-patterned-tile.avif"
+            alt="Custom bathroom design by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">
+            Your project starts with a conversation
+          </h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Tell us what you are thinking about. We will listen first.</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Layout>

@@ -96,8 +96,8 @@ const steps = [
   { number: '01', title: '15-minute call', description: "We talk through what you are thinking, what you have looked at, and what your timeline looks like. If we are not the right fit for your project, we will tell you on this call.", icon: `<path d="M5 4h3l1.5 3.5-1.5 1.5c1.5 2.5 3 4 5.5 5.5l1.5-1.5L18.5 14V17c0 .5-.5 1-1 1C8 18 2 12 2 5c0-.5.5-1 1-1H5z"/>` },
   { number: '02', title: 'One-hour site visit', description: "We walk the space with you, take measurements, get pictures, and talk through the options worth knowing about before any decisions get made.", icon: `<circle cx="10" cy="8" r="3"/><path d="M10 2C6.7 2 4 4.7 4 8c0 4.4 6 10 6 10s6-5.6 6-10c0-3.3-2.7-6-6-6z"/>` },
   {
-    number: '03', title: 'Design',
-    description: "After the visit, we take everything we learned and put together a set of solutions that reflect what you told us you wanted. As builders, we understand how the structure, plumbing, and electrical in your home affect what is actually possible, so we present options that are real, not just ideas on paper.",
+    number: '03', title: 'Design & Rendering',
+    description: "We build out a full 3D rendering of your project so you can see exactly what it will look like before a single thing is touched. Finishes, layout, fixtures — all of it. No guessing, no surprises.",
     icon: `<path d="M14 2l4 4-10 10H4v-4L14 2z"/><path d="M13 4l3 3"/>`,
     wide: true,
     gif: true,
@@ -238,6 +238,15 @@ const faqs = [
         width="1600"
         height="900"
       />
+      <Image
+        src="/images/og/kitchen-remodel-southern-illinois-hero-2.avif"
+        alt=""
+        role="presentation"
+        class="absolute inset-0 w-full h-full object-cover hero-zoom hero-crossfade"
+        loading="eager"
+        width="1600"
+        height="900"
+      />
     </div>
     <!-- Overlay -->
     <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.35) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
@@ -278,13 +287,14 @@ const faqs = [
         Three brothers with twenty years of experience remodeling kitchens, bathrooms, decks, and additions in Southern Illinois. We take the time to understand what you want, work through the design with you, and build it to a standard we would want in our own home.
       </p>
       <div class="flex flex-wrap items-center justify-start gap-4 mb-10">
-        <a
-          href="#"
-          class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors"
+        <button
+          type="button"
+          data-project-modal
+          class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors border-none cursor-pointer"
           style="height:44px;display:flex;align-items:center"
         >
           Share your project
-        </a>
+        </button>
         <a
           href="/gallery"
           class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors"
@@ -396,7 +406,7 @@ const faqs = [
           <!-- Left: content -->
           <div class="flex-1">
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Design</p>
-            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">This Is Your Space. We Want You to Love It</h2>
+            <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">This Is Your Space. We Design With You</h2>
             <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-4">
               We do not rush the design phase. This is where we sit down together and figure out what the room should feel like, not what it should look like. We want to understand what bothers you about the current layout, what you have seen elsewhere that stuck with you, what matters most, and what you are willing to let go of if the budget needs it.
             </p>
@@ -422,18 +432,10 @@ const faqs = [
             </button>
           </div>
 
-          <!-- Right: 2 squares left + 1 tall right -->
-          <div class="mt-10 lg:mt-0 lg:flex-shrink-0 lg:w-[45%]">
-            <div class="grid grid-cols-2 gap-2">
-              <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
-                <Image src="/images/og/apple-creek-design-rendering-03.avif" alt="Apple Creek design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="400" />
-              </div>
-              <div class="relative rounded-[10px] overflow-hidden border border-border row-span-2">
-                <Image src="/images/og/apple-creek-design-rendering-01.avif" alt="Apple Creek design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="800" />
-              </div>
-              <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:1/1">
-                <Image src="/images/og/apple-creek-design-rendering-02.avif" alt="Apple Creek design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="400" />
-              </div>
+          <!-- Right: design rendering -->
+          <div class="mt-10 lg:mt-0 lg:flex-shrink-0 lg:w-[45%] lg:self-stretch">
+            <div class="relative rounded-[10px] overflow-hidden border border-border h-full" style="min-height:260px">
+              <Image src="/images/og/apple-creek-design-rendering-03.avif" alt="Apple Creek design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="800" height="600" />
             </div>
           </div>
 
@@ -455,7 +457,7 @@ const faqs = [
       <div class="max-w-4xl mx-auto px-6">
         <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our process</p>
         <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-3 font-serif">From First Call to Final Walkthrough</h2>
-        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">Seven steps from the first call to the final walkthrough.</p>
+        <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-6 md:mb-10" style="max-width:52ch">Seven steps that ensure a smooth project from start to finish.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
           {steps.map((step) => (
@@ -472,9 +474,13 @@ const faqs = [
                       <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:44ch">{step.description}</p>
                     </div>
                     {step.gif && (
-                      <div class="w-full md:flex-1 rounded-[10px] overflow-hidden border border-border" style="position:relative;aspect-ratio:16/9">
-                        <Image src="/images/og/render-gif-bath-remodel-01.avif" alt="Design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="800" height="450" />
-                        <Image src="/images/og/render-gif-bath-remodel-02.avif" alt="Design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover render-crossfade" width="800" height="450" />
+                      <div class="w-full md:flex-1 grid grid-cols-2 gap-2">
+                        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+                          <Image src="/images/og/render-gif-bath-remodel-02.avif" alt="Design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
+                        </div>
+                        <div class="relative rounded-[10px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+                          <Image src="/images/og/render-gif-bath-remodel-01.avif" alt="Design rendering by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
+                        </div>
                       </div>
                     )}
                   </div>
@@ -571,54 +577,75 @@ const faqs = [
           </a>
         </div>
 
-        <div class="grid grid-cols-3 gap-2">
+        <div class="flex flex-col gap-2">
 
-          <!-- Portrait row, 3 tall bath images -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
-            <Image src="/images/og/apple-creek-bath-remodel-04.avif" alt="Apple Creek bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
+          <!-- ── Apple Creek Bath · Makanda ───────────────────────── -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:16/9">
+            <Image src="/images/og/makanda-apple-creek-bath-01.avif" alt="Apple Creek bathroom remodel freestanding tub in Makanda, IL by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
           </div>
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
-            <Image src="/images/og/apple-creek-bath-remodel-05.avif" alt="Apple Creek bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
+          <div class="grid grid-cols-2 gap-2">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/makanda-apple-creek-bath-02.avif" alt="Apple Creek walk-in shower with bench by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/makanda-apple-creek-bath-03.avif" alt="Apple Creek shower detail matte black fixtures by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
           </div>
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
-            <Image src="/images/og/carterville-bath-remodel-01.avif" alt="Carterville bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
-          </div>
-
-          <!-- Large left, rows 2-3 -->
-          <div class="col-span-2 row-span-2 relative rounded-[12px] overflow-hidden border border-border">
-            <Image src="/images/og/covered-porch-pine-tongue-and-groove-skylights.avif" alt="Covered porch with pine tongue and groove and skylights by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="800" height="600" />
-          </div>
-          <!-- Top right -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/coffered-beadboard-ceiling-schoolhouse-pendants.avif" alt="Coffered beadboard ceiling with schoolhouse pendants by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
-          </div>
-          <!-- Bottom right -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/marble-walk-in-shower-brass-fixtures-patterned-tile.avif" alt="Marble walk-in shower with brass fixtures by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
+          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:16/9">
+            <Image src="/images/og/makanda-apple-creek-bath-04.avif" alt="Apple Creek shower bench and hexagon tile floor by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
           </div>
 
-          <!-- Middle row, 3 equal -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/kitchen-island-cherry-butcher-block-cooktop-remodel.avif" alt="Kitchen island with cherry butcher block by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
+          <!-- ── Marion Kitchen ─────────────────────────────────────── -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border mt-6" style="aspect-ratio:16/9">
+            <Image src="/images/og/marion-kitchen-remodel-1.avif" alt="Marion kitchen remodel island and cabinetry by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
           </div>
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/double-vanity-round-mirrors-farmhouse-bathroom-remodel.avif" alt="Double vanity with round mirrors by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
-          </div>
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/covered-deck-pine-rafter-ceiling-outdoor-living.avif" alt="Covered deck with pine rafter ceiling by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
+          <div class="grid grid-cols-2 gap-2">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/marion-kitchen-remodel-2.avif" alt="Marion kitchen open concept living space and built-ins by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/marion-kitchen-remodel-3.avif" alt="Marion kitchen appliances and open shelving by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/marion-kitchen-remodel-4.avif" alt="Marion kitchen island with bar seating by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/marion-kitchen-remodel-5.avif" alt="Marion kitchen built-in china cabinet detail by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
           </div>
 
-          <!-- Small top-left -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/frameless-glass-walk-in-shower-matte-black-fixtures.avif" alt="Frameless glass walk-in shower by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
+          <!-- ── Lake Chautauqua Bath · Carbondale ─────────────────── -->
+          <div class="grid grid-cols-3 gap-2 mt-6">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+              <Image src="/images/og/lake-chataqua-bathroom-carbondale-remodel-01.avif" alt="Lake Chautauqua bathroom remodel in Carbondale, IL by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="400" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+              <Image src="/images/og/lake-chataqua-bathroom-carbondale-remodel-02.avif" alt="Lake Chautauqua shower remodel in Carbondale, IL by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="400" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:1/1">
+              <Image src="/images/og/lake-chataqua-bathroom-carbondale-remodel-03.avif" alt="Lake Chautauqua bathroom tile detail by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="400" />
+            </div>
           </div>
-          <!-- Large right -->
-          <div class="col-span-2 row-span-2 relative rounded-[12px] overflow-hidden border border-border">
-            <Image src="/images/og/makanda-kitchen-remodel-full.avif" alt="Makanda kitchen remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="800" height="600" />
+          <div class="grid grid-cols-3 gap-2">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/4">
+              <Image src="/images/og/lake-chataqua-bathroom-carbondale-remodel-04.avif" alt="Lake Chautauqua marble walk-in shower interior by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="533" />
+            </div>
+            <div class="col-span-2 relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:3/2">
+              <Image src="/images/og/lake-chataqua-bathroom-carbondale-remodel-05.avif" alt="Lake Chautauqua patterned cement tile floor with marble shower and linear drain by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="800" height="533" />
+            </div>
           </div>
-          <!-- Small bottom-left -->
-          <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
-            <Image src="/images/og/freestanding-tub-board-and-batten-bathroom-remodel.avif" alt="Freestanding tub bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="300" />
+
+          <!-- ── Carbondale Porch & Deck ────────────────────────────── -->
+          <div class="relative rounded-[12px] overflow-hidden border border-border mt-6" style="aspect-ratio:16/9">
+            <Image src="/images/og/carbondale-porch-deck-remodel-01.avif" alt="Carbondale covered porch with pine tongue and groove ceiling by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="1200" height="675" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/carbondale-porch-deck-remodel-02.avif" alt="Carbondale porch skylight detail by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
+            <div class="relative rounded-[12px] overflow-hidden border border-border" style="aspect-ratio:4/3">
+              <Image src="/images/og/carbondale-porch-deck-remodel-03.avif" alt="Carbondale cedar ceiling and beam detail by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
+            </div>
           </div>
 
         </div>
@@ -630,7 +657,7 @@ const faqs = [
   <div class="animate-section">
     <section class="py-14 md:py-24">
       <div class="max-w-4xl mx-auto px-6">
-        <div class="flex flex-col lg:flex-row lg:gap-16">
+        <div class="flex flex-col lg:flex-row lg:gap-16 lg:items-center">
 
           <div class="flex-1">
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Our guarantee</p>
@@ -716,104 +743,106 @@ const faqs = [
           Every name below is a real person. If you want to call any of them and ask what working with us was actually like, we will send you their number.
         </p>
 
-        <!-- Featured testimonial, full width, image left -->
-        {(() => {
-          const { quote, name, detail, initials, avatar, img, imgAlt, tag } = testimonials[0];
-          return (
-            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col md:flex-row mb-5">
-              <div class="md:w-[45%] p-3 flex-shrink-0">
-                <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:4/3">
-                  <Image src={img} alt={imgAlt} class="absolute inset-0 w-full h-full object-cover" width="600" height="450" />
-                  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
-                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">
-                    {tag}
-                  </span>
-                </div>
-              </div>
-              <div class="flex-1 px-6 py-6 flex flex-col justify-center">
-                <p class="text-[17px] font-normal text-foreground leading-[1.7] flex-1 mb-6">{quote}</p>
-                <div class="pt-5 border-t border-border flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full border border-border overflow-hidden flex-shrink-0">
-                    {avatar ? (
-                      <Image src={avatar} alt={name} class="w-full h-full object-cover" width="40" height="40" />
-                    ) : (
-                      <div class="w-full h-full bg-[#ede9e4] dark:bg-[#2a2a2a] flex items-center justify-center">
-                        <span class="text-[11px] font-medium text-[#6b6b6b] tracking-[0.04em]">{initials}</span>
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <div class="flex items-center gap-2">
-                      <p class="text-[13px] font-medium text-foreground">{name}</p>
-                      <div class="flex items-center gap-0.5" aria-label="5 out of 5 stars">
-                        {Array.from({ length: 5 }).map(() => (
-                          <svg width="12" height="12" viewBox="0 0 14 14" fill="#F5A623" aria-hidden="true">
-                            <path d="M7 1l1.443 2.924L11.5 4.455l-2.333 2.274.551 3.212L7 8.459l-2.718 1.482.55-3.212L2.5 4.455l3.057-.531z" />
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                    <p class="text-[12px] font-normal text-[#999999] mt-0.5">{detail}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
+        <!-- Col 1: Terri, Nic — Col 2 (center): Leyna (longest), Kendra — Col 3: Melissa, Kelsey -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
 
-        <!-- Remaining testimonials, 2 column grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {testimonials.slice(1).map(({ quote, name, detail, initials, avatar, img, imgAlt, tag }) => (
+          <!-- Column 1 -->
+          <div class="flex flex-col gap-4">
             <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
               <div class="p-3">
                 <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
-                  <Image src={img} alt={imgAlt} class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
+                  <Image src="/images/og/built-clough-testimonial-02.avif" alt="Bathroom tile work by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
                   <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
-                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">
-                    {tag}
-                  </span>
+                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Bathroom Remodel</span>
                 </div>
               </div>
               <div class="px-5 pb-5 flex flex-col flex-1">
-                <p class="text-[15px] font-normal text-foreground leading-[1.6] flex-1">{quote}</p>
-                <div class="mt-5 pt-5 border-t border-border flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-full border border-border overflow-hidden flex-shrink-0">
-                    {avatar ? (
-                      <Image src={avatar} alt={name} class="w-full h-full object-cover" width="40" height="40" />
-                    ) : (
-                      <div class="w-full h-full bg-[#ede9e4] dark:bg-[#2a2a2a] flex items-center justify-center">
-                        <span class="text-[11px] font-medium text-[#6b6b6b] tracking-[0.04em]">{initials}</span>
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <div class="flex items-center gap-2">
-                      <p class="text-[13px] font-medium text-foreground">{name}</p>
-                      <div class="flex items-center gap-0.5" aria-label="5 out of 5 stars">
-                        {Array.from({ length: 5 }).map(() => (
-                          <svg width="12" height="12" viewBox="0 0 14 14" fill="#F5A623" aria-hidden="true">
-                            <path d="M7 1l1.443 2.924L11.5 4.455l-2.333 2.274.551 3.212L7 8.459l-2.718 1.482.55-3.212L2.5 4.455l3.057-.531z" />
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                    <p class="text-[12px] font-normal text-[#999999] mt-0.5">{detail}</p>
-                  </div>
+                <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+                <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">What I love about Built Clough is that my imagination can go wild. I appreciate their ability to put life to my ideas with quality and care. Thank you Built Clough!</p>
+                <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                  <div class="w-9 h-9 rounded-full overflow-hidden border border-border flex-shrink-0"><Image src="/images/og/terri.png" alt="Terri Douglas" class="w-full h-full object-cover" width="36" height="36" /></div>
+                  <div><p class="text-[13px] font-medium text-foreground">Terri D.</p><p class="text-[12px] font-normal text-[#999]">Bathroom remodel · 2025</p></div>
                 </div>
               </div>
             </div>
-          ))}
+            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] px-5 py-5 flex flex-col">
+              <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+              <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">As a part of BNI I get to connect with Patrick each week and see the care and attention that Built Clough Construction puts into every project and every client relationship. Highly recommend.</p>
+              <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                <div class="w-9 h-9 rounded-full border border-border bg-[#f0ece8] dark:bg-[#2a2a2a] flex items-center justify-center flex-shrink-0"><span class="text-[11px] font-medium text-[#6b6b6b]">NS</span></div>
+                <div><p class="text-[13px] font-medium text-foreground">Nic S.</p><p class="text-[12px] font-normal text-[#999]">Southern Illinois · 2025</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 — center, longest card first -->
+          <div class="flex flex-col gap-4">
+            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
+              <div class="p-3">
+                <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
+                  <Image src="/images/og/built-clough-testimonial-03.avif" alt="Master bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
+                  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Master Bathroom</span>
+                </div>
+              </div>
+              <div class="px-5 pb-5 flex flex-col flex-1">
+                <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+                <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">We had a great experience working with Built Clough Construction and Remodeling. The quality of their work really stood out, and you can tell they take pride in what they do. Our master bathroom turned out better than we imagined. The end result truly feels like something you would find in a high-end spa. We would absolutely recommend Built Clough to anyone looking for quality work and a team you can trust.</p>
+                <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                  <div class="w-9 h-9 rounded-full overflow-hidden border border-border flex-shrink-0"><Image src="/images/og/leyna.png" alt="Leyna Derbigny" class="w-full h-full object-cover" width="36" height="36" /></div>
+                  <div><p class="text-[13px] font-medium text-foreground">Leyna D.</p><p class="text-[12px] font-normal text-[#999]">Master bathroom · 2025</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] px-5 py-5 flex flex-col">
+              <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+              <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">We recently had Travis and his team replace our front living room window, kitchen window, and install a new kitchen window ledge. They were professional, timely, and the finished product looks amazing. Highly recommend!</p>
+              <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                <div class="w-9 h-9 rounded-full border border-border bg-[#f0ece8] dark:bg-[#2a2a2a] flex items-center justify-center flex-shrink-0"><span class="text-[11px] font-medium text-[#6b6b6b]">KG</span></div>
+                <div><p class="text-[13px] font-medium text-foreground">Kendra G.</p><p class="text-[12px] font-normal text-[#999]">Windows · 2024</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="flex flex-col gap-4">
+            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] flex flex-col">
+              <div class="p-3">
+                <div class="relative rounded-[8px] overflow-hidden" style="aspect-ratio:16/9">
+                  <Image src="/images/og/built-clough-testimonial-01.avif" alt="Bathroom remodel by Built Clough" class="absolute inset-0 w-full h-full object-cover" width="400" height="225" />
+                  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.15) 50%,transparent 100%)" aria-hidden="true"></div>
+                  <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full border text-white text-[12px] font-normal tracking-[0.02em]" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25);backdrop-filter:blur(6px)">Bathroom Remodel</span>
+                </div>
+              </div>
+              <div class="px-5 pb-5 flex flex-col flex-1">
+                <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+                <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">Built Clough far exceeded our expectations for a bathroom remodel. They worked with us in every aspect of the process and their communication was top notch. They made the whole remodel enjoyable and the finished product was exactly what I dreamed of.</p>
+                <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                  <div class="w-9 h-9 rounded-full overflow-hidden border border-border flex-shrink-0"><Image src="/images/og/mellissa.png" alt="Melissa Crickman" class="w-full h-full object-cover" width="36" height="36" /></div>
+                  <div><p class="text-[13px] font-medium text-foreground">Melissa C.</p><p class="text-[12px] font-normal text-[#999]">Bathroom remodel · 2025</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white dark:bg-[#1f1f1f] border border-border rounded-[12px] px-5 py-5 flex flex-col">
+              <div class="flex items-center gap-0.5 mb-3">{Array.from({length:5}).map(()=><svg width="13" height="13" viewBox="0 0 12 12" fill="#F5A623" aria-hidden="true"><path d="M6 1l1.236 2.505L10 3.82l-2 1.948.472 2.752L6 7.25l-2.472 1.27L4 5.768 2 3.82l2.764-.315z"/></svg>)}</div>
+              <p class="text-[15px] font-normal text-foreground leading-[1.65] flex-1">Pat, from Built Clough, created the most beautiful wooden porch swing for our family. We are so impressed with the craftsmanship and quality. It is everything we hoped for and more.</p>
+              <div class="flex items-center gap-3 mt-5 pt-4 border-t border-border">
+                <div class="w-9 h-9 rounded-full border border-border bg-[#f0ece8] dark:bg-[#2a2a2a] flex items-center justify-center flex-shrink-0"><span class="text-[11px] font-medium text-[#6b6b6b]">KS</span></div>
+                <div><p class="text-[13px] font-medium text-foreground">Kelsey S.</p><p class="text-[12px] font-normal text-[#999]">Custom woodwork · 2024</p></div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
     </section>
   </div>
 
-  <!-- ── Project log ──────────────────────────────────────────────────── -->
+  {/* Project log — hidden for now, bring back when ready
   <div class="animate-section">
     <section class="py-14 md:py-24">
       <div class="max-w-4xl mx-auto px-6">
-
         <div class="flex items-start justify-between gap-4 mb-8">
           <div>
             <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">The Notebook</p>
@@ -821,15 +850,12 @@ const faqs = [
             <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]" style="max-width:40ch">A running record of every project we have completed across Southern Illinois.</p>
           </div>
         </div>
-
         <div class="border border-border rounded-[12px] overflow-hidden">
-          <!-- Column headers -->
           <div class="grid items-center px-4 py-2.5 border-b border-border bg-transparent" style="grid-template-columns:1fr 160px 90px;gap:0">
             <span class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em]">Project</span>
             <span class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] hidden md:block">Location</span>
             <span class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] text-right">Date</span>
           </div>
-          <!-- Rows -->
           {projectLog.map(({ name, location, date, type, img, alt }) => (
             <div class="grid items-center px-4 py-3 border-b border-border last:border-b-0 bg-[#ebe7e2] dark:bg-[#232323] hover:bg-[#e4dfd8] dark:hover:bg-[#292929] transition-colors" style="grid-template-columns:56px 1fr 160px 90px;gap:0">
               <div class="w-10 h-10 rounded-[6px] overflow-hidden border border-border flex-shrink-0">
@@ -844,10 +870,10 @@ const faqs = [
             </div>
           ))}
         </div>
-
       </div>
     </section>
   </div>
+  */}
 
   <!-- ── Team ──────────────────────────────────────────────────────────── -->
   <div class="animate-section">
@@ -997,13 +1023,14 @@ const faqs = [
             Tell us what you are thinking about
           </h2>
           <div class="flex flex-col sm:flex-row gap-3 items-start">
-            <a
-              href="#"
-              class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors"
+            <button
+              type="button"
+              data-project-modal
+              class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors border-none cursor-pointer"
               style="height:44px;display:inline-flex;align-items:center"
             >
               Share your project
-            </a>
+            </button>
             <a
               href="tel:+16189560808"
               class="text-[14px] font-medium px-[22px] rounded-[4px] border border-white/40 text-white hover:bg-white/10 transition-colors"
@@ -1067,6 +1094,15 @@ const faqs = [
 </Layout>
 
 <style>
+  .hero-crossfade {
+    opacity: 0;
+    animation: hero-cf 2s ease-in-out 3s forwards;
+  }
+  @keyframes hero-cf {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
   .render-crossfade {
     animation: render-cf 3s ease-in-out infinite alternate;
   }
@@ -1074,6 +1110,8 @@ const faqs = [
     0%,  33% { opacity: 1 }
     60%, 100% { opacity: 0 }
   }
+
+
 </style>
 
 <script>

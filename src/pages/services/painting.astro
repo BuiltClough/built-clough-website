@@ -1,0 +1,283 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+
+const interiorSections = [
+  {
+    title: 'Walls and ceilings',
+    body: 'We cut in by hand and roll. Two coats is standard on every surface. We prime any bare spots, patches, or areas with stains before the topcoat goes on. We paint ceilings first, then walls, then trim so each surface gets a clean edge against the one before it.',
+  },
+  {
+    title: 'Trim, doors, and baseboards',
+    body: 'Trim work requires more patience than wall painting because every imperfection shows. We sand, prime, and apply thin even coats. On doors we remove the hardware, paint the door properly, and reinstall once it is dry. We do not tape around hinges and paint over hardware.',
+  },
+  {
+    title: 'Cabinets',
+    body: 'Cabinet painting is one of the most impactful changes you can make in a kitchen without a full remodel. It is also one of the hardest to do well. We remove all doors and drawer fronts, sand, prime, and spray in a controlled environment for a smooth factory-like finish. Brush and roller marks on cabinets look like brush and roller marks on cabinets. Spraying is the standard we hold ourselves to.',
+  },
+  {
+    title: 'Stairwells and high ceilings',
+    body: 'Any surface that requires ladder work, scaffolding, or extension poles in tight spaces adds complexity and risk. This is where experience matters. We have the equipment and the comfort level to work in these spaces safely and produce clean results.',
+  },
+  {
+    title: 'Color selection',
+    body: 'We are not color consultants but we have painted enough rooms to know what works and what does not. We are happy to give you our honest opinion on what you are considering. One thing we always recommend is choosing your paint color after your fixed materials — tile, countertops, flooring, cabinets — are selected, not before. It is much easier to match a paint color to a room than to match a room to a paint color.',
+  },
+];
+
+const exteriorSections = [
+  {
+    title: 'What we look for before we paint',
+    body: 'Peeling, chalking, cracking, bare wood, and rot. Any surface that is failing needs to be addressed before new paint goes on top of it. Painting over peeling paint just delays the problem. Painting over rot is covering up damage that will keep spreading. We scrape, sand, and prime every bare or compromised surface. If wood is rotted, we replace it before we paint it.',
+  },
+  {
+    title: 'Product selection',
+    body: 'We use premium exterior paints from major manufacturers. The difference between cheap exterior paint and premium is not just the price per gallon — it is how long the finish lasts. A premium exterior paint applied correctly on properly prepped surfaces can last 8 to 12 years. A budget paint on poorly prepped surfaces fails in 2 to 3. The labor cost is the same either way. The material upgrade is a small percentage of the total job and it buys you years.',
+  },
+  {
+    title: 'What we paint',
+    body: 'Body, trim, fascia, soffits, shutters, doors, garage doors, railings, and porch ceilings. We also stain and seal exterior wood surfaces including decks, fences, pergolas, and siding.',
+  },
+];
+
+const considerations = [
+  {
+    title: 'Interior vs. exterior timing',
+    body: 'Interior painting can happen any time of year. Exterior painting is weather dependent. The best windows in Southern Illinois are late April through early June and September through mid October when temperatures are moderate and humidity is manageable. We do not paint exteriors in extreme heat, cold, or high humidity because the finish will not cure properly.',
+  },
+  {
+    title: 'How much does painting cost',
+    body: 'Interior painting runs $375 to $550 per standard bedroom and $2,800 to $4,200 for a full 3-bedroom home. Exterior painting runs $3,800 to $6,500 for an average home depending on condition, size, and prep involved. Cabinet painting runs $1,800 to $3,200 for a full kitchen. For more detail, visit our <a href="/pricing" class="text-foreground underline underline-offset-2 hover:text-[#6b6b6b] transition-colors">pricing page</a>.',
+  },
+  {
+    title: 'How long does it take',
+    body: 'A single room takes a half day to a full day depending on size and prep. A full interior takes 4 to 6 days. A full exterior takes 5 to 8 days depending on size and condition. Cabinet painting takes 3 to 5 days because of the drying time between coats.',
+  },
+  {
+    title: 'Sheen matters',
+    body: 'Flat hides imperfections but is hard to clean. Eggshell is the most common for living areas. Satin is more washable and works well in kitchens, bathrooms, and hallways. Semi-gloss is best for trim, doors, and cabinets. We help you choose the right sheen for each surface.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Can I just paint one room?',
+    a: 'Absolutely. Single rooms, accent walls, just the trim — whatever you need.',
+  },
+  {
+    q: 'How do I know if my exterior needs repainting?',
+    a: 'Look for peeling, chalking (a white powdery residue when you rub the surface), cracking, fading, or bare wood showing through. South and west facing walls take the most sun and usually need attention first. If you see any of these, the paint is no longer protecting the surface underneath and moisture is getting in.',
+  },
+  {
+    q: 'Should I paint or stain my cabinets?',
+    a: 'Paint gives a solid opaque finish and works well for a clean modern look. Stain shows the wood grain and works well for a natural or rustic feel. Paint requires more prep and is less forgiving of imperfections. Both can look excellent when done properly. It depends on the look you want.',
+  },
+  {
+    q: 'How long should interior paint last?',
+    a: 'In normal conditions, a quality interior paint job lasts 5 to 10 years in living areas and longer in rooms with less traffic. Kitchens and bathrooms may need attention sooner because of moisture and grease exposure. Hallways and kid rooms see more wear. Trim and doors take more abuse than walls and may need refreshing before the walls do.',
+  },
+  {
+    q: 'Do you move furniture?',
+    a: 'We move what needs to be moved to paint properly and put it back when we are done. Large or fragile items should be moved beforehand or discussed during the estimate.',
+  },
+  {
+    q: 'What is the difference between hiring you and doing it myself?',
+    a: 'The paint goes on the same way. The difference is prep, speed, and finish quality. We fill every hole, caulk every gap, prime every bare spot, and cut clean lines. We do it in days, not weekends. And we do it without the ladder anxiety, the sore neck, and the late night realization that the second coat has brush marks.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<Layout
+  title="Interior and Exterior Painting in Southern Illinois | Built Clough"
+  description="Interior and exterior painting, cabinet painting, and staining across Southern Illinois. Prep done right, premium products, and a finish that lasts."
+  canonical="https://builtclough.com/services/painting"
+  pageSchema={faqSchema}
+>
+  <main id="main">
+
+    <section class="p-3 md:p-4">
+      <div class="parallax-banner-container relative w-full overflow-hidden rounded-[16px] flex items-center" style="min-height:80vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/tray-ceiling-beadboard-brass-pendant-detail.avif"
+            alt="Tray ceiling with beadboard and brass pendant detail by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            width="1600"
+            height="900"
+          />
+        </div>
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.75) 100%)" aria-hidden="true"></div>
+        <div class="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-start text-left px-6 py-20">
+          <p class="text-[11px] font-normal text-white uppercase tracking-[0.08em] mb-3">Painting · Southern Illinois</p>
+          <h1 class="text-[38px] md:text-[54px] leading-[1.06] font-semibold text-white tracking-[0.03em] font-serif mb-5" style="max-width:18ch;text-shadow:0 1px 8px rgba(0,0,0,0.25)">Paint Changes Everything About a Room</h1>
+          <p class="text-[17px] font-normal text-white/80 leading-[1.6] mb-8" style="max-width:44ch;text-shadow:0 1px 6px rgba(0,0,0,0.3)">It is the fastest way to make a space feel different. It is also one of the easiest things to do poorly. Prep, product, and patience are the difference between a paint job that lasts and one that peels.</p>
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="/gallery" class="text-[14px] font-normal text-white/80 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">View our work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 md:py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Painting · Southern Illinois</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What We Do</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We paint interiors and exteriors. Single rooms, whole homes, accent walls, trim, doors, cabinets, ceilings, stairwells, and anything else that needs a brush or a roller. We also stain and finish exterior wood including decks, fences, and siding.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We do our own prep. That is not a small detail. Prep is where most paint jobs are won or lost. Filling holes, sanding, caulking gaps, priming bare surfaces, taping clean lines, and protecting everything that is not getting painted. When the prep is right, the paint goes on smooth, adheres properly, and holds up for years. When it is rushed, you see brush marks, peeling, and bleed through within months.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="animate-section grid grid-cols-2 gap-2">
+          {[
+            { src: '/images/og/coffered-beadboard-ceiling-schoolhouse-pendants.avif', alt: 'Coffered beadboard ceiling with schoolhouse pendants by Built Clough' },
+            { src: '/images/og/log-cabin-interior-dining-room-loft-stairs.avif', alt: 'Log cabin interior dining room with loft stairs by Built Clough' },
+          ].map(({ src, alt }) => (
+            <div class="rounded-[10px] overflow-hidden border border-border">
+              <Image
+                src={src}
+                alt={alt}
+                class="w-full block"
+                style="aspect-ratio:1/1;object-fit:cover"
+                width="600"
+                height="600"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Interior</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">Interior Painting</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {interiorSections.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === interiorSections.length - 1 && interiorSections.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Exterior</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-4 font-serif">Exterior Painting</h2>
+          <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6] mb-10 max-w-2xl">Exterior painting is a different discipline than interior. The surface prep is more demanding, the product selection matters more, and mistakes show faster because the elements are working against the finish every day.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {exteriorSections.map(({ title, body }, i) => (
+              <div class={`bg-[#ebe7e2] dark:bg-[#232323] p-6${i === exteriorSections.length - 1 && exteriorSections.length % 2 !== 0 ? ' md:col-span-2' : ''}`}>
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Before you start</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-10 font-serif">What to Think About Before You Start</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border rounded-[12px] overflow-hidden">
+            {considerations.map(({ title, body }) => (
+              <div class="bg-[#ebe7e2] dark:bg-[#232323] p-6">
+                <p class="text-[15px] font-medium text-foreground mb-2">{title}</p>
+                <p class="text-[14px] font-normal text-[#6b6b6b] leading-[1.6]" set:html={body} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Why prep wins</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">Why Prep Matters More Than Paint</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">This is the part most people skip when they paint themselves and the part cheap painters rush through.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">Every nail hole needs to be filled and sanded smooth. Every crack in the drywall needs to be taped or caulked. Every stain from water damage or tannin bleed needs to be primed with a stain-blocking primer or it will come through the topcoat. Every gap between trim and wall needs to be caulked for a clean line. Every surface needs to be cleaned so the paint adheres properly.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">On exteriors, the prep is even more critical. Loose paint needs to be scraped to a sound edge. Bare wood needs to be primed within days or it starts absorbing moisture and the primer will not bond correctly. Caulk around windows and doors needs to be intact or water gets behind the new paint and lifts it from the back side.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We spend as much time on prep as we do on painting. Sometimes more. The paint is what you see. The prep is what makes it last.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">When we finish</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-6 font-serif">What We Leave You With</h2>
+          <div class="flex flex-col gap-4 max-w-2xl">
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">When the project is done, we leave you with the paint brand, color name, color code, and sheen for every surface we painted. This goes into your home records so that years from now when you need to touch up a wall or repaint a room, you have the exact information and are not guessing at the hardware store.</p>
+            <p class="text-[16px] font-normal text-[#6b6b6b] leading-[1.6]">We also leave you with leftover paint when possible. Store it sealed in a cool dry place. It is the best touch-up resource you will have.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-14 md:pb-24">
+      <div class="max-w-4xl mx-auto px-6 pt-14 md:pt-24">
+        <div class="animate-section">
+          <p class="text-[11px] font-normal text-[#999999] uppercase tracking-[0.08em] mb-3">Common questions</p>
+          <h2 class="text-[32px] font-semibold text-foreground tracking-[0.03em] mb-8 font-serif">Frequently Asked Questions</h2>
+          <FAQAccordion items={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 pb-14 md:pb-24">
+      <div class="animate-section parallax-banner-container relative rounded-[16px] overflow-hidden" style="min-height:52vh">
+        <div class="parallax-banner-img" style="position:absolute;inset:0;top:-8%;bottom:-8%;will-change:transform">
+          <Image
+            src="/images/og/makanda-kitchen-remodel-full.avif"
+            alt="Kitchen remodel in Makanda by Built Clough"
+            class="absolute inset-0 w-full h-full object-cover"
+            width="1200"
+            height="800"
+          />
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.78))" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:0;left:0;padding:2.5rem;max-width:520px">
+          <h2 class="text-white font-semibold font-serif" style="font-size:32px;line-height:1.2;letter-spacing:0.03em;margin-bottom:0.5rem">Ready to stop staring at those walls</h2>
+          <p class="text-white/60 mb-5" style="font-size:13px">Marion · Herrin · Carbondale · Makanda · Murphysboro · Carterville</p>
+          <div class="flex flex-col sm:flex-row gap-3 items-start">
+            <button type="button" data-project-modal class="text-[14px] font-medium px-[22px] rounded-[4px] bg-white text-[#111111] hover:bg-white/90 transition-colors" style="height:44px;display:inline-flex;align-items:center;cursor:pointer;border:none">Share a project</button>
+            <a href="tel:+16189560808" class="text-[14px] font-normal text-white/70 hover:text-white transition-colors" style="height:44px;display:inline-flex;align-items:center">(618) 956-0808</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>
